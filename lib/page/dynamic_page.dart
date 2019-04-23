@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:gsy_github_app_flutter/bloc/base/base_bloc.dart';
-import 'package:gsy_github_app_flutter/bloc/dynamic_bloc.dart';
-import 'package:gsy_github_app_flutter/common/dao/repos_dao.dart';
-import 'package:gsy_github_app_flutter/common/model/Event.dart';
-import 'package:gsy_github_app_flutter/common/redux/gsy_state.dart';
-import 'package:gsy_github_app_flutter/common/utils/event_utils.dart';
-import 'package:gsy_github_app_flutter/widget/event_item.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_bloc_list_state.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_pull_new_load_widget.dart';
 import 'package:redux/redux.dart';
+
+import '../common/common.dart';
+import '../widget/widget.dart';
+import '../bloc/bloc.dart';
 
 /**
  * 主页动态tab页
@@ -21,7 +16,11 @@ class DynamicPage extends StatefulWidget {
   _DynamicPageState createState() => _DynamicPageState();
 }
 
-class _DynamicPageState extends State<DynamicPage> with AutomaticKeepAliveClientMixin<DynamicPage>, GSYListState<DynamicPage>, WidgetsBindingObserver {
+class _DynamicPageState extends State<DynamicPage>
+    with
+        AutomaticKeepAliveClientMixin<DynamicPage>,
+        GSYBlocListState<DynamicPage>,
+        WidgetsBindingObserver {
   final DynamicBloc dynamicBloc = DynamicBloc();
 
   @override
@@ -94,9 +93,10 @@ class _DynamicPageState extends State<DynamicPage> with AutomaticKeepAliveClient
       builder: (context, store) {
         return BlocProvider<DynamicBloc>(
           bloc: dynamicBloc,
-          child: GSYPullLoadWidget(
+          child: GSYPullNewLoadWidget(
             bloc.pullLoadWidgetControl,
-            (BuildContext context, int index) => _renderEventItem(bloc.dataList[index]),
+            (BuildContext context, int index) =>
+                _renderEventItem(bloc.dataList[index]),
             requestRefresh,
             requestLoadMore,
             refreshKey: refreshIndicatorKey,

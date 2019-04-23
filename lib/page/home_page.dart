@@ -3,16 +3,10 @@ import 'dart:io';
 
 import 'package:android_intent/android_intent.dart';
 import 'package:flutter/material.dart';
-import 'package:gsy_github_app_flutter/common/localization/default_localizations.dart';
-import 'package:gsy_github_app_flutter/common/style/gsy_style.dart';
-import 'package:gsy_github_app_flutter/common/utils/common_utils.dart';
-import 'package:gsy_github_app_flutter/common/utils/navigator_utils.dart';
-import 'package:gsy_github_app_flutter/page/dynamic_page.dart';
-import 'package:gsy_github_app_flutter/page/my_page.dart';
-import 'package:gsy_github_app_flutter/page/trend_page.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_tabbar_widget.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_title_bar.dart';
-import 'package:gsy_github_app_flutter/widget/home_drawer.dart';
+
+import '../common/common.dart';
+import '../widget/widget.dart';
+import '../page/page.dart';
 
 /**
  * 主页

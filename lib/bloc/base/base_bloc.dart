@@ -29,8 +29,6 @@ class BlocProvider<T extends BlocBase> extends StatefulWidget {
 }
 
 class _BlocProviderState<T> extends State<BlocProvider<BlocBase>> {
-
-
   @override
   void dispose() {
     widget.bloc.dispose();
@@ -46,17 +44,16 @@ class _BlocProviderState<T> extends State<BlocProvider<BlocBase>> {
   void initState() {
     super.initState();
     widget.bloc.initState();
-
   }
 }
 
 abstract class BlocListBase extends BlocBase {
-
   bool _isShow = false;
 
   int _page = 1;
 
-  final GSYPullLoadWidgetControl pullLoadWidgetControl = GSYPullLoadWidgetControl();
+  final GSYPullNewLoadWidgetControl pullLoadWidgetControl =
+      GSYPullNewLoadWidgetControl();
 
   @mustCallSuper
   @override
@@ -83,14 +80,16 @@ abstract class BlocListBase extends BlocBase {
 
   @protected
   getLoadMoreStatus(res) {
-    return (res != null && res.data != null && res.data.length == Config.PAGE_SIZE);
+    return (res != null &&
+        res.data != null &&
+        res.data.length == Config.PAGE_SIZE);
   }
 
   @protected
   doNext(res) async {
     if (res.next != null) {
       var resNext = await res.next;
-      if(resNext != null && resNext.result) {
+      if (resNext != null && resNext.result) {
         changeLoadMoreStatus(getLoadMoreStatus(resNext));
         refreshData(resNext);
       }
@@ -138,7 +137,6 @@ abstract class BlocListBase extends BlocBase {
 }
 
 abstract class BlocBase {
-
   void initState();
 
   void dispose();

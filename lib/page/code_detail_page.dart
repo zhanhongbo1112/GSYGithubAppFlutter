@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:gsy_github_app_flutter/common/dao/repos_dao.dart';
-import 'package:gsy_github_app_flutter/common/style/gsy_style.dart';
-import 'package:gsy_github_app_flutter/common/utils/common_utils.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_common_option_widget.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_markdown_widget.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_title_bar.dart';
+import '../common/common.dart';
+import '../widget/widget.dart';
 
 /**
  * 文件代码详情

@@ -25,7 +25,7 @@ class TrendPage extends StatefulWidget {
   _TrendPageState createState() => _TrendPageState();
 }
 
-class _TrendPageState extends State<TrendPage> with AutomaticKeepAliveClientMixin<TrendPage>, GSYListState<TrendPage> {
+class _TrendPageState extends State<TrendPage> with AutomaticKeepAliveClientMixin<TrendPage>, GSYBlocListState<TrendPage> {
   static TrendTypeModel selectTime = null;
 
   static TrendTypeModel selectType = null;
@@ -146,7 +146,7 @@ class _TrendPageState extends State<TrendPage> with AutomaticKeepAliveClientMixi
           ),
           body: BlocProvider<TrendBloc>(
             bloc: trendBloc,
-            child: GSYPullLoadWidget(
+            child: GSYPullNewLoadWidget(
               bloc.pullLoadWidgetControl,
               (BuildContext context, int index) => _renderItem(bloc.dataList[index]),
               requestRefresh,

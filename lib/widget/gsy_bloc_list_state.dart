@@ -2,14 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:gsy_github_app_flutter/bloc/base/base_bloc.dart';
-import 'package:gsy_github_app_flutter/common/config/config.dart';
 
 /**
  * 上下拉刷新列表的通用State
  * Created by guoshuyu
  * Date: 2018-07-20
  */
-mixin GSYListState<T extends StatefulWidget> on State<T>, AutomaticKeepAliveClientMixin<T> {
+mixin GSYBlocListState<T extends StatefulWidget> on State<T>, AutomaticKeepAliveClientMixin<T> {
 
   final GlobalKey<RefreshIndicatorState> refreshIndicatorKey = GlobalKey<RefreshIndicatorState>();
 
