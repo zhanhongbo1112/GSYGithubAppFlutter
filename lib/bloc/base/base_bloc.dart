@@ -56,7 +56,7 @@ abstract class BlocListBase extends BlocBase {
 
   int _page = 1;
 
-  final GSYPullLoadWidgetControl pullLoadWidgetControl = new GSYPullLoadWidgetControl();
+  final GSYPullLoadWidgetControl pullLoadWidgetControl = GSYPullLoadWidgetControl();
 
   @mustCallSuper
   @override

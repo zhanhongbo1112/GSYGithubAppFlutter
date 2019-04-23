@@ -27,7 +27,7 @@ class GSYStringEn extends GSYStringBase {
   String app_back_tip = "Exit？";
 
   @override
-  String app_not_new_version = "No new version.";
+  String app_not_new_version = "No version.";
   @override
   String app_version_title = "Update Version";
 

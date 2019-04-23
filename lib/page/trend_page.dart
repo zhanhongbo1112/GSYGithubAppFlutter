@@ -30,11 +30,11 @@ class _TrendPageState extends State<TrendPage> with AutomaticKeepAliveClientMixi
 
   static TrendTypeModel selectType = null;
 
-  final TrendBloc trendBloc = new TrendBloc();
+  final TrendBloc trendBloc = TrendBloc();
 
   _renderItem(e) {
     ReposViewModel reposViewModel = ReposViewModel.fromTrendMap(e);
-    return new ReposItem(reposViewModel, onPressed: () {
+    return ReposItem(reposViewModel, onPressed: () {
       NavigatorUtils.goReposDetail(context, reposViewModel.ownerName, reposViewModel.repositoryName);
     });
   }
@@ -43,15 +43,15 @@ class _TrendPageState extends State<TrendPage> with AutomaticKeepAliveClientMixi
     if (selectType == null && selectType == null) {
       return Container();
     }
-    return new GSYCardItem(
+    return GSYCardItem(
       color: store.state.themeData.primaryColor,
       margin: EdgeInsets.all(10.0),
-      shape: new RoundedRectangleBorder(
+      shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(4.0)),
       ),
-      child: new Padding(
-        padding: new EdgeInsets.only(left: 0.0, top: 5.0, right: 0.0, bottom: 5.0),
-        child: new Row(
+      child: Padding(
+        padding: EdgeInsets.only(left: 0.0, top: 5.0, right: 0.0, bottom: 5.0),
+        child: Row(
           children: <Widget>[
             _renderHeaderPopItem(selectTime.name, trendTime(context), (TrendTypeModel result) {
               if (bloc.pullLoadWidgetControl.isLoading) {
@@ -63,7 +63,7 @@ class _TrendPageState extends State<TrendPage> with AutomaticKeepAliveClientMixi
               });
               showRefreshLoading();
             }),
-            new Container(height: 10.0, width: 0.5, color: Color(GSYColors.white)),
+            Container(height: 10.0, width: 0.5, color: Color(GSYColors.white)),
             _renderHeaderPopItem(selectType.name, trendType(context), (TrendTypeModel result) {
               if (bloc.pullLoadWidgetControl.isLoading) {
                 Fluttertoast.showToast(msg: CommonUtils.getLocale(context).loading_text);
@@ -81,9 +81,9 @@ class _TrendPageState extends State<TrendPage> with AutomaticKeepAliveClientMixi
   }
 
   _renderHeaderPopItem(String data, List<TrendTypeModel> list, PopupMenuItemSelected<TrendTypeModel> onSelected) {
-    return new Expanded(
-      child: new PopupMenuButton<TrendTypeModel>(
-        child: new Center(child: new Text(data, style: GSYConstant.middleTextWhite)),
+    return Expanded(
+      child: PopupMenuButton<TrendTypeModel>(
+        child: Center(child: Text(data, style: GSYConstant.middleTextWhite)),
         onSelected: onSelected,
         itemBuilder: (BuildContext context) {
           return _renderHeaderPopItemChild(list);
@@ -93,11 +93,11 @@ class _TrendPageState extends State<TrendPage> with AutomaticKeepAliveClientMixi
   }
 
   _renderHeaderPopItemChild(List<TrendTypeModel> data) {
-    List<PopupMenuEntry<TrendTypeModel>> list = new List();
+    List<PopupMenuEntry<TrendTypeModel>> list = List();
     for (TrendTypeModel item in data) {
       list.add(PopupMenuItem<TrendTypeModel>(
         value: item,
-        child: new Text(item.name),
+        child: Text(item.name),
       ));
     }
     return list;
@@ -134,14 +134,14 @@ class _TrendPageState extends State<TrendPage> with AutomaticKeepAliveClientMixi
   @override
   Widget build(BuildContext context) {
     super.build(context); // See AutomaticKeepAliveClientMixin.
-    return new StoreBuilder<GSYState>(
+    return StoreBuilder<GSYState>(
       builder: (context, store) {
-        return new Scaffold(
+        return Scaffold(
           backgroundColor: Color(GSYColors.mainBackgroundColor),
-          appBar: new AppBar(
+          appBar: AppBar(
             flexibleSpace: _renderHeader(store),
             backgroundColor: Color(GSYColors.mainBackgroundColor),
-            leading: new Container(),
+            leading: Container(),
             elevation: 0.0,
           ),
           body: BlocProvider<TrendBloc>(
@@ -169,9 +169,9 @@ class TrendTypeModel {
 
 trendTime(BuildContext context) {
   return [
-    new TrendTypeModel(CommonUtils.getLocale(context).trend_day, "daily"),
-    new TrendTypeModel(CommonUtils.getLocale(context).trend_week, "weekly"),
-    new TrendTypeModel(CommonUtils.getLocale(context).trend_month, "monthly"),
+    TrendTypeModel(CommonUtils.getLocale(context).trend_day, "daily"),
+    TrendTypeModel(CommonUtils.getLocale(context).trend_week, "weekly"),
+    TrendTypeModel(CommonUtils.getLocale(context).trend_month, "monthly"),
   ];
 }
 

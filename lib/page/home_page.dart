@@ -36,10 +36,10 @@ class HomePage extends StatelessWidget {
   }
 
   _renderTab(icon, text) {
-    return new Tab(
-      child: new Column(
+    return Tab(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[new Icon(icon, size: 16.0), new Text(text)],
+        children: <Widget>[Icon(icon, size: 16.0), Text(text)],
       ),
     );
   }
@@ -56,14 +56,14 @@ class HomePage extends StatelessWidget {
       onWillPop: () {
         return _dialogExitApp(context);
       },
-      child: new GSYTabBarWidget(
-        drawer: new HomeDrawer(),
+      child: GSYTabBarWidget(
+        drawer: HomeDrawer(),
         type: GSYTabBarWidget.BOTTOM_TAB,
         tabItems: tabs,
         tabViews: [
-          new DynamicPage(),
-          new TrendPage(),
-          new MyPage(),
+          DynamicPage(),
+          TrendPage(),
+          MyPage(),
         ],
         backgroundColor: GSYColors.primarySwatch,
         indicatorColor: Color(GSYColors.white),

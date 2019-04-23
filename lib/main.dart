@@ -30,12 +30,15 @@ void main() {
 class FlutterReduxApp extends StatelessWidget {
   /// 创建Store，引用 GSYState 中的 appReducer 实现 Reducer 方法
   /// initialState 初始化 State
-  final store = new Store<GSYState>(
+  final store = Store<GSYState>(
     appReducer,
     middleware: middleware,
 
     ///初始化数据
-    initialState: new GSYState(userInfo: User.empty(), themeData: CommonUtils.getThemeData(GSYColors.primarySwatch), locale: Locale('zh', 'CH')),
+    initialState: GSYState(
+        userInfo: User.empty(),
+        themeData: CommonUtils.getThemeData(GSYColors.primarySwatch),
+        locale: Locale('zh', 'CH')),
   );
 
   FlutterReduxApp({Key key}) : super(key: key);
@@ -43,10 +46,10 @@ class FlutterReduxApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     /// 通过 StoreProvider 应用 store
-    return new StoreProvider(
+    return StoreProvider(
       store: store,
-      child: new StoreBuilder<GSYState>(builder: (context, store) {
-        return new MaterialApp(
+      child: StoreBuilder<GSYState>(builder: (context, store) {
+        return MaterialApp(
 
             ///多语言实现代理
             localizationsDelegates: [
@@ -64,13 +67,13 @@ class FlutterReduxApp extends StatelessWidget {
               },
               HomePage.sName: (context) {
                 ///通过 Localizations.override 包裹一层，
-                return new GSYLocalizations(
-                  child: new HomePage(),
+                return GSYLocalizations(
+                  child: HomePage(),
                 );
               },
               LoginPage.sName: (context) {
-                return new GSYLocalizations(
-                  child: new LoginPage(),
+                return GSYLocalizations(
+                  child: LoginPage(),
                 );
               },
             });
@@ -86,7 +89,7 @@ class GSYLocalizations extends StatefulWidget {
 
   @override
   State<GSYLocalizations> createState() {
-    return new _GSYLocalizations();
+    return _GSYLocalizations();
   }
 }
 
@@ -95,9 +98,9 @@ class _GSYLocalizations extends State<GSYLocalizations> {
 
   @override
   Widget build(BuildContext context) {
-    return new StoreBuilder<GSYState>(builder: (context, store) {
+    return StoreBuilder<GSYState>(builder: (context, store) {
       ///通过 StoreBuilder 和 Localizations 实现实时多语言切换
-      return new Localizations.override(
+      return Localizations.override(
         context: context,
         locale: store.state.locale,
         child: widget.child,
@@ -125,23 +128,31 @@ class _GSYLocalizations extends State<GSYLocalizations> {
   errorHandleFunction(int code, message) {
     switch (code) {
       case Code.NETWORK_ERROR:
-        Fluttertoast.showToast(msg: CommonUtils.getLocale(context).network_error);
+        Fluttertoast.showToast(
+            msg: CommonUtils.getLocale(context).network_error);
         break;
       case 401:
-        Fluttertoast.showToast(msg: CommonUtils.getLocale(context).network_error_401);
+        Fluttertoast.showToast(
+            msg: CommonUtils.getLocale(context).network_error_401);
         break;
       case 403:
-        Fluttertoast.showToast(msg: CommonUtils.getLocale(context).network_error_403);
+        Fluttertoast.showToast(
+            msg: CommonUtils.getLocale(context).network_error_403);
         break;
       case 404:
-        Fluttertoast.showToast(msg: CommonUtils.getLocale(context).network_error_404);
+        Fluttertoast.showToast(
+            msg: CommonUtils.getLocale(context).network_error_404);
         break;
       case Code.NETWORK_TIMEOUT:
         //超时
-        Fluttertoast.showToast(msg: CommonUtils.getLocale(context).network_error_timeout);
+        Fluttertoast.showToast(
+            msg: CommonUtils.getLocale(context).network_error_timeout);
         break;
       default:
-        Fluttertoast.showToast(msg: CommonUtils.getLocale(context).network_error_unknown + " " + message);
+        Fluttertoast.showToast(
+            msg: CommonUtils.getLocale(context).network_error_unknown +
+                " " +
+                message);
         break;
     }
   }

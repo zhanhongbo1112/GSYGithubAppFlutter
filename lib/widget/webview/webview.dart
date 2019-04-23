@@ -17,7 +17,7 @@ enum JavaScriptMode {
 
 /// A web view widget for showing html content.
 class WebView extends StatefulWidget {
-  /// Creates a new web view.
+  /// Creates a web view.
   ///
   /// The web view can be controlled using a `WebViewController` that is passed to the
   /// `onWebViewCreated` callback once the web view is created.

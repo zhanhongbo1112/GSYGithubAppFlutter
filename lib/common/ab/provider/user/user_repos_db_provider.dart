@@ -80,7 +80,7 @@ class UserReposDbProvider extends BaseDbProvider {
 
     var provider = await _getProvider(db, userName);
     if (provider != null) {
-      List<Repository> list = new List();
+      List<Repository> list = List();
 
 
       ///使用 compute 的 Isolate 优化 json decode

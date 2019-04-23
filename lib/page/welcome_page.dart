@@ -36,7 +36,7 @@ class _WelcomePageState extends State<WelcomePage>  {
     ///防止多次进入
     Store<GSYState> store = StoreProvider.of(context);
     CommonUtils.initStatusBarHeight(context);
-    new Future.delayed(const Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 2), () {
       UserDao.initUserInfo(store).then((res) {
         if (res != null && res.result) {
           NavigatorUtils.goHome(context);
@@ -52,10 +52,10 @@ class _WelcomePageState extends State<WelcomePage>  {
   Widget build(BuildContext context) {
     return StoreBuilder<GSYState>(
       builder: (context, store) {
-        return new Container(
+        return Container(
           color: Color(GSYColors.white),
-          child: new Center(
-            child: new Image(image: new AssetImage('static/images/welcome.png')),
+          child: Center(
+            child: Image(image: AssetImage('static/images/welcome.png')),
           ),
         );
       },

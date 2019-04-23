@@ -20,10 +20,10 @@ class UserItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget userImage = new IconButton(
+    Widget userImage = IconButton(
         padding: EdgeInsets.only(top: 0.0, left: 0.0, bottom: 0.0, right: 10.0),
-        icon: new ClipOval(
-          child: new FadeInImage.assetNetwork(
+        icon: ClipOval(
+          child: FadeInImage.assetNetwork(
             placeholder: GSYICons.DEFAULT_USER_ICON,
             //预览图
             fit: BoxFit.fitWidth,
@@ -33,16 +33,16 @@ class UserItem extends StatelessWidget {
           ),
         ),
         onPressed: null);
-    return new Container(
-        child: new GSYCardItem(
-      child: new FlatButton(
+    return Container(
+        child: GSYCardItem(
+      child: FlatButton(
         onPressed: onPressed,
-        child: new Padding(
-          padding: new EdgeInsets.only(left: 0.0, top: 5.0, right: 0.0, bottom: 10.0),
-          child: new Row(
+        child: Padding(
+          padding: EdgeInsets.only(left: 0.0, top: 5.0, right: 0.0, bottom: 10.0),
+          child: Row(
             children: <Widget>[
               userImage,
-              new Expanded(child: new Text(userItemViewModel.userName, style: GSYConstant.smallTextBold)),
+              Expanded(child: Text(userItemViewModel.userName, style: GSYConstant.smallTextBold)),
             ],
           ),
         ),

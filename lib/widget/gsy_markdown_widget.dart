@@ -28,16 +28,16 @@ class GSYMarkdownWidget extends StatelessWidget {
         MarkdownStyleSheet.fromTheme(Theme.of(context));
     return markdownStyleSheet
         .copyWith(
-            codeblockDecoration: new BoxDecoration(
+            codeblockDecoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(4.0)),
                 color: codeBackground,
-                border: new Border.all(
+                border: Border.all(
                     color: Color(GSYColors.subTextColor), width: 0.3)))
         .copyWith(
-            blockquoteDecoration: new BoxDecoration(
+            blockquoteDecoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(4.0)),
                 color: Color(GSYColors.subTextColor),
-                border: new Border.all(
+                border: Border.all(
                     color: Color(GSYColors.subTextColor), width: 0.3)),
             blockquote: GSYConstant.smallTextWhite);
   }
@@ -114,9 +114,9 @@ class GSYMarkdownWidget extends StatelessWidget {
 
   _getMarkDownData(String markdownData) {
     ///优化图片显示
-    RegExp exp = new RegExp(r'!\[.*\]\((.+)\)');
-    RegExp expImg = new RegExp("<img.*?(?:>|\/>)");
-    RegExp expSrc = new RegExp("src=[\'\"]?([^\'\"]*)[\'\"]?");
+    RegExp exp = RegExp(r'!\[.*\]\((.+)\)');
+    RegExp expImg = RegExp("<img.*?(?:>|\/>)");
+    RegExp expSrc = RegExp("src=[\'\"]?([^\'\"]*)[\'\"]?");
 
     String mdDataCode = markdownData;
     try {
@@ -129,7 +129,7 @@ class GSYMarkdownWidget extends StatelessWidget {
             if (!match.contains(".svg") && match.contains("http")) {
               ///增加点击
               String src = match
-                  .replaceAll(new RegExp(r'!\[.*\]\('), "")
+                  .replaceAll(RegExp(r'!\[.*\]\('), "")
                   .replaceAll(")", "");
               String actionMatch = "[$match]($src)";
               match = actionMatch;
@@ -176,9 +176,9 @@ class GSYMarkdownWidget extends StatelessWidget {
       color: _getBackgroundColor(context),
       padding: EdgeInsets.all(5.0),
       child: SingleChildScrollView(
-        child: new MarkdownBody(
+        child: MarkdownBody(
           styleSheet: _getStyle(context),
-          syntaxHighlighter: new GSYHighlighter(),
+          syntaxHighlighter: GSYHighlighter(),
           data: _getMarkDownData(markdownData),
           onTapLink: (String source) {
             CommonUtils.launchUrl(context, source);
@@ -194,6 +194,6 @@ class GSYHighlighter extends SyntaxHighlighter {
   TextSpan format(String source) {
     String showSource = source.replaceAll("&lt;", "<");
     showSource = showSource.replaceAll("&gt;", ">");
-    return new DartSyntaxHighlighter().format(showSource);
+    return DartSyntaxHighlighter().format(showSource);
   }
 }

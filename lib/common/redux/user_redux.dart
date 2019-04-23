@@ -56,7 +56,7 @@ class UserInfoEpic implements EpicClass<GSYState> {
     // to UpdateUserAction actions
         .ofType(TypeToken<FetchUserAction>())
     // Don't start  until the 10ms
-        .debounce(new Duration(milliseconds: 10))
+        .debounce(Duration(milliseconds: 10))
         .switchMap((action) => _loadUserInfo());
   }
 

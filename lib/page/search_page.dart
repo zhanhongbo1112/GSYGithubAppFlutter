@@ -33,11 +33,11 @@ class _SearchPageState extends State<SearchPage> with AutomaticKeepAliveClientMi
     var data = pullLoadWidgetControl.dataList[index];
     if (selectIndex == 0) {
       ReposViewModel reposViewModel = ReposViewModel.fromMap(data);
-      return new ReposItem(reposViewModel, onPressed: () {
+      return ReposItem(reposViewModel, onPressed: () {
         NavigatorUtils.goReposDetail(context, reposViewModel.ownerName, reposViewModel.repositoryName);
       });
     } else if (selectIndex == 1) {
-      return new UserItem(UserItemViewModel.fromMap(data), onPressed: () {
+      return UserItem(UserItemViewModel.fromMap(data), onPressed: () {
         NavigatorUtils.goPerson(context, UserItemViewModel.fromMap(data).userName);
       });
     }
@@ -91,9 +91,9 @@ class _SearchPageState extends State<SearchPage> with AutomaticKeepAliveClientMi
   @override
   Widget build(BuildContext context) {
     super.build(context); // See AutomaticKeepAliveClientMixin.
-    return new Scaffold(
+    return Scaffold(
       resizeToAvoidBottomPadding: false,
-      endDrawer: new GSYSearchDrawer(
+      endDrawer: GSYSearchDrawer(
         (String type) {
           this.type = type;
           Navigator.pop(context);
@@ -111,9 +111,9 @@ class _SearchPageState extends State<SearchPage> with AutomaticKeepAliveClientMi
         },
       ),
       backgroundColor: Color(GSYColors.mainBackgroundColor),
-      appBar: new AppBar(
-          title: new Text(CommonUtils.getLocale(context).search_title),
-          bottom: new SearchBottom((value) {
+      appBar: AppBar(
+          title: Text(CommonUtils.getLocale(context).search_title),
+          bottom: SearchBottom((value) {
             searchText = value;
           }, (value) {
             searchText = value;
@@ -169,7 +169,7 @@ class SearchBottom extends StatelessWidget implements PreferredSizeWidget {
     return Column(
       children: <Widget>[
         GSYSearchInputWidget(onChanged, onSubmitted, onSubmitPressed),
-        new GSYSelectItemWidget(
+        GSYSelectItemWidget(
           [
             CommonUtils.getLocale(context).search_tab_repos,
             CommonUtils.getLocale(context).search_tab_user,
@@ -184,6 +184,6 @@ class SearchBottom extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Size get preferredSize {
-    return new Size.fromHeight(100.0);
+    return Size.fromHeight(100.0);
   }
 }

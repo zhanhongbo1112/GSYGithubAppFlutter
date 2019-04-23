@@ -147,7 +147,7 @@ class EventUtils {
         } else if (event.payload.commits.length == 1) {
           NavigatorUtils.goPushDetailPage(context, owner, repositoryName, event.payload.commits[0].sha, true);
         } else {
-          List<String> list = new List();
+          List<String> list = List();
           for (int i = 0; i < event.payload.commits.length; i++) {
             list.add(event.payload.commits[i].message + " " + event.payload.commits[i].sha.substring(0, 4));
           }

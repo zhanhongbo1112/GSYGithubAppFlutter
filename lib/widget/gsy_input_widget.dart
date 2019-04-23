@@ -17,7 +17,7 @@ class GSYInputWidget extends StatefulWidget {
   GSYInputWidget({Key key, this.hintText, this.iconData, this.onChanged, this.textStyle, this.controller, this.obscureText = false}) : super(key: key);
 
   @override
-  _GSYInputWidgetState createState() => new _GSYInputWidgetState();
+  _GSYInputWidgetState createState() => _GSYInputWidgetState();
 }
 
 /// State for [GSYInputWidget] widgets.
@@ -27,13 +27,13 @@ class _GSYInputWidgetState extends State<GSYInputWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return new TextField(
+    return TextField(
       controller: widget.controller,
       onChanged: widget.onChanged,
       obscureText: widget.obscureText,
-      decoration: new InputDecoration(
+      decoration: InputDecoration(
         hintText: widget.hintText,
-        icon: widget.iconData == null ? null : new Icon(widget.iconData),
+        icon: widget.iconData == null ? null : Icon(widget.iconData),
       ),
     );
   }

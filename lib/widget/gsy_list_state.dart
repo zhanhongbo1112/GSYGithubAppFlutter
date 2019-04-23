@@ -16,14 +16,14 @@ mixin GSYListState<T extends StatefulWidget> on State<T>, AutomaticKeepAliveClie
 
   int page = 1;
 
-  final List dataList = new List();
+  final List dataList = List();
 
-  final GSYPullLoadWidgetControl pullLoadWidgetControl = new GSYPullLoadWidgetControl();
+  final GSYPullLoadWidgetControl pullLoadWidgetControl = GSYPullLoadWidgetControl();
 
-  final GlobalKey<RefreshIndicatorState> refreshIndicatorKey = new GlobalKey<RefreshIndicatorState>();
+  final GlobalKey<RefreshIndicatorState> refreshIndicatorKey = GlobalKey<RefreshIndicatorState>();
 
   showRefreshLoading() {
-    new Future.delayed(const Duration(seconds: 0), () {
+    Future.delayed(const Duration(seconds: 0), () {
       refreshIndicatorKey.currentState.show().then((e) {});
       return true;
     });

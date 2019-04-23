@@ -45,7 +45,7 @@ class NavigatorUtils {
 
   ///个人中心
   static goPerson(BuildContext context, String userName) {
-    NavigatorRouter(context, new PersonPage(userName));
+    NavigatorRouter(context, PersonPage(userName));
   }
 
   ///仓库详情
@@ -57,7 +57,7 @@ class NavigatorUtils {
   static Future goReleasePage(BuildContext context, String userName, String reposName, String releaseUrl, String tagUrl) {
     return NavigatorRouter(
         context,
-        new ReleasePage(
+        ReleasePage(
                   userName,
                   reposName,
                   releaseUrl,
@@ -69,7 +69,7 @@ class NavigatorUtils {
   static Future goIssueDetail(BuildContext context, String userName, String reposName, String num, {bool needRightLocalIcon = false}) {
     return NavigatorRouter(
         context,
-        new IssueDetailPage(
+        IssueDetailPage(
                   userName,
                   reposName,
                   num,
@@ -81,7 +81,7 @@ class NavigatorUtils {
   static gotoCommonList(BuildContext context, String title, String showType, String dataType, {String userName, String reposName}) {
     NavigatorRouter(
         context,
-        new CommonListPage(
+        CommonListPage(
                   title,
                   showType,
                   dataType,
@@ -95,7 +95,7 @@ class NavigatorUtils {
       {String title, String userName, String reposName, String path, String data, String branch, String htmlUrl}) {
     NavigatorRouter(
         context,
-        new CodeDetailPage(
+        CodeDetailPage(
                   title: title,
                   userName: userName,
                   reposName: reposName,
@@ -108,19 +108,19 @@ class NavigatorUtils {
 
   ///仓库详情通知
   static Future goNotifyPage(BuildContext context) {
-    return NavigatorRouter(context, new NotifyPage());
+    return NavigatorRouter(context, NotifyPage());
   }
 
   ///搜索
   static Future goSearchPage(BuildContext context) {
-    return NavigatorRouter(context, new SearchPage());
+    return NavigatorRouter(context, SearchPage());
   }
 
   ///提交详情
   static Future goPushDetailPage(BuildContext context, String userName, String reposName, String sha, bool needHomeIcon) {
     return NavigatorRouter(
         context,
-        new PushDetailPage(
+        PushDetailPage(
                   sha,
                   userName,
                   reposName,
@@ -132,7 +132,7 @@ class NavigatorUtils {
   static Future goGSYWebView(BuildContext context, String url, String title) {
     return NavigatorRouter(
       context,
-      new GSYWebView(url, title)
+      GSYWebView(url, title)
     );
   }
 
@@ -140,7 +140,7 @@ class NavigatorUtils {
   static gotoCodeDetailPageWeb(BuildContext context,
       {String title, String userName, String reposName, String path, String data, String branch, String htmlUrl}) {
     NavigatorRouter(
-        context, new CodeDetailPageWeb(
+        context, CodeDetailPageWeb(
                   title: title,
                   userName: userName,
                   reposName: reposName,
@@ -166,17 +166,17 @@ class NavigatorUtils {
 
   ///图片预览
   static gotoPhotoViewPage(BuildContext context, String url) {
-    NavigatorRouter(context, new PhotoViewPage(url));
+    NavigatorRouter(context, PhotoViewPage(url));
   }
 
   ///用户配置
   static gotoUserProfileInfo(BuildContext context) {
-    NavigatorRouter(context, new UserProfileInfo());
+    NavigatorRouter(context, UserProfileInfo());
   }
 
 
   static NavigatorRouter(BuildContext context, Widget widget) {
-    return Navigator.push(context, new CupertinoPageRoute(builder: (context) => widget));
+    return Navigator.push(context, CupertinoPageRoute(builder: (context) => widget));
   }
 
 }

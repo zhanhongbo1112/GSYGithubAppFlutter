@@ -11,11 +11,11 @@ import 'package:gsy_github_app_flutter/common/config/config.dart';
  */
 mixin GSYListState<T extends StatefulWidget> on State<T>, AutomaticKeepAliveClientMixin<T> {
 
-  final GlobalKey<RefreshIndicatorState> refreshIndicatorKey = new GlobalKey<RefreshIndicatorState>();
+  final GlobalKey<RefreshIndicatorState> refreshIndicatorKey = GlobalKey<RefreshIndicatorState>();
 
   ///显示刷新
   showRefreshLoading() {
-    new Future.delayed(const Duration(seconds: 0), () {
+    Future.delayed(const Duration(seconds: 0), () {
       refreshIndicatorKey.currentState.show().then((e) {});
       return true;
     });

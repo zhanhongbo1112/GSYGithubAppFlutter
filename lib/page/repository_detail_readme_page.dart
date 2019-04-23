@@ -48,7 +48,7 @@ class RepositoryDetailReadmePageState extends State<RepositoryDetailReadmePage> 
           return res.next;
         }
       }
-      return new Future.value(null);
+      return Future.value(null);
     }).then((res) {
       if (res != null && res.result) {
         if (isShow) {
@@ -81,23 +81,23 @@ class RepositoryDetailReadmePageState extends State<RepositoryDetailReadmePage> 
     super.build(context);
     var widget = (markdownData == null)
         ? Center(
-            child: new Container(
+            child: Container(
               width: 200.0,
               height: 200.0,
-              padding: new EdgeInsets.all(4.0),
-              child: new Row(
+              padding: EdgeInsets.all(4.0),
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  new SpinKitDoubleBounce(color: Theme.of(context).primaryColor),
-                  new Container(width: 10.0),
-                  new Container(child: new Text(CommonUtils.getLocale(context).loading_text, style: GSYConstant.middleText)),
+                  SpinKitDoubleBounce(color: Theme.of(context).primaryColor),
+                  Container(width: 10.0),
+                  Container(child: Text(CommonUtils.getLocale(context).loading_text, style: GSYConstant.middleText)),
                 ],
               ),
             ),
           )
         : GSYMarkdownWidget(markdownData: markdownData);
 
-    return new ScopedModelDescendant<ReposDetailModel>(
+    return ScopedModelDescendant<ReposDetailModel>(
       builder: (context, child, model) => widget,
     );
   }

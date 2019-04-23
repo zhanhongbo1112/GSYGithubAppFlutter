@@ -11,29 +11,29 @@ import 'package:gsy_github_app_flutter/widget/gsy_common_option_widget.dart';
 class GSYWebView extends StatelessWidget {
   final String url;
   final String title;
-  final OptionControl optionControl = new OptionControl();
+  final OptionControl optionControl = OptionControl();
 
   GSYWebView(this.url, this.title);
 
   _renderTitle() {
     if (url == null || url.length == 0) {
-      return new Text(title);
+      return Text(title);
     }
     optionControl.url = url;
-    return new Row(children: [
-      new Expanded(child: new Container()),
+    return Row(children: [
+      Expanded(child: Container()),
       GSYCommonOptionWidget(optionControl),
     ]);
   }
 
   @override
   Widget build(BuildContext context) {
-    return new WebviewScaffold(
+    return WebviewScaffold(
       withJavascript: true,
       url: url,
       scrollBar:true,
       withLocalUrl: true,
-      appBar: new AppBar(
+      appBar: AppBar(
         title: _renderTitle(),
       ),
     );

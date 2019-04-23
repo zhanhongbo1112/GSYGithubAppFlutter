@@ -44,7 +44,7 @@ class _ReleasePageState extends State<ReleasePage> with AutomaticKeepAliveClient
 
   final String tagUrl;
 
-  final OptionControl titleOptionControl = new OptionControl();
+  final OptionControl titleOptionControl = OptionControl();
 
   int selectIndex = 0;
 
@@ -52,7 +52,7 @@ class _ReleasePageState extends State<ReleasePage> with AutomaticKeepAliveClient
 
   _renderEventItem(index) {
     ReleaseItemViewModel releaseItemViewModel = ReleaseItemViewModel.fromMap(pullLoadWidgetControl.dataList[index]);
-    return new ReleaseItem(
+    return ReleaseItem(
       releaseItemViewModel,
       onPressed: () {
         if (selectIndex == 0) {
@@ -124,14 +124,14 @@ class _ReleasePageState extends State<ReleasePage> with AutomaticKeepAliveClient
   Widget build(BuildContext context) {
     super.build(context); // See AutomaticKeepAliveClientMixin.
     String url = _getUrl();
-    return new Scaffold(
+    return Scaffold(
       backgroundColor: Color(GSYColors.mainBackgroundColor),
-      appBar: new AppBar(
+      appBar: AppBar(
         title: GSYTitleBar(
           reposName,
-          rightWidget: new GSYCommonOptionWidget(titleOptionControl),
+          rightWidget: GSYCommonOptionWidget(titleOptionControl),
         ),
-        bottom: new GSYSelectItemWidget(
+        bottom: GSYSelectItemWidget(
           [
             CommonUtils.getLocale(context).release_tab_release,
             CommonUtils.getLocale(context).release_tab_tag,

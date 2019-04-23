@@ -13,13 +13,13 @@ class Code {
 
   static const SUCCESS = 200;
 
-  static final EventBus eventBus = new EventBus();
+  static final EventBus eventBus = EventBus();
 
   static errorHandleFunction(code, message, noTip) {
     if(noTip) {
       return message;
     }
-    eventBus.fire(new HttpErrorEvent(code, message));
+    eventBus.fire(HttpErrorEvent(code, message));
     return message;
   }
 }

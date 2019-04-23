@@ -23,11 +23,11 @@ class PhotoViewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    OptionControl optionControl = new OptionControl();
+    OptionControl optionControl = OptionControl();
     optionControl.url = url;
-    return new Scaffold(
-        floatingActionButton: new FloatingActionButton(
-          child: new Icon(Icons.file_download),
+    return Scaffold(
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.file_download),
           onPressed: () {
             CommonUtils.saveImage(url).then((res) {
               if (res != null) {
@@ -40,18 +40,18 @@ class PhotoViewPage extends StatelessWidget {
             });
           },
         ),
-        appBar: new AppBar(
-          title: GSYTitleBar("", rightWidget: new GSYCommonOptionWidget(optionControl)),
+        appBar: AppBar(
+          title: GSYTitleBar("", rightWidget: GSYCommonOptionWidget(optionControl)),
         ),
-        body: new Container(
+        body: Container(
           color: Colors.black,
-          child: new PhotoView(
-            imageProvider: new NetworkImage(url ?? GSYICons.DEFAULT_REMOTE_PIC),
+          child: PhotoView(
+            imageProvider: NetworkImage(url ?? GSYICons.DEFAULT_REMOTE_PIC),
             loadingChild: Container(
-              child: new Stack(
+              child: Stack(
                 children: <Widget>[
-                  new Center(child: new Image.asset(GSYICons.DEFAULT_IMAGE, height: 180.0, width: 180.0)),
-                  new Center(child: new SpinKitFoldingCube(color: Colors.white30, size: 60.0)),
+                  Center(child: Image.asset(GSYICons.DEFAULT_IMAGE, height: 180.0, width: 180.0)),
+                  Center(child: SpinKitFoldingCube(color: Colors.white30, size: 60.0)),
                 ],
               ),
             ),

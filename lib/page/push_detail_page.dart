@@ -44,9 +44,9 @@ class _PushDetailPageState extends State<PushDetailPage> with AutomaticKeepAlive
 
   bool needHomeIcon = false;
 
-  PushHeaderViewModel pushHeaderViewModel = new PushHeaderViewModel();
+  PushHeaderViewModel pushHeaderViewModel = PushHeaderViewModel();
 
-  final OptionControl titleOptionControl = new OptionControl();
+  final OptionControl titleOptionControl = OptionControl();
 
   _PushDetailPageState(this.sha, this.userName, this.reposName, this.needHomeIcon);
 
@@ -76,10 +76,10 @@ class _PushDetailPageState extends State<PushDetailPage> with AutomaticKeepAlive
 
   _renderEventItem(index) {
     if (index == 0) {
-      return new PushHeader(pushHeaderViewModel);
+      return PushHeader(pushHeaderViewModel);
     }
     PushCodeItemViewModel itemViewModel = PushCodeItemViewModel.fromMap(pullLoadWidgetControl.dataList[index - 1]);
-    return new PushCodeItem(itemViewModel, () {
+    return PushCodeItem(itemViewModel, () {
       if (Platform.isIOS) {
         NavigatorUtils.gotoCodeDetailPage(
           context,
@@ -121,9 +121,9 @@ class _PushDetailPageState extends State<PushDetailPage> with AutomaticKeepAlive
   @override
   Widget build(BuildContext context) {
     super.build(context); // See AutomaticKeepAliveClientMixin.
-    Widget widget = (needHomeIcon) ? null : new GSYCommonOptionWidget(titleOptionControl);
-    return new Scaffold(
-      appBar: new AppBar(
+    Widget widget = (needHomeIcon) ? null : GSYCommonOptionWidget(titleOptionControl);
+    return Scaffold(
+      appBar: AppBar(
         title: GSYTitleBar(
           reposName,
           rightWidget: widget,

@@ -45,36 +45,36 @@ class GSYIConText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget showText = (textWidth == -1)
-        ? new Text(
+        ? Text(
             iconText,
             style: textStyle,
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
           )
-        : new Container(
+        : Container(
             width: textWidth,
             child:
 
                 ///显示数量文本
-                new Text(
+                Text(
               iconText,
               style: textStyle,
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
             ));
 
-    return new Row(
+    return Row(
       mainAxisAlignment: mainAxisAlignment,
       mainAxisSize: mainAxisSize,
       crossAxisAlignment: crossAxisAlignment,
       children: <Widget>[
-        new Icon(
+        Icon(
           iconData,
           size: iconSize,
           color: iconColor,
         ),
-        new Padding(padding: new EdgeInsets.all(padding)),
-        new Expanded(child: showText)
+        Padding(padding: EdgeInsets.all(padding)),
+        Expanded(child: showText)
       ],
     );
   }

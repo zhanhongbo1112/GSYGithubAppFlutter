@@ -137,7 +137,7 @@ class CommonUtils {
     ThemeData themeData;
     List<Color> colors = getThemeListColor();
     themeData = getThemeData(colors[index]);
-    store.dispatch(new RefreshThemeDataAction(themeData));
+    store.dispatch(RefreshThemeDataAction(themeData));
   }
 
 
@@ -190,7 +190,7 @@ class CommonUtils {
   }
 
   static copy(String data, BuildContext context) {
-    Clipboard.setData(new ClipboardData(text: data));
+    Clipboard.setData(ClipboardData(text: data));
     Fluttertoast.showToast(msg: CommonUtils.getLocale(context).option_share_copy_success);
   }
 
@@ -232,7 +232,7 @@ class CommonUtils {
       NavigatorUtils.goGSYWebView(context, url, title);
     } else {
       NavigatorUtils.goGSYWebView(
-          context, new Uri.dataFromString(url, mimeType: 'text/html', encoding: Encoding.getByName("utf-8")).toString(), title);
+          context, Uri.dataFromString(url, mimeType: 'text/html', encoding: Encoding.getByName("utf-8")).toString(), title);
     }
   }
 
@@ -248,26 +248,26 @@ class CommonUtils {
     return showDialog(
         context: context,
         builder: (BuildContext context) {
-          return new Material(
+          return Material(
               color: Colors.transparent,
               child: WillPopScope(
-                onWillPop: () => new Future.value(false),
+                onWillPop: () => Future.value(false),
                 child: Center(
-                  child: new Container(
+                  child: Container(
                     width: 200.0,
                     height: 200.0,
-                    padding: new EdgeInsets.all(4.0),
-                    decoration: new BoxDecoration(
+                    padding: EdgeInsets.all(4.0),
+                    decoration: BoxDecoration(
                       color: Colors.transparent,
                       //用一个BoxDecoration装饰器提供背景图片
                       borderRadius: BorderRadius.all(Radius.circular(4.0)),
                     ),
-                    child: new Column(
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        new Container(child: SpinKitCubeGrid(color: Color(GSYColors.white))),
-                        new Container(height: 10.0),
-                        new Container(child: new Text(CommonUtils.getLocale(context).loading_text, style: GSYConstant.normalTextWhite)),
+                        Container(child: SpinKitCubeGrid(color: Color(GSYColors.white))),
+                        Container(height: 10.0),
+                        Container(child: Text(CommonUtils.getLocale(context).loading_text, style: GSYConstant.normalTextWhite)),
                       ],
                     ),
                   ),
@@ -290,7 +290,7 @@ class CommonUtils {
         context: context,
         builder: (BuildContext context) {
           return Center(
-            child: new IssueEditDialog(
+            child: IssueEditDialog(
               dialogTitle,
               onTitleChanged,
               onContentChanged,
@@ -315,17 +315,17 @@ class CommonUtils {
         context: context,
         builder: (BuildContext context) {
           return Center(
-            child: new Container(
+            child: Container(
               width: width,
               height: height,
-              padding: new EdgeInsets.all(4.0),
-              margin: new EdgeInsets.all(20.0),
-              decoration: new BoxDecoration(
+              padding: EdgeInsets.all(4.0),
+              margin: EdgeInsets.all(20.0),
+              decoration: BoxDecoration(
                 color: Color(GSYColors.white),
                 //用一个BoxDecoration装饰器提供背景图片
                 borderRadius: BorderRadius.all(Radius.circular(4.0)),
               ),
-              child: new ListView.builder(
+              child: ListView.builder(
                   itemCount: commitMaps.length,
                   itemBuilder: (context, index) {
                     return GSYFlexButton(
@@ -352,20 +352,20 @@ class CommonUtils {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: new Text(CommonUtils.getLocale(context).app_version_title),
-            content: new Text(contentMsg),
+            title: Text(CommonUtils.getLocale(context).app_version_title),
+            content: Text(contentMsg),
             actions: <Widget>[
-              new FlatButton(
+              FlatButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: new Text(CommonUtils.getLocale(context).app_cancel)),
-              new FlatButton(
+                  child: Text(CommonUtils.getLocale(context).app_cancel)),
+              FlatButton(
                   onPressed: () {
                     launch(Address.updateUrl);
                     Navigator.pop(context);
                   },
-                  child: new Text(CommonUtils.getLocale(context).app_ok)),
+                  child: Text(CommonUtils.getLocale(context).app_ok)),
             ],
           );
         });

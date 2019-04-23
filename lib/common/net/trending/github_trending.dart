@@ -13,9 +13,9 @@ import 'package:gsy_github_app_flutter/common/net/result_data.dart';
  */
 class GitHubTrending {
   fetchTrending(url) async {
-    var res = await httpManager.netFetch(url, null, null, new Options(contentType: ContentType.text));
+    var res = await httpManager.netFetch(url, null, null, Options(contentType: ContentType.text));
     if (res != null && res.result && res.data != null) {
-      return new ResultData(TrendingUtil.htmlToRepo(res.data), true, Code.SUCCESS);
+      return ResultData(TrendingUtil.htmlToRepo(res.data), true, Code.SUCCESS);
     } else {
       return res;
     }
@@ -31,9 +31,9 @@ const TAGS = {
 class TrendingUtil {
   static htmlToRepo(String responseData) {
     try {
-      responseData = responseData.replaceAll(new RegExp('\n'), '');
+      responseData = responseData.replaceAll(RegExp('\n'), '');
     } catch (e) {}
-    var repos = new List();
+    var repos = List();
     var splitWithH3 = responseData.split('<h3');
     splitWithH3.removeAt(0);
     for (var i = 0; i < splitWithH3.length; i++) {
@@ -80,11 +80,11 @@ class TrendingUtil {
     String description = parseContentWithNote(htmlBaseInfo, '<p class="col-9 d-inline-block text-gray m-0 pr-4">', '</p>');
     if (description != null) {
       String reg = "<g-emoji.*?>.+?</g-emoji>";
-      RegExp tag = new RegExp(reg);
+      RegExp tag = RegExp(reg);
       Iterable<Match> tags = tag.allMatches(description);
       for (Match m in tags) {
-        String match = m.group(0).replaceAll(new RegExp("<g-emoji.*?>"), "").replaceAll(new RegExp("</g-emoji>"), "");
-        description = description.replaceAll(new RegExp(m.group(0)), match);
+        String match = m.group(0).replaceAll(RegExp("<g-emoji.*?>"), "").replaceAll(RegExp("</g-emoji>"), "");
+        description = description.replaceAll(RegExp(m.group(0)), match);
       }
     }
     repo.description = description;
@@ -117,7 +117,7 @@ class TrendingUtil {
     if(splitWitSemicolon.length > 1) {
       repo.contributorsUrl = splitWitSemicolon[1];
     }
-    var contributors = new List<String>();
+    var contributors = List<String>();
     for (var i = 0; i < splitWitSemicolon.length; i++) {
       String url = splitWitSemicolon[i];
       if (url.indexOf('http') != -1) {

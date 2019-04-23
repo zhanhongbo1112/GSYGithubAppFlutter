@@ -80,7 +80,7 @@ class UserFollowerDbProvider extends BaseDbProvider {
 
     var provider = await _getProvider(db, userName);
     if (provider != null) {
-      List<User> list = new List();
+      List<User> list = List();
 
 
       ///使用 compute 的 Isolate 优化 json decode

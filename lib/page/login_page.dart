@@ -22,7 +22,7 @@ class LoginPage extends StatefulWidget {
 
   @override
   State createState() {
-    return new _LoginPageState();
+    return _LoginPageState();
   }
 }
 
@@ -31,8 +31,8 @@ class _LoginPageState extends State<LoginPage> {
 
   var _password = "";
 
-  final TextEditingController userController = new TextEditingController();
-  final TextEditingController pwController = new TextEditingController();
+  final TextEditingController userController = TextEditingController();
+  final TextEditingController pwController = TextEditingController();
 
   _LoginPageState() : super();
 
@@ -45,39 +45,39 @@ class _LoginPageState extends State<LoginPage> {
   initParams() async {
     _userName = await LocalStorage.get(Config.USER_NAME_KEY);
     _password = await LocalStorage.get(Config.PW_KEY);
-    userController.value = new TextEditingValue(text: _userName ?? "");
-    pwController.value = new TextEditingValue(text: _password ?? "");
+    userController.value = TextEditingValue(text: _userName ?? "");
+    pwController.value = TextEditingValue(text: _password ?? "");
   }
 
   @override
   Widget build(BuildContext context) {
-    return new StoreBuilder<GSYState>(builder: (context, store) {
-      return new GestureDetector(
+    return StoreBuilder<GSYState>(builder: (context, store) {
+      return GestureDetector(
         behavior: HitTestBehavior.translucent,
         onTap: () {
-          FocusScope.of(context).requestFocus(new FocusNode());
+          FocusScope.of(context).requestFocus(FocusNode());
         },
         child: Scaffold(
-          body: new Container(
+          body: Container(
             color: Theme.of(context).primaryColor,
-            child: new Center(
+            child: Center(
               //防止overFlow的现象
               child: SafeArea(
                 child: SingleChildScrollView(
-                  child: new Card(
+                  child: Card(
                     elevation: 5.0,
-                    shape: new RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
                     color: Color(GSYColors.cardWhite),
                     margin: const EdgeInsets.only(left:30.0, right: 30.0),
-                    child: new Padding(
-                      padding: new EdgeInsets.only(left: 30.0, top: 40.0, right: 30.0, bottom: 0.0),
-                      child: new Column(
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 30.0, top: 40.0, right: 30.0, bottom: 0.0),
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
-                          new Image(image: new AssetImage(GSYICons.DEFAULT_USER_ICON), width: 90.0, height: 90.0),
-                          new Padding(padding: new EdgeInsets.all(10.0)),
-                          new GSYInputWidget(
+                          Image(image: AssetImage(GSYICons.DEFAULT_USER_ICON), width: 90.0, height: 90.0),
+                          Padding(padding: EdgeInsets.all(10.0)),
+                          GSYInputWidget(
                             hintText: CommonUtils.getLocale(context).login_username_hint_text,
                             iconData: GSYICons.LOGIN_USER,
                             onChanged: (String value) {
@@ -85,8 +85,8 @@ class _LoginPageState extends State<LoginPage> {
                             },
                             controller: userController,
                           ),
-                          new Padding(padding: new EdgeInsets.all(10.0)),
-                          new GSYInputWidget(
+                          Padding(padding: EdgeInsets.all(10.0)),
+                          GSYInputWidget(
                             hintText: CommonUtils.getLocale(context).login_password_hint_text,
                             iconData: GSYICons.LOGIN_PW,
                             obscureText: true,
@@ -95,8 +95,8 @@ class _LoginPageState extends State<LoginPage> {
                             },
                             controller: pwController,
                           ),
-                          new Padding(padding: new EdgeInsets.all(30.0)),
-                          new GSYFlexButton(
+                          Padding(padding: EdgeInsets.all(30.0)),
+                          GSYFlexButton(
                             text: CommonUtils.getLocale(context).login_text,
                             color: Theme.of(context).primaryColor,
                             textColor: Color(GSYColors.textWhite),
@@ -111,7 +111,7 @@ class _LoginPageState extends State<LoginPage> {
                               UserDao.login(_userName.trim(), _password.trim(), store).then((res) {
                                 Navigator.pop(context);
                                 if (res != null && res.result) {
-                                  new Future.delayed(const Duration(seconds: 1), () {
+                                  Future.delayed(const Duration(seconds: 1), () {
                                     NavigatorUtils.goHome(context);
                                     return true;
                                   });
@@ -119,7 +119,7 @@ class _LoginPageState extends State<LoginPage> {
                               });
                             },
                           ),
-                          new Padding(padding: new EdgeInsets.all(30.0)),
+                          Padding(padding: EdgeInsets.all(30.0)),
                         ],
                       ),
                     ),

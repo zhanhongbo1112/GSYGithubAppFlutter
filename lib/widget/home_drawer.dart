@@ -29,7 +29,7 @@ class HomeDrawer extends StatelessWidget {
         builder: (BuildContext context) => AboutDialog(
               applicationName: CommonUtils.getLocale(context).app_name,
               applicationVersion: CommonUtils.getLocale(context).app_version + ": " + versionName,
-              applicationIcon: new Image(image: new AssetImage(GSYICons.DEFAULT_USER_ICON), width: 50.0, height: 50.0),
+              applicationIcon: Image(image: AssetImage(GSYICons.DEFAULT_USER_ICON), width: 50.0, height: 50.0),
               applicationLegalese: "http://github.com/CarGuo",
             ));
   }
@@ -65,49 +65,49 @@ class HomeDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      child: new StoreBuilder<GSYState>(
+      child: StoreBuilder<GSYState>(
         builder: (context, store) {
           User user = store.state.userInfo;
-          return new Drawer(
+          return Drawer(
             ///侧边栏按钮Drawer
-            child: new Container(
+            child: Container(
               ///默认背景
               color: store.state.themeData.primaryColor,
-              child: new SingleChildScrollView(
+              child: SingleChildScrollView(
                 ///item 背景
                 child: Container(
-                  constraints: new BoxConstraints(minHeight: MediaQuery.of(context).size.height),
-                  child: new Material(
+                  constraints: BoxConstraints(minHeight: MediaQuery.of(context).size.height),
+                  child: Material(
                     color: Color(GSYColors.white),
-                    child: new Column(
+                    child: Column(
                       children: <Widget>[
-                        new UserAccountsDrawerHeader(
+                        UserAccountsDrawerHeader(
                           //Material内置控件
-                          accountName: new Text(
+                          accountName: Text(
                             user.login ?? "---",
                             style: GSYConstant.largeTextWhite,
                           ),
-                          accountEmail: new Text(
+                          accountEmail: Text(
                             user.email ?? user.name ?? "---",
                             style: GSYConstant.normalTextLight,
                           ),
                           //用户名
                           //用户邮箱
-                          currentAccountPicture: new GestureDetector(
+                          currentAccountPicture: GestureDetector(
                             //用户头像
                             onTap: () {},
-                            child: new CircleAvatar(
+                            child: CircleAvatar(
                               //圆形图标控件
-                              backgroundImage: new NetworkImage(user.avatar_url ?? GSYICons.DEFAULT_REMOTE_PIC),
+                              backgroundImage: NetworkImage(user.avatar_url ?? GSYICons.DEFAULT_REMOTE_PIC),
                             ),
                           ),
-                          decoration: new BoxDecoration(
+                          decoration: BoxDecoration(
                             //用一个BoxDecoration装饰器提供背景图片
                             color: store.state.themeData.primaryColor,
                           ),
                         ),
-                        new ListTile(
-                            title: new Text(
+                        ListTile(
+                            title: Text(
                               CommonUtils.getLocale(context).home_reply,
                               style: GSYConstant.normalText,
                             ),
@@ -126,10 +126,10 @@ class HomeDrawer extends StatelessWidget {
                                   Navigator.pop(context);
                                   Navigator.pop(context);
                                 });
-                              }, titleController: new TextEditingController(), valueController: new TextEditingController(), needTitle: false);
+                              }, titleController: TextEditingController(), valueController: TextEditingController(), needTitle: false);
                             }),
-                        new ListTile(
-                            title: new Text(
+                        ListTile(
+                            title: Text(
                               CommonUtils.getLocale(context).home_history,
                               style: GSYConstant.normalText,
                             ),
@@ -137,44 +137,44 @@ class HomeDrawer extends StatelessWidget {
                               NavigatorUtils.gotoCommonList(context, CommonUtils.getLocale(context).home_history, "repository", "history",
                                   userName: "", reposName: "");
                             }),
-                        new ListTile(
-                            title: new Hero(
+                        ListTile(
+                            title: Hero(
                                 tag: "home_user_info",
-                                child: new Material(
+                                child: Material(
                                     color: Colors.transparent,
-                                    child: new Text(
+                                    child: Text(
                                       CommonUtils.getLocale(context).home_user_info,
                                       style: GSYConstant.normalTextBold,
                                     ))),
                             onTap: () {
                               NavigatorUtils.gotoUserProfileInfo(context);
                             }),
-                        new ListTile(
-                            title: new Text(
+                        ListTile(
+                            title: Text(
                               CommonUtils.getLocale(context).home_change_theme,
                               style: GSYConstant.normalText,
                             ),
                             onTap: () {
                               showThemeDialog(context, store);
                             }),
-                        new ListTile(
-                            title: new Text(
+                        ListTile(
+                            title: Text(
                               CommonUtils.getLocale(context).home_change_language,
                               style: GSYConstant.normalText,
                             ),
                             onTap: () {
                               showLanguageDialog(context, store);
                             }),
-                        new ListTile(
-                            title: new Text(
+                        ListTile(
+                            title: Text(
                               CommonUtils.getLocale(context).home_check_update,
                               style: GSYConstant.normalText,
                             ),
                             onTap: () {
                               ReposDao.getNewsVersion(context, true);
                             }),
-                        new ListTile(
-                            title: new Text(
+                        ListTile(
+                            title: Text(
                               GSYLocalizations.of(context).currentLocalized.home_about,
                               style: GSYConstant.normalText,
                             ),
@@ -184,8 +184,8 @@ class HomeDrawer extends StatelessWidget {
                                 showAboutDialog(context, value.version);
                               });
                             }),
-                        new ListTile(
-                            title: new GSYFlexButton(
+                        ListTile(
+                            title: GSYFlexButton(
                               text: CommonUtils.getLocale(context).Login_out,
                               color: Colors.redAccent,
                               textColor: Color(GSYColors.textWhite),

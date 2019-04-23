@@ -37,26 +37,26 @@ class _IssueEditDialogState extends State<IssueEditDialog> {
   ///标题输入框
   renderTitleInput() {
     return (widget.needTitle)
-        ? new Padding(
-            padding: new EdgeInsets.all(5.0),
-            child: new GSYInputWidget(
+        ? Padding(
+            padding: EdgeInsets.all(5.0),
+            child: GSYInputWidget(
               onChanged: widget.onTitleChanged,
               controller: widget.titleController,
               hintText: CommonUtils.getLocale(context).issue_edit_issue_title_tip,
               obscureText: false,
             ))
-        : new Container();
+        : Container();
   }
 
   ///快速输入框
   _renderFastInputContainer() {
     ///因为是Column下包含了ListView，所以需要设置高度
-    return new Container(
+    return Container(
       height: 30.0,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          return new RawMaterialButton(
+          return RawMaterialButton(
               materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
               padding: EdgeInsets.only(left: 8.0, right: 8.0, top: 5.0, bottom: 5.0),
               constraints: const BoxConstraints(minWidth: 0.0, minHeight: 0.0),
@@ -69,7 +69,7 @@ class _IssueEditDialogState extends State<IssueEditDialog> {
                 }
                 newText = newText + text;
                 setState(() {
-                  widget.valueController.value = new TextEditingValue(text: newText);
+                  widget.valueController.value = TextEditingValue(text: newText);
                 });
                 widget.onContentChanged?.call(newText);
               });
@@ -81,57 +81,57 @@ class _IssueEditDialogState extends State<IssueEditDialog> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return Scaffold(
         backgroundColor: Colors.transparent,
         body: SafeArea(
           child: SingleChildScrollView(
-            child: new Container(
+            child: Container(
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
               color: Colors.black12,
               ///触摸收起键盘
-              child: new GestureDetector(
+              child: GestureDetector(
                 behavior: HitTestBehavior.translucent,
                 onTap: () {
-                  FocusScope.of(context).requestFocus(new FocusNode());
+                  FocusScope.of(context).requestFocus(FocusNode());
                 },
-                child: new Center(
-                  child: new GSYCardItem(
+                child: Center(
+                  child: GSYCardItem(
                     margin: EdgeInsets.only(left: 50.0, right: 50.0),
-                    shape: new RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                    child: new Padding(
-                      padding: new EdgeInsets.all(12.0),
-                      child: new Column(
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                    child: Padding(
+                      padding: EdgeInsets.all(12.0),
+                      child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
                           ///dialog标题
-                          new Padding(
-                              padding: new EdgeInsets.only(top: 5.0, bottom: 15.0),
-                              child: new Center(
-                                child: new Text(widget.dialogTitle, style: GSYConstant.normalTextBold),
+                          Padding(
+                              padding: EdgeInsets.only(top: 5.0, bottom: 15.0),
+                              child: Center(
+                                child: Text(widget.dialogTitle, style: GSYConstant.normalTextBold),
                               )),
 
                           ///标题输入框
                           renderTitleInput(),
 
                           ///内容输入框
-                          new Container(
+                          Container(
                             height: MediaQuery.of(context).size.width * 3 / 4,
-                            decoration: new BoxDecoration(
+                            decoration: BoxDecoration(
                               borderRadius: BorderRadius.all(Radius.circular(4.0)),
                               color: Color(GSYColors.white),
-                              border: new Border.all(color: Color(GSYColors.subTextColor), width: .3),
+                              border: Border.all(color: Color(GSYColors.subTextColor), width: .3),
                             ),
-                            padding: new EdgeInsets.only(left: 20.0, top: 12.0, right: 20.0, bottom: 12.0),
-                            child: new Column(
+                            padding: EdgeInsets.only(left: 20.0, top: 12.0, right: 20.0, bottom: 12.0),
+                            child: Column(
                               children: <Widget>[
-                                new Expanded(
-                                  child: new TextField(
+                                Expanded(
+                                  child: TextField(
                                     autofocus: false,
                                     maxLines: 999,
                                     onChanged: widget.onContentChanged,
                                     controller: widget.valueController,
-                                    decoration: new InputDecoration.collapsed(
+                                    decoration: InputDecoration.collapsed(
                                       hintText: CommonUtils.getLocale(context).issue_edit_issue_title_tip,
                                       hintStyle: GSYConstant.middleSubText,
                                     ),
@@ -144,29 +144,29 @@ class _IssueEditDialogState extends State<IssueEditDialog> {
                               ],
                             ),
                           ),
-                          new Container(height: 10.0),
-                          new Row(
+                          Container(height: 10.0),
+                          Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               ///取消
-                              new Expanded(
-                                  child: new RawMaterialButton(
+                              Expanded(
+                                  child: RawMaterialButton(
                                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                       padding: EdgeInsets.all(4.0),
                                       constraints: const BoxConstraints(minWidth: 0.0, minHeight: 0.0),
-                                      child: new Text(CommonUtils.getLocale(context).app_cancel, style: GSYConstant.normalSubText),
+                                      child: Text(CommonUtils.getLocale(context).app_cancel, style: GSYConstant.normalSubText),
                                       onPressed: () {
                                         Navigator.pop(context);
                                       })),
-                              new Container(width: 0.3, height: 25.0, color: Color(GSYColors.subTextColor)),
+                              Container(width: 0.3, height: 25.0, color: Color(GSYColors.subTextColor)),
 
                               ///确定
-                              new Expanded(
-                                  child: new RawMaterialButton(
+                              Expanded(
+                                  child: RawMaterialButton(
                                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                       padding: EdgeInsets.all(4.0),
                                       constraints: const BoxConstraints(minWidth: 0.0, minHeight: 0.0),
-                                      child: new Text(CommonUtils.getLocale(context).app_ok, style: GSYConstant.normalTextBold),
+                                      child: Text(CommonUtils.getLocale(context).app_ok, style: GSYConstant.normalTextBold),
                                       onPressed: widget.onPressed)),
                             ],
                           )

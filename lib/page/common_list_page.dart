@@ -51,15 +51,15 @@ class _CommonListPageState extends State<CommonListPage> with AutomaticKeepAlive
     switch (showType) {
       case 'repository':
         ReposViewModel reposViewModel = ReposViewModel.fromMap(data);
-        return new ReposItem(reposViewModel, onPressed: () {
+        return ReposItem(reposViewModel, onPressed: () {
           NavigatorUtils.goReposDetail(context, reposViewModel.ownerName, reposViewModel.repositoryName);
         });
       case 'user':
-        return new UserItem(UserItemViewModel.fromMap(data), onPressed: () {
+        return UserItem(UserItemViewModel.fromMap(data), onPressed: () {
           NavigatorUtils.goPerson(context, data.login);
         });
       case 'org':
-        return new UserItem(UserItemViewModel.fromOrgMap(data), onPressed: () {
+        return UserItem(UserItemViewModel.fromOrgMap(data), onPressed: () {
           NavigatorUtils.goPerson(context, data.login);
         });
       case 'issue':
@@ -126,9 +126,9 @@ class _CommonListPageState extends State<CommonListPage> with AutomaticKeepAlive
   @override
   Widget build(BuildContext context) {
     super.build(context); // See AutomaticKeepAliveClientMixin.
-    return new Scaffold(
-      appBar: new AppBar(
-          title: new Text(
+    return Scaffold(
+      appBar: AppBar(
+          title: Text(
         title,
         maxLines: 1,
         overflow: TextOverflow.ellipsis,

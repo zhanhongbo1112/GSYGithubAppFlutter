@@ -48,7 +48,7 @@ class ReposDetailInfoPageState extends State<ReposDetailInfoPage> with Automatic
   ///渲染时间Item或者提交Item
   _renderEventItem(index) {
     if (index == 0) {
-      return new ReposHeaderItem(ReposHeaderViewModel.fromHttpMap(userName, reposName, repository), (index) {
+      return ReposHeaderItem(ReposHeaderViewModel.fromHttpMap(userName, reposName, repository), (index) {
         selectIndex = index;
         clearData();
         showRefreshLoading();
@@ -57,7 +57,7 @@ class ReposDetailInfoPageState extends State<ReposDetailInfoPage> with Automatic
 
     if (selectIndex == 1) {
       ///提交
-      return new EventItem(
+      return EventItem(
         EventViewModel.fromCommitMap(pullLoadWidgetControl.dataList[index - 1]),
         onPressed: () {
           RepoCommit model = pullLoadWidgetControl.dataList[index - 1];
@@ -66,7 +66,7 @@ class ReposDetailInfoPageState extends State<ReposDetailInfoPage> with Automatic
         needImage: false,
       );
     }
-    return new EventItem(
+    return EventItem(
       EventViewModel.fromEventMap(pullLoadWidgetControl.dataList[index - 1]),
       onPressed: () {
         EventUtils.ActionUtils(context, pullLoadWidgetControl.dataList[index - 1], userName + "/" + reposName);
@@ -104,7 +104,7 @@ class ReposDetailInfoPageState extends State<ReposDetailInfoPage> with Automatic
         });
         return result.next;
       }
-      return new Future.value(null);
+      return Future.value(null);
     }).then((result) {
       if (result != null && result.result) {
         setState(() {

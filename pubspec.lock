@@ -318,7 +318,7 @@ packages:
       name: intl
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.15.8"
+    version: "0.15.7"
   io:
     dependency: transitive
     description:
@@ -458,7 +458,7 @@ packages:
       name: petitparser
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.2.0"
+    version: "2.1.1"
   photo_view:
     dependency: "direct main"
     description:
@@ -687,7 +687,7 @@ packages:
       name: xml
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "3.4.0"
+    version: "3.3.1"
   yaml:
     dependency: transitive
     description:
@@ -696,5 +696,5 @@ packages:
     source: hosted
     version: "2.1.15"
 sdks:
-  dart: ">=2.2.0 <3.0.0"
+  dart: ">=2.1.1-dev.0.0 <3.0.0"
   flutter: ">=0.7.3 <2.0.0"

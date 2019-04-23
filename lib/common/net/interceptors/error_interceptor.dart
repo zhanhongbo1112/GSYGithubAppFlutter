@@ -19,9 +19,9 @@ class ErrorInterceptors extends InterceptorsWrapper {
   @override
   onRequest(RequestOptions options) async {
     //没有网络
-    var connectivityResult = await (new Connectivity().checkConnectivity());
+    var connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.none) {
-      return _dio.resolve(new ResultData(Code.errorHandleFunction(Code.NETWORK_ERROR, "", false), false, Code.NETWORK_ERROR));
+      return _dio.resolve(ResultData(Code.errorHandleFunction(Code.NETWORK_ERROR, "", false), false, Code.NETWORK_ERROR));
     }
     return options;
   }

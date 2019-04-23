@@ -63,7 +63,7 @@ class _CodeDetailPageState extends State<CodeDetailPageWeb> {
       ReposDao.getReposFileDirDao(userName, reposName, path: path, branch: branch, text: true, isHtml: true).then((res) {
         if (res != null && res.result) {
           String data2 = HtmlUtils.resolveHtmlFile(res, "java");
-          String url = new Uri.dataFromString(data2, mimeType: 'text/html', encoding: Encoding.getByName("utf-8")).toString();
+          String url = Uri.dataFromString(data2, mimeType: 'text/html', encoding: Encoding.getByName("utf-8")).toString();
           setState(() {
             this.data = url;
           });
@@ -75,25 +75,25 @@ class _CodeDetailPageState extends State<CodeDetailPageWeb> {
   @override
   Widget build(BuildContext context) {
     if (data == null) {
-      return new Scaffold(
-        appBar: new AppBar(
+      return Scaffold(
+        appBar: AppBar(
           title: GSYTitleBar(
               title
           ),
         ),
-        body: new Center(
-          child: new Container(
+        body: Center(
+          child: Container(
             width: 200.0,
             height: 200.0,
-            padding: new EdgeInsets.all(4.0),
-            child: new Row(
+            padding: EdgeInsets.all(4.0),
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                new SpinKitDoubleBounce(color: Theme
+                SpinKitDoubleBounce(color: Theme
                     .of(context)
                     .primaryColor),
-                new Container(width: 10.0),
-                new Container(child: new Text(CommonUtils
+                Container(width: 10.0),
+                Container(child: Text(CommonUtils
                     .getLocale(context)
                     .loading_text, style: GSYConstant.middleText)),
               ],
@@ -106,7 +106,7 @@ class _CodeDetailPageState extends State<CodeDetailPageWeb> {
     if (Config.USE_NATIVE_WEBVIEW && Platform.isAndroid) {
       return Scaffold(
         appBar: AppBar(
-          title: new Text(title),
+          title: Text(title),
         ),
         body: WebView(
           initialUrl: data,
@@ -116,7 +116,7 @@ class _CodeDetailPageState extends State<CodeDetailPageWeb> {
     }
     return Scaffold(
       appBar: AppBar(
-        title: new Text(title),
+        title: Text(title),
       ),
       body: WebView(
         initialUrl: data,

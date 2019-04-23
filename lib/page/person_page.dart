@@ -40,9 +40,9 @@ class _PersonState extends BasePersonState<PersonPage> {
 
   User userInfo = User.empty();
 
-  final List<UserOrg> orgList = new List();
+  final List<UserOrg> orgList = List();
 
-  final OptionControl titleOptionControl = new OptionControl();
+  final OptionControl titleOptionControl = OptionControl();
 
   _PersonState(this.userName);
 
@@ -108,7 +108,7 @@ class _PersonState extends BasePersonState<PersonPage> {
 
   _getUserName() {
     if (userInfo == null) {
-      return new User.empty();
+      return User.empty();
     }
     return userInfo.login;
   }
@@ -141,14 +141,14 @@ class _PersonState extends BasePersonState<PersonPage> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-        appBar: new AppBar(
+    return Scaffold(
+        appBar: AppBar(
             title: GSYTitleBar(
           (userInfo != null && userInfo.login != null) ? userInfo.login : "",
           rightWidget: GSYCommonOptionWidget(titleOptionControl),
         )),
-        floatingActionButton: new FloatingActionButton(
-            child: new Text(focus),
+        floatingActionButton: FloatingActionButton(
+            child: Text(focus),
             onPressed: () {
               if (focus == '') {
                 return;

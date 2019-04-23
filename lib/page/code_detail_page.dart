@@ -47,7 +47,7 @@ class _CodeDetailPageState extends State<CodeDetailPage> {
 
   final String title;
 
-  final OptionControl titleOptionControl = new OptionControl();
+  final OptionControl titleOptionControl = OptionControl();
 
   String data;
 
@@ -71,31 +71,31 @@ class _CodeDetailPageState extends State<CodeDetailPage> {
   @override
   Widget build(BuildContext context) {
     Widget widget = (data == null)
-        ? new Center(
-            child: new Container(
+        ? Center(
+            child: Container(
               width: 200.0,
               height: 200.0,
-              padding: new EdgeInsets.all(4.0),
-              child: new Row(
+              padding: EdgeInsets.all(4.0),
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  new SpinKitDoubleBounce(color: Theme.of(context).primaryColor),
-                  new Container(width: 10.0),
-                  new Container(child: new Text(CommonUtils.getLocale(context).loading_text, style: GSYConstant.middleText)),
+                  SpinKitDoubleBounce(color: Theme.of(context).primaryColor),
+                  Container(width: 10.0),
+                  Container(child: Text(CommonUtils.getLocale(context).loading_text, style: GSYConstant.middleText)),
                 ],
               ),
             ),
           )
-        : new GSYMarkdownWidget(
+        : GSYMarkdownWidget(
             markdownData: data,
             style: GSYMarkdownWidget.DARK_LIGHT,
           );
 
-    return new Scaffold(
-      appBar: new AppBar(
+    return Scaffold(
+      appBar: AppBar(
         title: GSYTitleBar(
           title,
-          rightWidget: new GSYCommonOptionWidget(titleOptionControl),
+          rightWidget: GSYCommonOptionWidget(titleOptionControl),
           needRightLocalIcon: false,
         ),
       ),

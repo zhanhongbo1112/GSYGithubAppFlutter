@@ -49,8 +49,8 @@ import 'package:gsy_github_app_flutter/common/redux/middleware/epic_store.dart';
 ///         .asyncMap((action) =>
 ///           // Pseudo api that returns a Future of SearchResults
 ///           api.search((action as PerformSearch).searchTerm)
-///             .then((results) => new SearchResultsAction(results))
-///             .catchError((error) => new SearchErrorAction(error)));
+///             .then((results) => SearchResultsAction(results))
+///             .catchError((error) => SearchErrorAction(error)));
 ///     }
 typedef Stream<dynamic> Epic<State>(
     Stream<dynamic> actions, EpicStore<State> store);
@@ -69,8 +69,8 @@ typedef Stream<dynamic> Epic<State>(
 ///           .asyncMap((action) =>
 ///             // Pseudo api that returns a Future of SearchResults
 ///             api.search((action as PerformSearch).searchTerm)
-///               .then((results) => new SearchResultsAction(results))
-///               .catchError((error) => new SearchErrorAction(error)));
+///               .then((results) => SearchResultsAction(results))
+///               .catchError((error) => SearchErrorAction(error)));
 ///       }
 ///     }
 abstract class EpicClass<State> {
@@ -93,18 +93,18 @@ abstract class EpicClass<State> {
 ///       return actions
 ///         .asyncMap((action) =>
 ///           api.search(action.searchTerm)
-///             .then((results) => new SearchResultsAction(results))
-///             .catchError((error) => new SearchErrorAction(error)));
+///             .then((results) => SearchResultsAction(results))
+///             .catchError((error) => SearchErrorAction(error)));
 ///     }
 ///
-///     final epic = new TypedEpic<State, PerformSearchAction>(typedSearchEpic);
+///     final epic = TypedEpic<State, PerformSearchAction>(typedSearchEpic);
 ///
 /// ### Combining Typed Epics
 ///
 ///     final epic = combineEpics([
-///       new TypedEpic<State, SearchAction>(searchEpic),
-///       new TypedEpic<State, ProfileAction>(profileEpic),
-///       new TypedEpic<State, ChatAction>(chatEpic),
+///       TypedEpic<State, SearchAction>(searchEpic),
+///       TypedEpic<State, ProfileAction>(profileEpic),
+///       TypedEpic<State, ChatAction>(chatEpic),
 ///     ]);
 class TypedEpic<State, Action> extends EpicClass<State> {
   final Stream<dynamic> Function(
@@ -117,7 +117,7 @@ class TypedEpic<State, Action> extends EpicClass<State> {
   @override
   Stream<dynamic> call(Stream<dynamic> actions, EpicStore<State> store) {
     return epic(
-      actions.transform(new StreamTransformer<dynamic, Action>.fromHandlers(
+      actions.transform(StreamTransformer<dynamic, Action>.fromHandlers(
         handleData: (dynamic action, EventSink<Action> sink) {
           if (action is Action) {
             sink.add(action);

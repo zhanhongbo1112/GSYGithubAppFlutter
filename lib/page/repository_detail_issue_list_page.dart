@@ -40,7 +40,7 @@ class _RepositoryDetailIssuePageState extends State<RepositoryDetailIssuePage>
 
   _renderEventItem(index) {
     IssueItemViewModel issueItemViewModel = IssueItemViewModel.fromMap(pullLoadWidgetControl.dataList[index]);
-    return new IssueItem(
+    return IssueItem(
       issueItemViewModel,
       onPressed: () {
         NavigatorUtils.goIssueDetail(context, userName, reposName, issueItemViewModel.number);
@@ -94,7 +94,7 @@ class _RepositoryDetailIssuePageState extends State<RepositoryDetailIssuePage>
         Navigator.pop(context);
         Navigator.pop(context);
       });
-    }, needTitle: true, titleController: new TextEditingController(), valueController: new TextEditingController());
+    }, needTitle: true, titleController: TextEditingController(), valueController: TextEditingController());
   }
 
   @override
@@ -119,23 +119,23 @@ class _RepositoryDetailIssuePageState extends State<RepositoryDetailIssuePage>
   @override
   Widget build(BuildContext context) {
     super.build(context); // See AutomaticKeepAliveClientMixin.
-    return new Scaffold(
+    return Scaffold(
       resizeToAvoidBottomPadding: false,
-      floatingActionButton: new Container(
+      floatingActionButton: Container(
           width: 52,
           height: 52,
           decoration: BoxDecoration(
               boxShadow: [BoxShadow(offset: Offset(0, 1), color: Theme.of(context).primaryColorDark, blurRadius: 1.0)],
               color: Color(GSYColors.primaryValue),
               borderRadius: BorderRadius.all(Radius.circular(25))),
-          child: new Icon(
+          child: Icon(
             GSYICons.ISSUE_ITEM_ADD,
             size: 50.0,
             color: Color(GSYColors.textWhite),
           )),
       backgroundColor: Color(GSYColors.mainBackgroundColor),
-      appBar: new AppBar(
-        leading: new Container(),
+      appBar: AppBar(
+        leading: Container(),
         flexibleSpace: GSYSearchInputWidget((value) {
           this.searchText = value;
         }, (value) {
@@ -145,7 +145,7 @@ class _RepositoryDetailIssuePageState extends State<RepositoryDetailIssuePage>
         }),
         elevation: 0.0,
         backgroundColor: Color(GSYColors.mainBackgroundColor),
-        bottom: new GSYSelectItemWidget([
+        bottom: GSYSelectItemWidget([
           CommonUtils.getLocale(context).repos_tab_issue_all,
           CommonUtils.getLocale(context).repos_tab_issue_open,
           CommonUtils.getLocale(context).repos_tab_issue_closed,

@@ -22,7 +22,7 @@ class DynamicPage extends StatefulWidget {
 }
 
 class _DynamicPageState extends State<DynamicPage> with AutomaticKeepAliveClientMixin<DynamicPage>, GSYListState<DynamicPage>, WidgetsBindingObserver {
-  final DynamicBloc dynamicBloc = new DynamicBloc();
+  final DynamicBloc dynamicBloc = DynamicBloc();
 
   @override
   bool get wantKeepAlive => true;
@@ -75,7 +75,7 @@ class _DynamicPageState extends State<DynamicPage> with AutomaticKeepAliveClient
 
   _renderEventItem(Event e) {
     EventViewModel eventViewModel = EventViewModel.fromEventMap(e);
-    return new EventItem(
+    return EventItem(
       eventViewModel,
       onPressed: () {
         EventUtils.ActionUtils(context, e, "");
@@ -90,7 +90,7 @@ class _DynamicPageState extends State<DynamicPage> with AutomaticKeepAliveClient
   @override
   Widget build(BuildContext context) {
     super.build(context); // See AutomaticKeepAliveClientMixin.
-    return new StoreBuilder<GSYState>(
+    return StoreBuilder<GSYState>(
       builder: (context, store) {
         return BlocProvider<DynamicBloc>(
           bloc: dynamicBloc,

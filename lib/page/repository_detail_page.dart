@@ -31,7 +31,7 @@ class RepositoryDetailPage extends StatefulWidget {
 }
 
 class _RepositoryDetailPageState extends State<RepositoryDetailPage> {
-  ReposHeaderViewModel reposHeaderViewModel = new ReposHeaderViewModel();
+  ReposHeaderViewModel reposHeaderViewModel = ReposHeaderViewModel();
 
   BottomStatusModel bottomStatusModel;
 
@@ -39,19 +39,19 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage> {
 
   final String reposName;
 
-  final TarWidgetControl tarBarControl = new TarWidgetControl();
+  final TarWidgetControl tarBarControl = TarWidgetControl();
 
-  final ReposDetailModel reposDetailModel = new ReposDetailModel();
+  final ReposDetailModel reposDetailModel = ReposDetailModel();
 
-  final OptionControl titleOptionControl = new OptionControl();
+  final OptionControl titleOptionControl = OptionControl();
 
-  GlobalKey<RepositoryDetailFileListPageState> fileListKey = new GlobalKey<RepositoryDetailFileListPageState>();
+  GlobalKey<RepositoryDetailFileListPageState> fileListKey = GlobalKey<RepositoryDetailFileListPageState>();
 
-  GlobalKey<ReposDetailInfoPageState> infoListKey = new GlobalKey<ReposDetailInfoPageState>();
+  GlobalKey<ReposDetailInfoPageState> infoListKey = GlobalKey<ReposDetailInfoPageState>();
 
-  GlobalKey<RepositoryDetailReadmePageState> readmeKey = new GlobalKey<RepositoryDetailReadmePageState>();
+  GlobalKey<RepositoryDetailReadmePageState> readmeKey = GlobalKey<RepositoryDetailReadmePageState>();
 
-  List<String> branchList = new List();
+  List<String> branchList = List();
 
   _RepositoryDetailPageState(this.userName, this.reposName);
 
@@ -61,7 +61,7 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage> {
     String starText = result.data["star"] ? "UnStar" : "Star";
     IconData watchIcon = result.data["watch"] ? GSYICons.REPOS_ITEM_WATCHED : GSYICons.REPOS_ITEM_WATCH;
     IconData starIcon = result.data["star"] ? GSYICons.REPOS_ITEM_STARED : GSYICons.REPOS_ITEM_STAR;
-    BottomStatusModel model = new BottomStatusModel(watchText, starText, watchIcon, starIcon, result.data["watch"], result.data["star"]);
+    BottomStatusModel model = BottomStatusModel(watchText, starText, watchIcon, starIcon, result.data["watch"], result.data["star"]);
     setState(() {
       bottomStatusModel = model;
       tarBarControl.footerButton = _getBottomWidget();
@@ -82,9 +82,9 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage> {
   }
 
   _renderBottomItem(var text, var icon, var onPressed) {
-    return new FlatButton(
+    return FlatButton(
         onPressed: onPressed,
-        child: new GSYIConText(
+        child: GSYIConText(
           icon,
           text,
           GSYConstant.smallText,
@@ -134,16 +134,16 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage> {
       CommonUtils.getLocale(context).repos_tab_file,
     ];
     renderItem(String item, int i) {
-      return new Container(
+      return Container(
           padding: EdgeInsets.all(0.0),
-          child: new Text(
+          child: Text(
             item,
             style: GSYConstant.smallTextWhite,
             maxLines: 1,
           ));
     }
 
-    List<Widget> list = new List();
+    List<Widget> list = List();
     for (int i = 0; i < itemList.length; i++) {
       list.add(renderItem(itemList[i], i));
     }
@@ -153,7 +153,7 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage> {
   _getMoreOtherItem() {
     return [
       ///Release Page
-      new GSYOptionModel(CommonUtils.getLocale(context).repos_option_release, CommonUtils.getLocale(context).repos_option_release, (model) {
+      GSYOptionModel(CommonUtils.getLocale(context).repos_option_release, CommonUtils.getLocale(context).repos_option_release, (model) {
         String releaseUrl = "";
         String tagUrl = "";
         if (infoListKey == null || infoListKey.currentState == null) {
@@ -168,7 +168,7 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage> {
       }),
 
       ///Branch Page
-      new GSYOptionModel(CommonUtils.getLocale(context).repos_option_branch, CommonUtils.getLocale(context).repos_option_branch, (model) {
+      GSYOptionModel(CommonUtils.getLocale(context).repos_option_branch, CommonUtils.getLocale(context).repos_option_branch, (model) {
         if (branchList.length == 0) {
           return;
         }
@@ -199,24 +199,24 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    Widget widget = new GSYCommonOptionWidget(titleOptionControl, otherList: _getMoreOtherItem());
-    return new ScopedModel<ReposDetailModel>(
+    Widget widget = GSYCommonOptionWidget(titleOptionControl, otherList: _getMoreOtherItem());
+    return ScopedModel<ReposDetailModel>(
       model: reposDetailModel,
-      child: new ScopedModelDescendant<ReposDetailModel>(
+      child: ScopedModelDescendant<ReposDetailModel>(
         builder: (context, child, model) {
-          return new GSYTabBarWidget(
+          return GSYTabBarWidget(
             type: GSYTabBarWidget.TOP_TAB,
             tarWidgetControl: tarBarControl,
             tabItems: _renderTabItem(),
             tabViews: [
-              new ReposDetailInfoPage(userName, reposName, titleOptionControl, key: infoListKey),
-              new RepositoryDetailReadmePage(userName, reposName, key: readmeKey),
-              new RepositoryDetailIssuePage(userName, reposName),
-              new RepositoryDetailFileListPage(userName, reposName, key: fileListKey),
+              ReposDetailInfoPage(userName, reposName, titleOptionControl, key: infoListKey),
+              RepositoryDetailReadmePage(userName, reposName, key: readmeKey),
+              RepositoryDetailIssuePage(userName, reposName),
+              RepositoryDetailFileListPage(userName, reposName, key: fileListKey),
             ],
             backgroundColor: GSYColors.primarySwatch,
             indicatorColor: Color(GSYColors.white),
-            title: new GSYTitleBar(
+            title: GSYTitleBar(
               reposName,
               rightWidget: widget,
             ),

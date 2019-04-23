@@ -38,7 +38,7 @@ class UserDao {
     };
     httpManager.clearAuthorization();
 
-    var res = await httpManager.netFetch(Address.getAuthorization(), json.encode(requestParams), null, new Options(method: "post"));
+    var res = await httpManager.netFetch(Address.getAuthorization(), json.encode(requestParams), null, Options(method: "post"));
     var resultData = null;
     if (res != null && res.result) {
       await LocalStorage.save(Config.PW_KEY, password);
@@ -48,9 +48,9 @@ class UserDao {
         print(resultData.data);
         print(res.data.toString());
       }
-      store.dispatch(new UpdateUserAction(resultData.data));
+      store.dispatch(UpdateUserAction(resultData.data));
     }
-    return new DataResult(resultData, res.result);
+    return DataResult(resultData, res.result);
   }
 
   ///初始化用户信息
@@ -73,7 +73,7 @@ class UserDao {
       CommonUtils.changeLocale(store, int.parse(localeIndex));
     }
 
-    return new DataResult(res.data, (res.result && (token != null)));
+    return DataResult(res.data, (res.result && (token != null)));
   }
 
   ///获取本地登录用户信息
@@ -82,15 +82,15 @@ class UserDao {
     if (userText != null) {
       var userMap = json.decode(userText);
       User user = User.fromJson(userMap);
-      return new DataResult(user, true);
+      return DataResult(user, true);
     } else {
-      return new DataResult(null, false);
+      return DataResult(null, false);
     }
   }
 
   ///获取用户详细信息
   static getUserInfo(userName, {needDb = false}) async {
-    UserInfoDbProvider provider = new UserInfoDbProvider();
+    UserInfoDbProvider provider = UserInfoDbProvider();
     next() async {
       var res;
       if (userName == null) {
@@ -115,9 +115,9 @@ class UserDao {
             provider.insert(userName, json.encode(user.toJson()));
           }
         }
-        return new DataResult(user, true);
+        return DataResult(user, true);
       } else {
-        return new DataResult(res.data, false);
+        return DataResult(res.data, false);
       }
     }
 
@@ -126,7 +126,7 @@ class UserDao {
       if (user == null) {
         return await next();
       }
-      DataResult dataResult = new DataResult(user, true, next: next());
+      DataResult dataResult = DataResult(user, true, next: next());
       return dataResult;
     }
     return await next();
@@ -135,7 +135,7 @@ class UserDao {
   static clearAll(Store store) async {
     httpManager.clearAuthorization();
     LocalStorage.remove(Config.USER_INFO);
-    store.dispatch(new UpdateUserAction(User.empty()));
+    store.dispatch(UpdateUserAction(User.empty()));
   }
 
   /**
@@ -152,40 +152,40 @@ class UserDao {
           int indexEnd = link[0].lastIndexOf(">");
           if (indexStart >= 0 && indexEnd >= 0) {
             String count = link[0].substring(indexStart, indexEnd);
-            return new DataResult(count, true);
+            return DataResult(count, true);
           }
         }
       } catch (e) {
         print(e);
       }
     }
-    return new DataResult(null, false);
+    return DataResult(null, false);
   }
 
   /**
    * 获取用户粉丝列表
    */
   static getFollowerListDao(userName, page, {needDb = false}) async {
-    UserFollowerDbProvider provider = new UserFollowerDbProvider();
+    UserFollowerDbProvider provider = UserFollowerDbProvider();
 
     next() async {
       String url = Address.getUserFollower(userName) + Address.getPageParams("?", page);
       var res = await httpManager.netFetch(url, null, null, null);
       if (res != null && res.result) {
-        List<User> list = new List();
+        List<User> list = List();
         var data = res.data;
         if (data == null || data.length == 0) {
-          return new DataResult(null, false);
+          return DataResult(null, false);
         }
         for (int i = 0; i < data.length; i++) {
-          list.add(new User.fromJson(data[i]));
+          list.add(User.fromJson(data[i]));
         }
         if (needDb) {
           provider.insert(userName, json.encode(data));
         }
-        return new DataResult(list, true);
+        return DataResult(list, true);
       } else {
-        return new DataResult(null, false);
+        return DataResult(null, false);
       }
     }
 
@@ -194,7 +194,7 @@ class UserDao {
       if (list == null) {
         return await next();
       }
-      DataResult dataResult = new DataResult(list, true, next: next());
+      DataResult dataResult = DataResult(list, true, next: next());
       return dataResult;
     }
     return await next();
@@ -204,25 +204,25 @@ class UserDao {
    * 获取用户关注列表
    */
   static getFollowedListDao(userName, page, {needDb = false}) async {
-    UserFollowedDbProvider provider = new UserFollowedDbProvider();
+    UserFollowedDbProvider provider = UserFollowedDbProvider();
     next() async {
       String url = Address.getUserFollow(userName) + Address.getPageParams("?", page);
       var res = await httpManager.netFetch(url, null, null, null);
       if (res != null && res.result) {
-        List<User> list = new List();
+        List<User> list = List();
         var data = res.data;
         if (data == null || data.length == 0) {
-          return new DataResult(null, false);
+          return DataResult(null, false);
         }
         for (int i = 0; i < data.length; i++) {
-          list.add(new User.fromJson(data[i]));
+          list.add(User.fromJson(data[i]));
         }
         if (needDb) {
           provider.insert(userName, json.encode(data));
         }
-        return new DataResult(list, true);
+        return DataResult(list, true);
       } else {
-        return new DataResult(null, false);
+        return DataResult(null, false);
       }
     }
 
@@ -231,7 +231,7 @@ class UserDao {
       if (list == null) {
         return await next();
       }
-      DataResult dataResult = new DataResult(list, true, next: next());
+      DataResult dataResult = DataResult(list, true, next: next());
       return dataResult;
     }
     return await next();
@@ -245,17 +245,17 @@ class UserDao {
     String url = Address.getNotifation(all, participating) + Address.getPageParams(tag, page);
     var res = await httpManager.netFetch(url, null, null, null);
     if (res != null && res.result) {
-      List<Notification> list = new List();
+      List<Notification> list = List();
       var data = res.data;
       if (data == null || data.length == 0) {
-        return new DataResult([], true);
+        return DataResult([], true);
       }
       for (int i = 0; i < data.length; i++) {
         list.add(Notification.fromJson(data[i]));
       }
-      return new DataResult(list, true);
+      return DataResult(list, true);
     } else {
-      return new DataResult(null, false);
+      return DataResult(null, false);
     }
   }
 
@@ -264,7 +264,7 @@ class UserDao {
    */
   static setNotificationAsReadDao(id) async {
     String url = Address.setNotificationAsRead(id);
-    var res = await httpManager.netFetch(url, null, null, new Options(method: "PATCH"), noTip: true);
+    var res = await httpManager.netFetch(url, null, null, Options(method: "PATCH"), noTip: true);
     return res;
   }
 
@@ -273,8 +273,8 @@ class UserDao {
    */
   static setAllNotificationAsReadDao() async {
     String url = Address.setAllNotificationAsRead();
-    var res = await httpManager.netFetch(url, null, null, new Options(method: "PUT", contentType: ContentType.text));
-    return new DataResult(res.data, res.result);
+    var res = await httpManager.netFetch(url, null, null, Options(method: "PUT", contentType: ContentType.text));
+    return DataResult(res.data, res.result);
   }
 
   /**
@@ -282,8 +282,8 @@ class UserDao {
    */
   static checkFollowDao(name) async {
     String url = Address.doFollow(name);
-    var res = await httpManager.netFetch(url, null, null, new Options(contentType: ContentType.text), noTip: true);
-    return new DataResult(res.data, res.result);
+    var res = await httpManager.netFetch(url, null, null, Options(contentType: ContentType.text), noTip: true);
+    return DataResult(res.data, res.result);
   }
 
   /**
@@ -291,8 +291,8 @@ class UserDao {
    */
   static doFollowDao(name, bool followed) async {
     String url = Address.doFollow(name);
-    var res = await httpManager.netFetch(url, null, null, new Options(method: !followed ? "PUT" : "DELETE"), noTip: true);
-    return new DataResult(res.data, res.result);
+    var res = await httpManager.netFetch(url, null, null, Options(method: !followed ? "PUT" : "DELETE"), noTip: true);
+    return DataResult(res.data, res.result);
   }
 
   /**
@@ -302,17 +302,17 @@ class UserDao {
     String url = Address.getMember(userName) + Address.getPageParams("?", page);
     var res = await httpManager.netFetch(url, null, null, null);
     if (res != null && res.result) {
-      List<User> list = new List();
+      List<User> list = List();
       var data = res.data;
       if (data == null || data.length == 0) {
-        return new DataResult(null, false);
+        return DataResult(null, false);
       }
       for (int i = 0; i < data.length; i++) {
-        list.add(new User.fromJson(data[i]));
+        list.add(User.fromJson(data[i]));
       }
-      return new DataResult(list, true);
+      return DataResult(list, true);
     } else {
-      return new DataResult(null, false);
+      return DataResult(null, false);
     }
   }
 
@@ -321,41 +321,41 @@ class UserDao {
    */
   static updateUserDao(params, Store store) async {
     String url = Address.getMyUserInfo();
-    var res = await httpManager.netFetch(url, params, null, new Options(method: "PATCH"));
+    var res = await httpManager.netFetch(url, params, null, Options(method: "PATCH"));
     if (res != null && res.result) {
       var localResult = await getUserInfoLocal();
       User newUser = User.fromJson(res.data);
       newUser.starred = localResult.data.starred;
       await LocalStorage.save(Config.USER_INFO, json.encode(newUser.toJson()));
-      store.dispatch(new UpdateUserAction(newUser));
-      return new DataResult(newUser, true);
+      store.dispatch(UpdateUserAction(newUser));
+      return DataResult(newUser, true);
     }
-    return new DataResult(null, false);
+    return DataResult(null, false);
   }
 
   /**
    * 获取用户组织
    */
   static getUserOrgsDao(userName, page, {needDb = false}) async {
-    UserOrgsDbProvider provider = new UserOrgsDbProvider();
+    UserOrgsDbProvider provider = UserOrgsDbProvider();
     next() async {
       String url = Address.getUserOrgs(userName) + Address.getPageParams("?", page);
       var res = await httpManager.netFetch(url, null, null, null);
       if (res != null && res.result) {
-        List<UserOrg> list = new List();
+        List<UserOrg> list = List();
         var data = res.data;
         if (data == null || data.length == 0) {
-          return new DataResult(null, false);
+          return DataResult(null, false);
         }
         for (int i = 0; i < data.length; i++) {
-          list.add(new UserOrg.fromJson(data[i]));
+          list.add(UserOrg.fromJson(data[i]));
         }
         if (needDb) {
           provider.insert(userName, json.encode(data));
         }
-        return new DataResult(list, true);
+        return DataResult(list, true);
       } else {
-        return new DataResult(null, false);
+        return DataResult(null, false);
       }
     }
 
@@ -364,7 +364,7 @@ class UserDao {
       if (list == null) {
         return await next();
       }
-      DataResult dataResult = new DataResult(list, true, next: next());
+      DataResult dataResult = DataResult(list, true, next: next());
       return dataResult;
     }
     return await next();

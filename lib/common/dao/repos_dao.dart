@@ -46,17 +46,17 @@ class ReposDao {
    * @param languageType 语言
    */
   static getTrendDao({since = 'daily', languageType, page = 0, needDb = true}) async {
-    TrendRepositoryDbProvider provider = new TrendRepositoryDbProvider();
+    TrendRepositoryDbProvider provider = TrendRepositoryDbProvider();
     String languageTypeDb = languageType ?? "*";
 
     next() async {
       String url = Address.trending(since, languageType);
-      var res = await new GitHubTrending().fetchTrending(url);
+      var res = await GitHubTrending().fetchTrending(url);
       if (res != null && res.result && res.data.length > 0) {
-        List<TrendingRepoModel> list = new List();
+        List<TrendingRepoModel> list = List();
         var data = res.data;
         if (data == null || data.length == 0) {
-          return new DataResult(null, false);
+          return DataResult(null, false);
         }
         if (needDb) {
           provider.insert(languageTypeDb, since, json.encode(data));
@@ -65,9 +65,9 @@ class ReposDao {
           TrendingRepoModel model = data[i];
           list.add(model);
         }
-        return new DataResult(list, true);
+        return DataResult(list, true);
       } else {
-        return new DataResult(null, false);
+        return DataResult(null, false);
       }
     }
 
@@ -76,7 +76,7 @@ class ReposDao {
       if (list != null && list.length > 0) {
         return await next();
       }
-      DataResult dataResult = new DataResult(list, true, next: next());
+      DataResult dataResult = DataResult(list, true, next: next());
       return dataResult;
     }
   }
@@ -86,7 +86,7 @@ class ReposDao {
    */
   static getRepositoryDetailDao(userName, reposName, branch, {needDb = true}) async {
     String fullName = userName + "/" + reposName;
-    RepositoryDetailDbProvider provider = new RepositoryDetailDbProvider();
+    RepositoryDetailDbProvider provider = RepositoryDetailDbProvider();
 
     next() async {
       String url = Address.getReposDetail(userName, reposName) + "?ref=" + branch;
@@ -94,7 +94,7 @@ class ReposDao {
       if (res != null && res.result && res.data.length > 0) {
         var data = res.data;
         if (data == null || data.length == 0) {
-          return new DataResult(null, false);
+          return DataResult(null, false);
         }
         Repository repository = Repository.fromJson(data);
         var issueResult = await ReposDao.getRepositoryIssueStatusDao(userName, reposName);
@@ -105,9 +105,9 @@ class ReposDao {
           provider.insert(fullName, json.encode(repository.toJson()));
         }
         saveHistoryDao(fullName, DateTime.now(), json.encode(repository.toJson()));
-        return new DataResult(repository, true);
+        return DataResult(repository, true);
       } else {
-        return new DataResult(null, false);
+        return DataResult(null, false);
       }
     }
 
@@ -116,7 +116,7 @@ class ReposDao {
       if (repository == null) {
         return await next();
       }
-      DataResult dataResult = new DataResult(repository, true, next: next());
+      DataResult dataResult = DataResult(repository, true, next: next());
       return dataResult;
     }
     return await next();
@@ -127,16 +127,16 @@ class ReposDao {
    */
   static getRepositoryEventDao(userName, reposName, {page = 0, branch = "master", needDb = false}) async {
     String fullName = userName + "/" + reposName;
-    RepositoryEventDbProvider provider = new RepositoryEventDbProvider();
+    RepositoryEventDbProvider provider = RepositoryEventDbProvider();
 
     next() async {
       String url = Address.getReposEvent(userName, reposName) + Address.getPageParams("?", page);
       var res = await httpManager.netFetch(url, null, null, null);
       if (res != null && res.result) {
-        List<Event> list = new List();
+        List<Event> list = List();
         var data = res.data;
         if (data == null || data.length == 0) {
-          return new DataResult(null, false);
+          return DataResult(null, false);
         }
         for (int i = 0; i < data.length; i++) {
           list.add(Event.fromJson(data[i]));
@@ -144,9 +144,9 @@ class ReposDao {
         if (needDb) {
           provider.insert(fullName, json.encode(data));
         }
-        return new DataResult(list, true);
+        return DataResult(list, true);
       } else {
-        return new DataResult(null, false);
+        return DataResult(null, false);
       }
     }
 
@@ -155,7 +155,7 @@ class ReposDao {
       if (list == null) {
         return await next();
       }
-      DataResult dataResult = new DataResult(list, true, next: next());
+      DataResult dataResult = DataResult(list, true, next: next());
       return dataResult;
     }
     return await next();
@@ -167,10 +167,10 @@ class ReposDao {
   static getRepositoryStatusDao(userName, reposName) async {
     String urls = Address.resolveStarRepos(userName, reposName);
     String urlw = Address.resolveWatcherRepos(userName, reposName);
-    var resS = await httpManager.netFetch(urls, null, null, new Options(contentType: ContentType.text), noTip: true);
-    var resW = await httpManager.netFetch(urlw, null, null, new Options(contentType: ContentType.text), noTip: true);
+    var resS = await httpManager.netFetch(urls, null, null, Options(contentType: ContentType.text), noTip: true);
+    var resW = await httpManager.netFetch(urlw, null, null, Options(contentType: ContentType.text), noTip: true);
     var data = {"star": resS.result, "watch": resW.result};
-    return new DataResult(data, true);
+    return DataResult(data, true);
   }
 
   /**
@@ -179,16 +179,16 @@ class ReposDao {
   static getReposCommitsDao(userName, reposName, {page = 0, branch = "master", needDb = false}) async {
     String fullName = userName + "/" + reposName;
 
-    RepositoryCommitsDbProvider provider = new RepositoryCommitsDbProvider();
+    RepositoryCommitsDbProvider provider = RepositoryCommitsDbProvider();
 
     next() async {
       String url = Address.getReposCommits(userName, reposName) + Address.getPageParams("?", page) + "&sha=" + branch;
       var res = await httpManager.netFetch(url, null, null, null);
       if (res != null && res.result) {
-        List<RepoCommit> list = new List();
+        List<RepoCommit> list = List();
         var data = res.data;
         if (data == null || data.length == 0) {
-          return new DataResult(null, false);
+          return DataResult(null, false);
         }
         for (int i = 0; i < data.length; i++) {
           list.add(RepoCommit.fromJson(data[i]));
@@ -196,9 +196,9 @@ class ReposDao {
         if (needDb) {
           provider.insert(fullName, branch, json.encode(data));
         }
-        return new DataResult(list, true);
+        return DataResult(list, true);
       } else {
-        return new DataResult(null, false);
+        return DataResult(null, false);
       }
     }
 
@@ -207,7 +207,7 @@ class ReposDao {
       if (list == null) {
         return await next();
       }
-      DataResult dataResult = new DataResult(list, true, next: next());
+      DataResult dataResult = DataResult(list, true, next: next());
       return dataResult;
     }
     return await next();
@@ -223,16 +223,16 @@ class ReposDao {
       null,
       //text ? {"Accept": 'application/vnd.github.VERSION.raw'} : {"Accept": 'application/vnd.github.html'},
       isHtml ? {"Accept": 'application/vnd.github.html'} : {"Accept": 'application/vnd.github.VERSION.raw'},
-      new Options(contentType: text ? ContentType.text : ContentType.json),
+      Options(contentType: text ? ContentType.text : ContentType.json),
     );
     if (res != null && res.result) {
       if (text) {
-        return new DataResult(res.data, true);
+        return DataResult(res.data, true);
       }
-      List<FileModel> list = new List();
+      List<FileModel> list = List();
       var data = res.data;
       if (data == null || data.length == 0) {
-        return new DataResult(null, false);
+        return DataResult(null, false);
       }
       List<FileModel> dirs = [];
       List<FileModel> files = [];
@@ -246,9 +246,9 @@ class ReposDao {
       }
       list.addAll(dirs);
       list.addAll(files);
-      return new DataResult(list, true);
+      return DataResult(list, true);
     } else {
-      return new DataResult(null, false);
+      return DataResult(null, false);
     }
   }
 
@@ -257,9 +257,9 @@ class ReposDao {
    */
   static Future<DataResult> doRepositoryStarDao(userName, reposName, star) async {
     String url = Address.resolveStarRepos(userName, reposName);
-    var res = await httpManager.netFetch(url, null, null, new Options(method: !star ? 'PUT' : 'DELETE', contentType: ContentType.text));
+    var res = await httpManager.netFetch(url, null, null, Options(method: !star ? 'PUT' : 'DELETE', contentType: ContentType.text));
     return Future<DataResult>(() {
-      return new DataResult(null, res.result);
+      return DataResult(null, res.result);
     });
   }
 
@@ -268,8 +268,8 @@ class ReposDao {
    */
   static doRepositoryWatchDao(userName, reposName, watch) async {
     String url = Address.resolveWatcherRepos(userName, reposName);
-    var res = await httpManager.netFetch(url, null, null, new Options(method: !watch ? 'PUT' : 'DELETE', contentType: ContentType.text));
-    return new DataResult(null, res.result);
+    var res = await httpManager.netFetch(url, null, null, Options(method: !watch ? 'PUT' : 'DELETE', contentType: ContentType.text));
+    return DataResult(null, res.result);
   }
 
   /**
@@ -277,26 +277,26 @@ class ReposDao {
    */
   static getRepositoryWatcherDao(userName, reposName, page, {needDb = false}) async {
     String fullName = userName + "/" + reposName;
-    RepositoryWatcherDbProvider provider = new RepositoryWatcherDbProvider();
+    RepositoryWatcherDbProvider provider = RepositoryWatcherDbProvider();
 
     next() async {
       String url = Address.getReposWatcher(userName, reposName) + Address.getPageParams("?", page);
       var res = await httpManager.netFetch(url, null, null, null);
       if (res != null && res.result) {
-        List<User> list = new List();
+        List<User> list = List();
         var data = res.data;
         if (data == null || data.length == 0) {
-          return new DataResult(null, false);
+          return DataResult(null, false);
         }
         for (int i = 0; i < data.length; i++) {
-          list.add(new User.fromJson(data[i]));
+          list.add(User.fromJson(data[i]));
         }
         if (needDb) {
           provider.insert(fullName, json.encode(data));
         }
-        return new DataResult(list, true);
+        return DataResult(list, true);
       } else {
-        return new DataResult(null, false);
+        return DataResult(null, false);
       }
     }
 
@@ -305,7 +305,7 @@ class ReposDao {
       if (list == null) {
         return await next();
       }
-      DataResult dataResult = new DataResult(list, true, next: next());
+      DataResult dataResult = DataResult(list, true, next: next());
       return dataResult;
     }
     return await next();
@@ -316,25 +316,25 @@ class ReposDao {
    */
   static getRepositoryStarDao(userName, reposName, page, {needDb = false}) async {
     String fullName = userName + "/" + reposName;
-    RepositoryStarDbProvider provider = new RepositoryStarDbProvider();
+    RepositoryStarDbProvider provider = RepositoryStarDbProvider();
     next() async {
       String url = Address.getReposStar(userName, reposName) + Address.getPageParams("?", page);
       var res = await httpManager.netFetch(url, null, null, null);
       if (res != null && res.result) {
-        List<User> list = new List();
+        List<User> list = List();
         var data = res.data;
         if (data == null || data.length == 0) {
-          return new DataResult(null, false);
+          return DataResult(null, false);
         }
         for (int i = 0; i < data.length; i++) {
-          list.add(new User.fromJson(data[i]));
+          list.add(User.fromJson(data[i]));
         }
         if (needDb) {
           provider.insert(fullName, json.encode(data));
         }
-        return new DataResult(list, true);
+        return DataResult(list, true);
       } else {
-        return new DataResult(null, false);
+        return DataResult(null, false);
       }
     }
 
@@ -343,7 +343,7 @@ class ReposDao {
       if (list == null) {
         return await next();
       }
-      DataResult dataResult = new DataResult(list, true, next: next());
+      DataResult dataResult = DataResult(list, true, next: next());
       return dataResult;
     }
     return await next();
@@ -354,15 +354,15 @@ class ReposDao {
    */
   static getRepositoryForksDao(userName, reposName, page, {needDb = false}) async {
     String fullName = userName + "/" + reposName;
-    RepositoryForkDbProvider provider = new RepositoryForkDbProvider();
+    RepositoryForkDbProvider provider = RepositoryForkDbProvider();
     next() async {
       String url = Address.getReposForks(userName, reposName) + Address.getPageParams("?", page);
       var res = await httpManager.netFetch(url, null, null, null);
       if (res != null && res.result && res.data.length > 0) {
-        List<Repository> list = new List();
+        List<Repository> list = List();
         var dataList = res.data;
         if (dataList == null || dataList.length == 0) {
-          return new DataResult(null, false);
+          return DataResult(null, false);
         }
         for (int i = 0; i < dataList.length; i++) {
           var data = dataList[i];
@@ -371,9 +371,9 @@ class ReposDao {
         if (needDb) {
           provider.insert(fullName, json.encode(dataList));
         }
-        return new DataResult(list, true);
+        return DataResult(list, true);
       } else {
-        return new DataResult(null, false);
+        return DataResult(null, false);
       }
     }
 
@@ -382,7 +382,7 @@ class ReposDao {
       if (list == null) {
         return await next();
       }
-      DataResult dataResult = new DataResult(list, true, next: next());
+      DataResult dataResult = DataResult(list, true, next: next());
       return dataResult;
     }
     return await next();
@@ -392,15 +392,15 @@ class ReposDao {
    * 获取用户所有star
    */
   static getStarRepositoryDao(userName, page, sort, {needDb = false}) async {
-    UserStaredDbProvider provider = new UserStaredDbProvider();
+    UserStaredDbProvider provider = UserStaredDbProvider();
     next() async {
       String url = Address.userStar(userName, sort) + Address.getPageParams("&", page);
       var res = await httpManager.netFetch(url, null, null, null);
       if (res != null && res.result && res.data.length > 0) {
-        List<Repository> list = new List();
+        List<Repository> list = List();
         var dataList = res.data;
         if (dataList == null || dataList.length == 0) {
-          return new DataResult(null, false);
+          return DataResult(null, false);
         }
         for (int i = 0; i < dataList.length; i++) {
           var data = dataList[i];
@@ -409,9 +409,9 @@ class ReposDao {
         if (needDb) {
           provider.insert(userName, json.encode(dataList));
         }
-        return new DataResult(list, true);
+        return DataResult(list, true);
       } else {
-        return new DataResult(null, false);
+        return DataResult(null, false);
       }
     }
 
@@ -420,7 +420,7 @@ class ReposDao {
       if (list == null) {
         return await next();
       }
-      DataResult dataResult = new DataResult(list, true, next: next());
+      DataResult dataResult = DataResult(list, true, next: next());
       return dataResult;
     }
     return await next();
@@ -430,15 +430,15 @@ class ReposDao {
    * 用户的仓库
    */
   static getUserRepositoryDao(userName, page, sort, {needDb = false}) async {
-    UserReposDbProvider provider = new UserReposDbProvider();
+    UserReposDbProvider provider = UserReposDbProvider();
     next() async {
       String url = Address.userRepos(userName, sort) + Address.getPageParams("&", page);
       var res = await httpManager.netFetch(url, null, null, null);
       if (res != null && res.result && res.data.length > 0) {
-        List<Repository> list = new List();
+        List<Repository> list = List();
         var dataList = res.data;
         if (dataList == null || dataList.length == 0) {
-          return new DataResult(null, false);
+          return DataResult(null, false);
         }
         for (int i = 0; i < dataList.length; i++) {
           var data = dataList[i];
@@ -447,9 +447,9 @@ class ReposDao {
         if (needDb) {
           provider.insert(userName, json.encode(dataList));
         }
-        return new DataResult(list, true);
+        return DataResult(list, true);
       } else {
-        return new DataResult(null, false);
+        return DataResult(null, false);
       }
     }
 
@@ -458,7 +458,7 @@ class ReposDao {
       if (list == null) {
         return await next();
       }
-      DataResult dataResult = new DataResult(list, true, next: next());
+      DataResult dataResult = DataResult(list, true, next: next());
       return dataResult;
     }
     return await next();
@@ -469,8 +469,8 @@ class ReposDao {
    */
   static createForkDao(userName, reposName) async {
     String url = Address.createFork(userName, reposName);
-    var res = await httpManager.netFetch(url, null, null, new Options(method: "POST", contentType: ContentType.text));
-    return new DataResult(null, res.result);
+    var res = await httpManager.netFetch(url, null, null, Options(method: "POST", contentType: ContentType.text));
+    return DataResult(null, res.result);
   }
 
   /**
@@ -480,18 +480,18 @@ class ReposDao {
     String url = Address.getbranches(userName, reposName);
     var res = await httpManager.netFetch(url, null, null, null);
     if (res != null && res.result && res.data.length > 0) {
-      List<String> list = new List();
+      List<String> list = List();
       var dataList = res.data;
       if (dataList == null || dataList.length == 0) {
-        return new DataResult(null, false);
+        return DataResult(null, false);
       }
       for (int i = 0; i < dataList.length; i++) {
         var data = dataList[i];
         list.add(data['name']);
       }
-      return new DataResult(list, true);
+      return DataResult(list, true);
     } else {
-      return new DataResult(null, false);
+      return DataResult(null, false);
     }
   }
 
@@ -507,9 +507,9 @@ class ReposDao {
         var data = res.data[i];
         stared += data["watchers_count"];
       }
-      return new DataResult(stared, true);
+      return DataResult(stared, true);
     }
-    return new DataResult(null, false);
+    return DataResult(null, false);
   }
 
   /**
@@ -517,19 +517,19 @@ class ReposDao {
    */
   static getRepositoryDetailReadmeDao(userName, reposName, branch, {needDb = true}) async {
     String fullName = userName + "/" + reposName;
-    RepositoryDetailReadmeDbProvider provider = new RepositoryDetailReadmeDbProvider();
+    RepositoryDetailReadmeDbProvider provider = RepositoryDetailReadmeDbProvider();
 
     next() async {
       String url = Address.readmeFile(userName + '/' + reposName, branch);
-      var res = await httpManager.netFetch(url, null, {"Accept": 'application/vnd.github.VERSION.raw'}, new Options(contentType: ContentType.text));
-      //var res = await httpManager.netFetch(url, null, {"Accept": 'application/vnd.github.html'}, new Options(contentType: ContentType.text));
+      var res = await httpManager.netFetch(url, null, {"Accept": 'application/vnd.github.VERSION.raw'}, Options(contentType: ContentType.text));
+      //var res = await httpManager.netFetch(url, null, {"Accept": 'application/vnd.github.html'}, Options(contentType: ContentType.text));
       if (res != null && res.result) {
         if (needDb) {
           provider.insert(fullName, branch, res.data);
         }
-        return new DataResult(res.data, true);
+        return DataResult(res.data, true);
       }
-      return new DataResult(null, false);
+      return DataResult(null, false);
     }
 
     if (needDb) {
@@ -537,7 +537,7 @@ class ReposDao {
       if (readme == null) {
         return await next();
       }
-      DataResult dataResult = new DataResult(readme, true, next: next());
+      DataResult dataResult = DataResult(readme, true, next: next());
       return dataResult;
     }
     return await next();
@@ -560,32 +560,32 @@ class ReposDao {
     var res = await httpManager.netFetch(url, null, null, null);
     if (type == null) {
       if (res != null && res.result && res.data["items"] != null) {
-        List<Repository> list = new List();
+        List<Repository> list = List();
         var dataList = res.data["items"];
         if (dataList == null || dataList.length == 0) {
-          return new DataResult(null, false);
+          return DataResult(null, false);
         }
         for (int i = 0; i < dataList.length; i++) {
           var data = dataList[i];
           list.add(Repository.fromJson(data));
         }
-        return new DataResult(list, true);
+        return DataResult(list, true);
       } else {
-        return new DataResult(null, false);
+        return DataResult(null, false);
       }
     } else {
       if (res != null && res.result && res.data["items"] != null) {
-        List<User> list = new List();
+        List<User> list = List();
         var data = res.data["items"];
         if (data == null || data.length == 0) {
-          return new DataResult(null, false);
+          return DataResult(null, false);
         }
         for (int i = 0; i < data.length; i++) {
-          list.add(new User.fromJson(data[i]));
+          list.add(User.fromJson(data[i]));
         }
-        return new DataResult(list, true);
+        return DataResult(list, true);
       } else {
-        return new DataResult(null, false);
+        return DataResult(null, false);
       }
     }
   }
@@ -598,9 +598,9 @@ class ReposDao {
     var res = await httpManager.netFetch(url, null, null, null);
     if (res != null && res.result) {
       PushCommit pushCommit = PushCommit.fromJson(res.data);
-      return new DataResult(pushCommit, true);
+      return DataResult(pushCommit, true);
     } else {
-      return new DataResult(null, false);
+      return DataResult(null, false);
     }
   }
 
@@ -614,18 +614,18 @@ class ReposDao {
 
     var res = await httpManager.netFetch(url, null, {"Accept": (needHtml ? 'application/vnd.github.html,application/vnd.github.VERSION.raw' : "")}, null);
     if (res != null && res.result && res.data.length > 0) {
-      List<Release> list = new List();
+      List<Release> list = List();
       var dataList = res.data;
       if (dataList == null || dataList.length == 0) {
-        return new DataResult(null, false);
+        return DataResult(null, false);
       }
       for (int i = 0; i < dataList.length; i++) {
         var data = dataList[i];
         list.add(Release.fromJson(data));
       }
-      return new DataResult(list, true);
+      return DataResult(list, true);
     } else {
-      return new DataResult(null, false);
+      return DataResult(null, false);
     }
   }
 
@@ -684,14 +684,14 @@ class ReposDao {
           int indexEnd = link[0].lastIndexOf(">");
           if (indexStart >= 0 && indexEnd >= 0) {
             String count = link[0].substring(indexStart, indexEnd);
-            return new DataResult(count, true);
+            return DataResult(count, true);
           }
         }
       } catch (e) {
         print(e);
       }
     }
-    return new DataResult(null, false);
+    return DataResult(null, false);
   }
 
   /**
@@ -702,18 +702,18 @@ class ReposDao {
     var res = await httpManager.netFetch(url, null, null, null);
     var data = (res.data != null && res.data["items"] != null) ? res.data["items"] : res.data;
     if (res != null && res.result && data != null && data.length > 0) {
-      List<Repository> list = new List();
+      List<Repository> list = List();
       var dataList = data;
       if (dataList == null || dataList.length == 0) {
-        return new DataResult(null, false);
+        return DataResult(null, false);
       }
       for (int i = 0; i < dataList.length; i++) {
         var data = dataList[i];
         list.add(Repository.fromJson(data));
       }
-      return new DataResult(list, true);
+      return DataResult(list, true);
     } else {
-      return new DataResult(null, false);
+      return DataResult(null, false);
     }
   }
 
@@ -721,19 +721,19 @@ class ReposDao {
    * 获取阅读历史
    */
   static getHistoryDao(page) async {
-    ReadHistoryDbProvider provider = new ReadHistoryDbProvider();
+    ReadHistoryDbProvider provider = ReadHistoryDbProvider();
     List<Repository> list = await provider.geData(page);
     if (list == null || list.length <= 0) {
-      return new DataResult(null, false);
+      return DataResult(null, false);
     }
-    return new DataResult(list, true);
+    return DataResult(list, true);
   }
 
   /**
    * 保存阅读历史
    */
   static saveHistoryDao(String fullName, DateTime dateTime, String data) {
-    ReadHistoryDbProvider provider = new ReadHistoryDbProvider();
+    ReadHistoryDbProvider provider = ReadHistoryDbProvider();
     provider.insert(fullName, dateTime, data);
   }
 }

@@ -21,13 +21,13 @@ class ReposHeaderItem extends StatelessWidget {
 
   ///底部仓库状态信息，比如star数量等
   _getBottomItem(IconData icon, String text, onPressed) {
-    return new Expanded(
-      child: new Center(
-          child: new RawMaterialButton(
+    return Expanded(
+      child: Center(
+          child: RawMaterialButton(
               materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
               padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
               constraints: const BoxConstraints(minWidth: 0.0, minHeight: 0.0),
-              child: new GSYIConText(
+              child: GSYIConText(
                 icon,
                 text,
                 GSYConstant.smallSubLightText,
@@ -41,21 +41,21 @@ class ReposHeaderItem extends StatelessWidget {
   }
 
   _renderTopicItem(BuildContext context, String item) {
-    return new RawMaterialButton(
+    return RawMaterialButton(
         onPressed: () {
           NavigatorUtils.gotoCommonList(context, item, "repository", "topics", userName: item, reposName: "");
         },
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         padding: const EdgeInsets.all(0.0),
         constraints: const BoxConstraints(minWidth: 0.0, minHeight: 0.0),
-        child: new Container(
+        child: Container(
           padding: EdgeInsets.only(left: 5.0, right: 5.0, top: 2.5, bottom: 2.5),
-          decoration: new BoxDecoration(
+          decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(4.0)),
             color: Colors.white30,
-            border: new Border.all(color: Colors.white30, width: 0.0),
+            border: Border.all(color: Colors.white30, width: 0.0),
           ),
-          child: new Text(
+          child: Text(
             item,
             style: GSYConstant.smallSubLightText,
           ),
@@ -67,11 +67,11 @@ class ReposHeaderItem extends StatelessWidget {
     if (reposHeaderViewModel.topics == null || reposHeaderViewModel.topics.length == 0) {
       return Container();
     }
-    List<Widget> list = new List();
+    List<Widget> list = List();
     for (String item in reposHeaderViewModel.topics) {
       list.add(_renderTopicItem(context, item));
     }
-    return new Container(
+    return Container(
       alignment: Alignment.topLeft,
       margin: EdgeInsets.only(top: 5.0),
       child: Wrap(
@@ -95,71 +95,71 @@ class ReposHeaderItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new Column(
+    return Column(
       children: <Widget>[
-        new GSYCardItem(
+        GSYCardItem(
           color: Theme.of(context).primaryColorDark,
-          child: new Container(
+          child: Container(
             ///背景头像
-            decoration: new BoxDecoration(
-              image: new DecorationImage(
+            decoration: BoxDecoration(
+              image: DecorationImage(
                 fit: BoxFit.cover,
-                image: new NetworkImage(reposHeaderViewModel.ownerPic ?? GSYICons.DEFAULT_REMOTE_PIC),
+                image: NetworkImage(reposHeaderViewModel.ownerPic ?? GSYICons.DEFAULT_REMOTE_PIC),
               ),
             ),
-            child: new Container(
+            child: Container(
               ///透明黑色遮罩
-              decoration: new BoxDecoration(
+              decoration: BoxDecoration(
                 color: Color(GSYColors.primaryDarkValue & 0xA0FFFFFF),
               ),
-              child: new Padding(
-                padding: new EdgeInsets.only(left: 10.0, top: 0.0, right: 10.0, bottom: 10.0),
-                child: new Column(
+              child: Padding(
+                padding: EdgeInsets.only(left: 10.0, top: 0.0, right: 10.0, bottom: 10.0),
+                child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    new Row(
+                    Row(
                       children: <Widget>[
                         ///用户名
-                        new RawMaterialButton(
-                          constraints: new BoxConstraints(minWidth: 0.0, minHeight: 0.0),
-                          padding: new EdgeInsets.all(0.0),
+                        RawMaterialButton(
+                          constraints: BoxConstraints(minWidth: 0.0, minHeight: 0.0),
+                          padding: EdgeInsets.all(0.0),
                           onPressed: () {
                             NavigatorUtils.goPerson(context, reposHeaderViewModel.ownerName);
                           },
-                          child: new Text(reposHeaderViewModel.ownerName, style: GSYConstant.normalTextActionWhiteBold),
+                          child: Text(reposHeaderViewModel.ownerName, style: GSYConstant.normalTextActionWhiteBold),
                         ),
-                        new Text(" /", style: GSYConstant.normalTextMitWhiteBold),
+                        Text(" /", style: GSYConstant.normalTextMitWhiteBold),
 
                         ///仓库名
-                        new Text(" " + reposHeaderViewModel.repositoryName, style: GSYConstant.normalTextMitWhiteBold),
+                        Text(" " + reposHeaderViewModel.repositoryName, style: GSYConstant.normalTextMitWhiteBold),
                       ],
                     ),
-                    new Row(
+                    Row(
                       children: <Widget>[
                         ///仓库语言
-                        new Text(reposHeaderViewModel.repositoryType ?? "--", style: GSYConstant.smallSubLightText),
-                        new Container(width: 5.3, height: 1.0),
+                        Text(reposHeaderViewModel.repositoryType ?? "--", style: GSYConstant.smallSubLightText),
+                        Container(width: 5.3, height: 1.0),
 
                         ///仓库大小
-                        new Text(reposHeaderViewModel.repositorySize ?? "--", style: GSYConstant.smallSubLightText),
-                        new Container(width: 5.3, height: 1.0),
+                        Text(reposHeaderViewModel.repositorySize ?? "--", style: GSYConstant.smallSubLightText),
+                        Container(width: 5.3, height: 1.0),
 
                         ///仓库协议
-                        new Text(reposHeaderViewModel.license ?? "--", style: GSYConstant.smallSubLightText),
+                        Text(reposHeaderViewModel.license ?? "--", style: GSYConstant.smallSubLightText),
                       ],
                     ),
 
                     ///仓库描述
-                    new Container(
-                        child: new Text(reposHeaderViewModel.repositoryDes ?? "---", style: GSYConstant.smallSubLightText),
-                        margin: new EdgeInsets.only(top: 6.0, bottom: 2.0),
+                    Container(
+                        child: Text(reposHeaderViewModel.repositoryDes ?? "---", style: GSYConstant.smallSubLightText),
+                        margin: EdgeInsets.only(top: 6.0, bottom: 2.0),
                         alignment: Alignment.topLeft),
 
                     ///创建状态
-                    new Container(
-                      margin: new EdgeInsets.only(top: 6.0, bottom: 2.0, right: 5.0),
+                    Container(
+                      margin: EdgeInsets.only(top: 6.0, bottom: 2.0, right: 5.0),
                       alignment: Alignment.topRight,
-                      child: new RawMaterialButton(
+                      child: RawMaterialButton(
                         onPressed: () {
                           if (reposHeaderViewModel.repositoryIsFork) {
                             NavigatorUtils.goReposDetail(context, reposHeaderViewModel.repositoryParentUser, reposHeaderViewModel.repositoryName);
@@ -168,18 +168,18 @@ class ReposHeaderItem extends StatelessWidget {
                         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                         padding: const EdgeInsets.all(0.0),
                         constraints: const BoxConstraints(minWidth: 0.0, minHeight: 0.0),
-                        child: new Text(_getInfoText(context),
+                        child: Text(_getInfoText(context),
                             style: reposHeaderViewModel.repositoryIsFork ? GSYConstant.smallActionLightText : GSYConstant.smallSubLightText),
                       ),
                     ),
-                    new Divider(
+                    Divider(
                       color: Color(GSYColors.subTextColor),
                     ),
-                    new Padding(
-                        padding: new EdgeInsets.all(0.0),
+                    Padding(
+                        padding: EdgeInsets.all(0.0),
 
                         ///创建数值状态
-                        child: new Row(
+                        child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
@@ -194,7 +194,7 @@ class ReposHeaderItem extends StatelessWidget {
                             ),
 
                             ///fork状态
-                            new Container(width: 0.3, height: 25.0, color: Color(GSYColors.subLightTextColor)),
+                            Container(width: 0.3, height: 25.0, color: Color(GSYColors.subLightTextColor)),
                             _getBottomItem(
                               GSYICons.REPOS_ITEM_FORK,
                               reposHeaderViewModel.repositoryFork,
@@ -205,7 +205,7 @@ class ReposHeaderItem extends StatelessWidget {
                             ),
 
                             ///订阅状态
-                            new Container(width: 0.3, height: 25.0, color: Color(GSYColors.subLightTextColor)),
+                            Container(width: 0.3, height: 25.0, color: Color(GSYColors.subLightTextColor)),
                             _getBottomItem(
                               GSYICons.REPOS_ITEM_WATCH,
                               reposHeaderViewModel.repositoryWatch,
@@ -216,7 +216,7 @@ class ReposHeaderItem extends StatelessWidget {
                             ),
 
                             ///issue状态
-                            new Container(width: 0.3, height: 25.0, color: Color(GSYColors.subLightTextColor)),
+                            Container(width: 0.3, height: 25.0, color: Color(GSYColors.subLightTextColor)),
                             _getBottomItem(
                               GSYICons.REPOS_ITEM_ISSUE,
                               reposHeaderViewModel.repositoryIssue,
@@ -244,7 +244,7 @@ class ReposHeaderItem extends StatelessWidget {
         ),
 
         ///底部头
-        new GSYSelectItemWidget([
+        GSYSelectItemWidget([
           CommonUtils.getLocale(context).repos_tab_activity,
           CommonUtils.getLocale(context).repos_tab_commits,
         ], selectItemChanged)

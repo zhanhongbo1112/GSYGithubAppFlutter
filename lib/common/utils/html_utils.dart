@@ -23,21 +23,21 @@ class HtmlUtils {
 
 
     try {
-      RegExp exp = new RegExp(regExCode);
+      RegExp exp = RegExp(regExCode);
       Iterable<Match> tags = exp.allMatches(mdData);
       for (Match m in tags) {
-        String match = m.group(0).replaceAll(new RegExp("\n"), "\n\r<br>");
+        String match = m.group(0).replaceAll(RegExp("\n"), "\n\r<br>");
         mdDataCode = mdDataCode.replaceAll(m.group(0), match);
       }
     } catch (e) {
       print(e);
     }
     try {
-      RegExp exp = new RegExp(regExPre);
+      RegExp exp = RegExp(regExPre);
       Iterable<Match> tags = exp.allMatches(mdDataCode);
       for (Match m in tags) {
         if (m.group(0).indexOf("<code>") < 0) {
-          String match = m.group(0).replaceAll(new RegExp("\n"), "\n\r<br>");
+          String match = m.group(0).replaceAll(RegExp("\n"), "\n\r<br>");
           mdDataCode = mdDataCode.replaceAll(m.group(0), match);
         }
       }
@@ -46,11 +46,11 @@ class HtmlUtils {
     }
 
     try {
-      RegExp exp = new RegExp("<pre>(([\\s\\S])*?)<\/pre>");
+      RegExp exp = RegExp("<pre>(([\\s\\S])*?)<\/pre>");
       Iterable<Match> tags = exp.allMatches(mdDataCode);
       for (Match m in tags) {
         if (m.group(0).indexOf("<code>") < 0) {
-          String match = m.group(0).replaceAll(new RegExp("\n"), "\n\r<br>");
+          String match = m.group(0).replaceAll(RegExp("\n"), "\n\r<br>");
           mdDataCode = mdDataCode.replaceAll(m.group(0), match);
         }
       }
@@ -58,7 +58,7 @@ class HtmlUtils {
       print(e);
     }
     try {
-      RegExp exp = new RegExp("href=\"(.*?)\"");
+      RegExp exp = RegExp("href=\"(.*?)\"");
       Iterable<Match> tags = exp.allMatches(mdDataCode);
       for (Match m in tags) {
         String capture = m.group(0);

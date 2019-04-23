@@ -74,7 +74,7 @@ class TrendRepositoryDbProvider extends BaseDbProvider {
         columns: [columnId, columnLanguageType, columnSince, columnData],
         where: "$columnLanguageType = ? and $columnSince = ?",
         whereArgs: [language, since]);
-    List<TrendingRepoModel> list = new List();
+    List<TrendingRepoModel> list = List();
     if (maps.length > 0) {
       TrendRepositoryDbProvider provider = TrendRepositoryDbProvider.fromMap(maps.first);
 

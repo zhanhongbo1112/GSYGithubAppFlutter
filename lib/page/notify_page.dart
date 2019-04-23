@@ -25,7 +25,7 @@ class NotifyPage extends StatefulWidget {
 }
 
 class _NotifyPageState extends State<NotifyPage> with AutomaticKeepAliveClientMixin<NotifyPage>, GSYListState<NotifyPage> {
-  final SlidableController slidableController = new SlidableController();
+  final SlidableController slidableController = SlidableController();
 
   int selectIndex = 0;
 
@@ -36,13 +36,13 @@ class _NotifyPageState extends State<NotifyPage> with AutomaticKeepAliveClientMi
     if (selectIndex != 0) {
       return _renderEventItem(notification);
     }
-    return new Slidable(
+    return Slidable(
       controller: slidableController,
-      delegate: new SlidableDrawerDelegate(),
+      delegate: SlidableDrawerDelegate(),
       actionExtentRatio: 0.25,
       child: _renderEventItem(notification),
       secondaryActions: <Widget>[
-        new IconSlideAction(
+        IconSlideAction(
           caption: CommonUtils.getLocale(context).notify_readed,
           color: Colors.redAccent,
           icon: Icons.delete,
@@ -58,7 +58,7 @@ class _NotifyPageState extends State<NotifyPage> with AutomaticKeepAliveClientMi
 
   _renderEventItem(Model.Notification notification) {
     EventViewModel eventViewModel = EventViewModel.fromNotify(context, notification);
-    return new EventItem(eventViewModel, onPressed: () {
+    return EventItem(eventViewModel, onPressed: () {
       if (notification.unread) {
         UserDao.setNotificationAsReadDao(notification.id.toString());
       }
@@ -106,9 +106,9 @@ class _NotifyPageState extends State<NotifyPage> with AutomaticKeepAliveClientMi
   @override
   Widget build(BuildContext context) {
     super.build(context); // See AutomaticKeepAliveClientMixin.
-    return new Scaffold(
+    return Scaffold(
       backgroundColor: Color(GSYColors.mainBackgroundColor),
-      appBar: new AppBar(
+      appBar: AppBar(
         title: GSYTitleBar(
           CommonUtils.getLocale(context).notify_title,
           iconData: GSYICons.NOTIFY_ALL_READ,
@@ -121,7 +121,7 @@ class _NotifyPageState extends State<NotifyPage> with AutomaticKeepAliveClientMi
             });
           },
         ),
-        bottom: new GSYSelectItemWidget(
+        bottom: GSYSelectItemWidget(
           [
             CommonUtils.getLocale(context).notify_tab_unread,
             CommonUtils.getLocale(context).notify_tab_part,

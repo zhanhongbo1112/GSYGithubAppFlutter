@@ -48,24 +48,24 @@ class _IssueDetailPageState extends State<IssueDetailPage> with AutomaticKeepAli
 
   bool needHomeIcon = false;
 
-  IssueHeaderViewModel issueHeaderViewModel = new IssueHeaderViewModel();
+  IssueHeaderViewModel issueHeaderViewModel = IssueHeaderViewModel();
 
-  TextEditingController issueInfoTitleControl = new TextEditingController();
+  TextEditingController issueInfoTitleControl = TextEditingController();
 
-  TextEditingController issueInfoValueControl = new TextEditingController();
+  TextEditingController issueInfoValueControl = TextEditingController();
 
-  final TextEditingController issueInfoCommitValueControl = new TextEditingController();
+  final TextEditingController issueInfoCommitValueControl = TextEditingController();
 
-  final OptionControl titleOptionControl = new OptionControl();
+  final OptionControl titleOptionControl = OptionControl();
 
   _IssueDetailPageState(this.issueNum, this.userName, this.reposName, this.needHomeIcon);
 
   _renderEventItem(index) {
     if (index == 0) {
-      return new IssueHeaderItem(issueHeaderViewModel, onPressed: () {});
+      return IssueHeaderItem(issueHeaderViewModel, onPressed: () {});
     }
     Issue issue = pullLoadWidgetControl.dataList[index - 1];
-    return new IssueItem(
+    return IssueItem(
       IssueItemViewModel.fromMap(issue, needTitle: false),
       hideBottom: true,
       limitComment: false,
@@ -73,32 +73,32 @@ class _IssueDetailPageState extends State<IssueDetailPage> with AutomaticKeepAli
         showDialog(
             context: context,
             builder: (BuildContext context) {
-              return new Center(
-                child: new Container(
-                  decoration: new BoxDecoration(
+              return Center(
+                child: Container(
+                  decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(4.0)),
                       color: Color(GSYColors.white),
-                      border: new Border.all(color: Color(GSYColors.subTextColor), width: 0.3)),
+                      border: Border.all(color: Color(GSYColors.subTextColor), width: 0.3)),
                   margin: EdgeInsets.all(10.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      new GSYFlexButton(
+                      GSYFlexButton(
                         color: Color(GSYColors.white),
                         text: CommonUtils.getLocale(context).issue_edit_issue_edit_commit,
                         onPress: () {
                           _editCommit(issue.id.toString(), issue.body);
                         },
                       ),
-                      new GSYFlexButton(
+                      GSYFlexButton(
                         color: Color(GSYColors.white),
                         text: CommonUtils.getLocale(context).issue_edit_issue_delete_commit,
                         onPress: () {
                           _deleteCommit(issue.id.toString());
                         },
                       ),
-                      new GSYFlexButton(
+                      GSYFlexButton(
                         color: Color(GSYColors.white),
                         text: CommonUtils.getLocale(context).issue_edit_issue_copy_commit,
                         onPress: () {
@@ -127,7 +127,7 @@ class _IssueDetailPageState extends State<IssueDetailPage> with AutomaticKeepAli
         _resolveHeaderInfo(res);
         return res.next;
       }
-      return new Future.value(null);
+      return Future.value(null);
     }).then((res) {
       if (res != null && res.result) {
         _resolveHeaderInfo(res);
@@ -147,7 +147,7 @@ class _IssueDetailPageState extends State<IssueDetailPage> with AutomaticKeepAli
   _editCommit(id, content) {
     Navigator.pop(context);
     String contentData = content;
-    issueInfoValueControl = new TextEditingController(text: contentData);
+    issueInfoValueControl = TextEditingController(text: contentData);
     //编译Issue Info
     CommonUtils.showEditDialog(
       context,
@@ -187,8 +187,8 @@ class _IssueDetailPageState extends State<IssueDetailPage> with AutomaticKeepAli
   _editIssue() {
     String title = issueHeaderViewModel.issueComment;
     String content = issueHeaderViewModel.issueDesHtml;
-    issueInfoTitleControl = new TextEditingController(text: title);
-    issueInfoValueControl = new TextEditingController(text: content);
+    issueInfoTitleControl = TextEditingController(text: title);
+    issueInfoValueControl = TextEditingController(text: content);
     //编译Issue Info
     CommonUtils.showEditDialog(
       context,
@@ -224,8 +224,8 @@ class _IssueDetailPageState extends State<IssueDetailPage> with AutomaticKeepAli
 
   _replyIssue() {
     //回复 Info
-    issueInfoTitleControl = new TextEditingController(text: "");
-    issueInfoValueControl = new TextEditingController(text: "");
+    issueInfoTitleControl = TextEditingController(text: "");
+    issueInfoValueControl = TextEditingController(text: "");
     String content = "";
     CommonUtils.showEditDialog(
       context,
@@ -257,21 +257,21 @@ class _IssueDetailPageState extends State<IssueDetailPage> with AutomaticKeepAli
     List<Widget> bottomWidget = (!headerStatus)
         ? []
         : <Widget>[
-            new FlatButton(
+            FlatButton(
               onPressed: () {
                 _replyIssue();
               },
-              child: new Text(CommonUtils.getLocale(context).issue_reply, style: GSYConstant.smallText),
+              child: Text(CommonUtils.getLocale(context).issue_reply, style: GSYConstant.smallText),
             ),
-            new Container(width: 0.3, height: 30.0, color: Color(GSYColors.subLightTextColor)),
-            new FlatButton(
+            Container(width: 0.3, height: 30.0, color: Color(GSYColors.subLightTextColor)),
+            FlatButton(
               onPressed: () {
                 _editIssue();
               },
-              child: new Text(CommonUtils.getLocale(context).issue_edit, style: GSYConstant.smallText),
+              child: Text(CommonUtils.getLocale(context).issue_edit, style: GSYConstant.smallText),
             ),
-            new Container(width: 0.3, height: 30.0, color: Color(GSYColors.subLightTextColor)),
-            new FlatButton(
+            Container(width: 0.3, height: 30.0, color: Color(GSYColors.subLightTextColor)),
+            FlatButton(
                 onPressed: () {
                   CommonUtils.showLoadingDialog(context);
                   IssueDao.editIssueDao(userName, reposName, issueNum, {"state": (issueHeaderViewModel.state == "closed") ? 'open' : 'closed'}).then((result) {
@@ -279,11 +279,11 @@ class _IssueDetailPageState extends State<IssueDetailPage> with AutomaticKeepAli
                     Navigator.pop(context);
                   });
                 },
-                child: new Text(
+                child: Text(
                     (issueHeaderViewModel.state == 'closed') ? CommonUtils.getLocale(context).issue_open : CommonUtils.getLocale(context).issue_close,
                     style: GSYConstant.smallText)),
-            new Container(width: 0.3, height: 30.0, color: Color(GSYColors.subLightTextColor)),
-            new FlatButton(
+            Container(width: 0.3, height: 30.0, color: Color(GSYColors.subLightTextColor)),
+            FlatButton(
                 onPressed: () {
                   CommonUtils.showLoadingDialog(context);
                   IssueDao.lockIssueDao(userName, reposName, issueNum, issueHeaderViewModel.locked).then((result) {
@@ -291,7 +291,7 @@ class _IssueDetailPageState extends State<IssueDetailPage> with AutomaticKeepAli
                     Navigator.pop(context);
                   });
                 },
-                child: new Text((issueHeaderViewModel.locked) ? CommonUtils.getLocale(context).issue_unlock : CommonUtils.getLocale(context).issue_lock,
+                child: Text((issueHeaderViewModel.locked) ? CommonUtils.getLocale(context).issue_unlock : CommonUtils.getLocale(context).issue_lock,
                     style: GSYConstant.smallText)),
           ];
     return bottomWidget;
@@ -319,10 +319,10 @@ class _IssueDetailPageState extends State<IssueDetailPage> with AutomaticKeepAli
   @override
   Widget build(BuildContext context) {
     super.build(context); // See AutomaticKeepAliveClientMixin.
-    Widget widget = (needHomeIcon) ? null : new GSYCommonOptionWidget(titleOptionControl);
-    return new Scaffold(
+    Widget widget = (needHomeIcon) ? null : GSYCommonOptionWidget(titleOptionControl);
+    return Scaffold(
       persistentFooterButtons: _getBottomWidget(),
-      appBar: new AppBar(
+      appBar: AppBar(
         title: GSYTitleBar(
           reposName,
           rightWidget: widget,

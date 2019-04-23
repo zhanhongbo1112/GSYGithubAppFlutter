@@ -18,21 +18,21 @@ import 'package:gsy_github_app_flutter/widget/user_item.dart';
  */
 
 abstract class BasePersonState<T extends StatefulWidget> extends State<T> with AutomaticKeepAliveClientMixin<T>, GSYListState<T> {
-  final List<UserOrg> orgList = new List();
+  final List<UserOrg> orgList = List();
 
   @protected
   renderItem(index, User userInfo, String beStaredCount, Color notifyColor, VoidCallback refreshCallBack, List<UserOrg> orgList) {
     if (index == 0) {
-      return new UserHeaderItem(userInfo, beStaredCount, Theme.of(context).primaryColor,
+      return UserHeaderItem(userInfo, beStaredCount, Theme.of(context).primaryColor,
           notifyColor: notifyColor, refreshCallBack: refreshCallBack, orgList: orgList);
     }
     if (userInfo.type == "Organization") {
-      return new UserItem(UserItemViewModel.fromMap(pullLoadWidgetControl.dataList[index - 1]), onPressed: () {
+      return UserItem(UserItemViewModel.fromMap(pullLoadWidgetControl.dataList[index - 1]), onPressed: () {
         NavigatorUtils.goPerson(context, UserItemViewModel.fromMap(pullLoadWidgetControl.dataList[index - 1]).userName);
       });
     } else {
       Event event = pullLoadWidgetControl.dataList[index - 1];
-      return new EventItem(EventViewModel.fromEventMap(event), onPressed: () {
+      return EventItem(EventViewModel.fromEventMap(event), onPressed: () {
         EventUtils.ActionUtils(context, event, "");
       });
     }
@@ -58,7 +58,7 @@ abstract class BasePersonState<T extends StatefulWidget> extends State<T> with A
           });
           return res.next;
         }
-        return new Future.value(null);
+        return Future.value(null);
       }).then((res) {
         if (res != null && res.result) {
           setState(() {
