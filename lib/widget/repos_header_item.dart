@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:gsy_github_app_flutter/common/model/Repository.dart';
-import 'package:gsy_github_app_flutter/common/style/gsy_style.dart';
-import 'package:gsy_github_app_flutter/common/utils/common_utils.dart';
-import 'package:gsy_github_app_flutter/common/utils/navigator_utils.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_card_item.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_icon_text.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_select_item_widget.dart';
 
-/**
- * 仓库详情信息头控件
- * Created by guoshuyu
- * Date: 2018-07-18
- */
+import '../common/common.dart';
+
+import './gsy_card_item.dart';
+import './gsy_icon_text.dart';
+import './gsy_select_item_widget.dart';
+
+/// 仓库详情信息头控件
 class ReposHeaderItem extends StatelessWidget {
   final SelectItemChanged selectItemChanged;
 
@@ -162,14 +157,17 @@ class ReposHeaderItem extends StatelessWidget {
                       child: RawMaterialButton(
                         onPressed: () {
                           if (reposHeaderViewModel.repositoryIsFork) {
-                            NavigatorUtils.goReposDetail(context, reposHeaderViewModel.repositoryParentUser, reposHeaderViewModel.repositoryName);
+                            NavigatorUtils.goReposDetail(context, reposHeaderViewModel.repositoryParentUser,
+                                reposHeaderViewModel.repositoryName);
                           }
                         },
                         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                         padding: const EdgeInsets.all(0.0),
                         constraints: const BoxConstraints(minWidth: 0.0, minHeight: 0.0),
                         child: Text(_getInfoText(context),
-                            style: reposHeaderViewModel.repositoryIsFork ? GSYConstant.smallActionLightText : GSYConstant.smallSubLightText),
+                            style: reposHeaderViewModel.repositoryIsFork
+                                ? GSYConstant.smallActionLightText
+                                : GSYConstant.smallSubLightText),
                       ),
                     ),
                     Divider(
@@ -188,8 +186,10 @@ class ReposHeaderItem extends StatelessWidget {
                               GSYICons.REPOS_ITEM_STAR,
                               reposHeaderViewModel.repositoryStar,
                               () {
-                                NavigatorUtils.gotoCommonList(context, reposHeaderViewModel.repositoryName, "user", "repo_star",
-                                    userName: reposHeaderViewModel.ownerName, reposName: reposHeaderViewModel.repositoryName);
+                                NavigatorUtils.gotoCommonList(
+                                    context, reposHeaderViewModel.repositoryName, "user", "repo_star",
+                                    userName: reposHeaderViewModel.ownerName,
+                                    reposName: reposHeaderViewModel.repositoryName);
                               },
                             ),
 
@@ -199,8 +199,10 @@ class ReposHeaderItem extends StatelessWidget {
                               GSYICons.REPOS_ITEM_FORK,
                               reposHeaderViewModel.repositoryFork,
                               () {
-                                NavigatorUtils.gotoCommonList(context, reposHeaderViewModel.repositoryName, "repository", "repo_fork",
-                                    userName: reposHeaderViewModel.ownerName, reposName: reposHeaderViewModel.repositoryName);
+                                NavigatorUtils.gotoCommonList(
+                                    context, reposHeaderViewModel.repositoryName, "repository", "repo_fork",
+                                    userName: reposHeaderViewModel.ownerName,
+                                    reposName: reposHeaderViewModel.repositoryName);
                               },
                             ),
 
@@ -210,8 +212,10 @@ class ReposHeaderItem extends StatelessWidget {
                               GSYICons.REPOS_ITEM_WATCH,
                               reposHeaderViewModel.repositoryWatch,
                               () {
-                                NavigatorUtils.gotoCommonList(context, reposHeaderViewModel.repositoryName, "user", "repo_watcher",
-                                    userName: reposHeaderViewModel.ownerName, reposName: reposHeaderViewModel.repositoryName);
+                                NavigatorUtils.gotoCommonList(
+                                    context, reposHeaderViewModel.repositoryName, "user", "repo_watcher",
+                                    userName: reposHeaderViewModel.ownerName,
+                                    reposName: reposHeaderViewModel.repositoryName);
                               },
                             ),
 
@@ -221,14 +225,18 @@ class ReposHeaderItem extends StatelessWidget {
                               GSYICons.REPOS_ITEM_ISSUE,
                               reposHeaderViewModel.repositoryIssue,
                               () {
-                                if (reposHeaderViewModel.allIssueCount == null || reposHeaderViewModel.allIssueCount <= 0) {
+                                if (reposHeaderViewModel.allIssueCount == null ||
+                                    reposHeaderViewModel.allIssueCount <= 0) {
                                   return;
                                 }
                                 List<String> list = [
-                                  CommonUtils.getLocale(context).repos_all_issue_count + reposHeaderViewModel.allIssueCount.toString(),
-                                  CommonUtils.getLocale(context).repos_open_issue_count + reposHeaderViewModel.openIssuesCount.toString(),
+                                  CommonUtils.getLocale(context).repos_all_issue_count +
+                                      reposHeaderViewModel.allIssueCount.toString(),
+                                  CommonUtils.getLocale(context).repos_open_issue_count +
+                                      reposHeaderViewModel.openIssuesCount.toString(),
                                   CommonUtils.getLocale(context).repos_close_issue_count +
-                                      (reposHeaderViewModel.allIssueCount - reposHeaderViewModel.openIssuesCount).toString(),
+                                      (reposHeaderViewModel.allIssueCount - reposHeaderViewModel.openIssuesCount)
+                                          .toString(),
                                 ];
                                 CommonUtils.showCommitOptionDialog(context, list, (index) {}, height: 150.0);
                               },

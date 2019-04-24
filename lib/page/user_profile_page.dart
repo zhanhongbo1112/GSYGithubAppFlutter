@@ -1,19 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:gsy_github_app_flutter/common/dao/user_dao.dart';
-import 'package:gsy_github_app_flutter/common/model/User.dart';
-import 'package:gsy_github_app_flutter/common/redux/gsy_state.dart';
-import 'package:gsy_github_app_flutter/common/style/gsy_style.dart';
-import 'package:gsy_github_app_flutter/common/utils/common_utils.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_card_item.dart';
 import 'package:redux/redux.dart';
 
-/**
- * 用户信息中心
- * Created by guoshuyu
- * Date: 2018-08-08
- */
+import '../common/common.dart';
+import '../widget/widget.dart';
 
+/// 用户信息中心
 class UserProfileInfo extends StatefulWidget {
   UserProfileInfo();
 
@@ -69,7 +61,7 @@ class _UserProfileState extends State<UserProfileInfo> {
 
       UserDao.updateUserDao({key: content}, store).then((res) {
         Navigator.of(context).pop();
-        if(res != null && res.result) {
+        if (res != null && res.result) {
           Navigator.of(context).pop();
         }
       });
@@ -90,7 +82,8 @@ class _UserProfileState extends State<UserProfileInfo> {
       _renderItem(Icons.group, CommonUtils.getLocale(context).user_profile_org, userInfo.company ?? "---", () {
         _showEditDialog(CommonUtils.getLocale(context).user_profile_org, userInfo.company, "company", store);
       }),
-      _renderItem(Icons.location_on, CommonUtils.getLocale(context).user_profile_location, userInfo.location ?? "---", () {
+      _renderItem(Icons.location_on, CommonUtils.getLocale(context).user_profile_location, userInfo.location ?? "---",
+          () {
         _showEditDialog(CommonUtils.getLocale(context).user_profile_location, userInfo.location, "location", store);
       }),
       _renderItem(Icons.message, CommonUtils.getLocale(context).user_profile_info, userInfo.bio ?? "---", () {

@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:gsy_github_app_flutter/common/dao/issue_dao.dart';
-import 'package:gsy_github_app_flutter/common/style/gsy_style.dart';
-import 'package:gsy_github_app_flutter/common/utils/common_utils.dart';
-import 'package:gsy_github_app_flutter/common/utils/navigator_utils.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_list_state.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_pull_load_widget.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_search_input_widget.dart';
-import 'package:gsy_github_app_flutter/widget/issue_item.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_select_item_widget.dart';
+
+import '../common/common.dart';
+import '../widget/widget.dart';
 
 /**
  * 仓库详情issue列表

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:gsy_github_app_flutter/common/style/gsy_style.dart';
-import 'package:gsy_github_app_flutter/common/utils/common_utils.dart';
+
+import '../common/common.dart';
 
 ///通用下上刷新控件
 class GSYPullNewLoadWidget extends StatefulWidget {
@@ -20,9 +20,7 @@ class GSYPullNewLoadWidget extends StatefulWidget {
   ///刷新key
   final Key refreshKey;
 
-  GSYPullNewLoadWidget(
-      this.control, this.itemBuilder, this.onRefresh, this.onLoadMore,
-      {this.refreshKey});
+  GSYPullNewLoadWidget(this.control, this.itemBuilder, this.onRefresh, this.onLoadMore, {this.refreshKey});
 
   @override
   _GSYPullNewLoadWidgetState createState() => _GSYPullNewLoadWidgetState();
@@ -36,8 +34,7 @@ class _GSYPullNewLoadWidgetState extends State<GSYPullNewLoadWidget> {
     ///增加滑动监听
     _scrollController.addListener(() {
       ///判断当前滑动位置是不是到达底部，触发加载更多回调
-      if (_scrollController.position.pixels ==
-          _scrollController.position.maxScrollExtent) {
+      if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
         if (widget.control.needLoadMore) {
           handleLoadMore();
         }
@@ -67,26 +64,19 @@ class _GSYPullNewLoadWidgetState extends State<GSYPullNewLoadWidget> {
       }
 
       ///如果有数据,因为部加载更多选项，需要对列表数据总数+1
-      return (widget.control.dataList.length > 0)
-          ? widget.control.dataList.length + 1
-          : widget.control.dataList.length;
+      return (widget.control.dataList.length > 0) ? widget.control.dataList.length + 1 : widget.control.dataList.length;
     }
   }
 
   ///根据配置状态返回实际列表渲染Item
   _getItem(int index) {
-    if (!widget.control.needHeader &&
-        index == widget.control.dataList.length &&
-        widget.control.dataList.length != 0) {
+    if (!widget.control.needHeader && index == widget.control.dataList.length && widget.control.dataList.length != 0) {
       ///如果不需要头部，并且数据不为0，当index等于数据长度时，渲染加载更多Item（因为index是从0开始）
       return _buildProgressIndicator();
-    } else if (widget.control.needHeader &&
-        index == _getListCount() - 1 &&
-        widget.control.dataList.length != 0) {
+    } else if (widget.control.needHeader && index == _getListCount() - 1 && widget.control.dataList.length != 0) {
       ///如果需要头部，并且数据不为0，当index等于实际渲染长度 - 1时，渲染加载更多Item（因为index是从0开始）
       return _buildProgressIndicator();
-    } else if (!widget.control.needHeader &&
-        widget.control.dataList.length == 0) {
+    } else if (!widget.control.needHeader && widget.control.dataList.length == 0) {
       ///如果不需要头部，并且数据为0，渲染空页面
       return _buildEmpty();
     } else {
@@ -152,14 +142,10 @@ class _GSYPullNewLoadWidgetState extends State<GSYPullNewLoadWidget> {
         children: <Widget>[
           FlatButton(
             onPressed: () {},
-            child: Image(
-                image: AssetImage(GSYICons.DEFAULT_USER_ICON),
-                width: 70.0,
-                height: 70.0),
+            child: Image(image: AssetImage(GSYICons.DEFAULT_USER_ICON), width: 70.0, height: 70.0),
           ),
           Container(
-            child: Text(CommonUtils.getLocale(context).app_empty,
-                style: GSYConstant.normalText),
+            child: Text(CommonUtils.getLocale(context).app_empty, style: GSYConstant.normalText),
           ),
         ],
       ),

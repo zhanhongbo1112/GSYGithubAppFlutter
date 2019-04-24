@@ -4,18 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:gsy_github_app_flutter/common/style/gsy_style.dart';
-import 'package:gsy_github_app_flutter/common/utils/common_utils.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_common_option_widget.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_title_bar.dart';
 import 'package:photo_view/photo_view.dart';
 
-/**
- * 图片预览
- * Created by guoshuyu
- * Date: 2018-08-09
- */
+import '../common/common.dart';
+import '../widget/widget.dart';
 
+/// 图片预览
 class PhotoViewPage extends StatelessWidget {
   final String url;
 
@@ -34,7 +28,7 @@ class PhotoViewPage extends StatelessWidget {
                 Fluttertoast.showToast(msg: res);
                 if (Platform.isAndroid) {
                   const updateAlbum = const MethodChannel('com.shuyu.gsygithub.gsygithubflutter/UpdateAlbumPlugin');
-                  updateAlbum.invokeMethod('updateAlbum', { 'path': res, 'name': CommonUtils.splitFileNameByPath(res)});
+                  updateAlbum.invokeMethod('updateAlbum', {'path': res, 'name': CommonUtils.splitFileNameByPath(res)});
                 }
               }
             });

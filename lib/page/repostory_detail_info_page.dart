@@ -1,24 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:gsy_github_app_flutter/common/dao/repos_dao.dart';
-import 'package:gsy_github_app_flutter/common/model/RepoCommit.dart';
-import 'package:gsy_github_app_flutter/common/model/Repository.dart';
-import 'package:gsy_github_app_flutter/common/utils/event_utils.dart';
-import 'package:gsy_github_app_flutter/common/utils/navigator_utils.dart';
-import 'package:gsy_github_app_flutter/page/repository_detail_page.dart';
-import 'package:gsy_github_app_flutter/widget/event_item.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_common_option_widget.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_list_state.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_pull_load_widget.dart';
-import 'package:gsy_github_app_flutter/widget/repos_header_item.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-/**
- * 仓库详情动态信息页面
- * Created by guoshuyu
- * Date: 2018-07-18
- */
+import '../common/common.dart';
+import '../widget/widget.dart';
+import '../page/page.dart';
+
+/// 仓库详情动态信息页面
 class ReposDetailInfoPage extends StatefulWidget {
   final String userName;
 
@@ -32,7 +21,8 @@ class ReposDetailInfoPage extends StatefulWidget {
   ReposDetailInfoPageState createState() => ReposDetailInfoPageState(userName, reposName, titleOptionControl);
 }
 
-class ReposDetailInfoPageState extends State<ReposDetailInfoPage> with AutomaticKeepAliveClientMixin<ReposDetailInfoPage>, GSYListState<ReposDetailInfoPage> {
+class ReposDetailInfoPageState extends State<ReposDetailInfoPage>
+    with AutomaticKeepAliveClientMixin<ReposDetailInfoPage>, GSYListState<ReposDetailInfoPage> {
   final String userName;
 
   final String reposName;

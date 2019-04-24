@@ -6,21 +6,14 @@ import '../common/common.dart';
 import '../widget/widget.dart';
 import '../bloc/bloc.dart';
 
-/**
- * 主页动态tab页
- * Created by guoshuyu
- * Date: 2018-07-16
- */
+/// 主页动态tab页
 class DynamicPage extends StatefulWidget {
   @override
   _DynamicPageState createState() => _DynamicPageState();
 }
 
 class _DynamicPageState extends State<DynamicPage>
-    with
-        AutomaticKeepAliveClientMixin<DynamicPage>,
-        GSYBlocListState<DynamicPage>,
-        WidgetsBindingObserver {
+    with AutomaticKeepAliveClientMixin<DynamicPage>, GSYBlocListState<DynamicPage>, WidgetsBindingObserver {
   final DynamicBloc dynamicBloc = DynamicBloc();
 
   @override
@@ -95,8 +88,7 @@ class _DynamicPageState extends State<DynamicPage>
           bloc: dynamicBloc,
           child: GSYPullNewLoadWidget(
             bloc.pullLoadWidgetControl,
-            (BuildContext context, int index) =>
-                _renderEventItem(bloc.dataList[index]),
+            (BuildContext context, int index) => _renderEventItem(bloc.dataList[index]),
             requestRefresh,
             requestLoadMore,
             refreshKey: refreshIndicatorKey,

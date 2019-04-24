@@ -1,20 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:gsy_github_app_flutter/common/dao/event_dao.dart';
-import 'package:gsy_github_app_flutter/common/dao/repos_dao.dart';
-import 'package:gsy_github_app_flutter/common/dao/user_dao.dart';
-import 'package:gsy_github_app_flutter/common/redux/gsy_state.dart';
-import 'package:gsy_github_app_flutter/common/redux/user_redux.dart';
-import 'package:gsy_github_app_flutter/common/style/gsy_style.dart';
-import 'package:gsy_github_app_flutter/widget/base_person_state.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_pull_load_widget.dart';
 import 'package:redux/redux.dart';
 
-/**
- * 主页我的tab页
- * Created by guoshuyu
- * Date: 2018-07-16
- */
+import '../common/common.dart';
+import '../widget/widget.dart';
+
+/// 主页我的tab页
 class MyPage extends StatefulWidget {
   @override
   _MyPageState createState() => _MyPageState();

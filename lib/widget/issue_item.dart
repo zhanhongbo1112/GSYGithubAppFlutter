@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:gsy_github_app_flutter/common/model/Issue.dart';
-import 'package:gsy_github_app_flutter/common/style/gsy_style.dart';
-import 'package:gsy_github_app_flutter/common/utils/common_utils.dart';
-import 'package:gsy_github_app_flutter/common/utils/navigator_utils.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_card_item.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_icon_text.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_markdown_widget.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_user_icon_widget.dart';
+
+import '../common/common.dart';
+
+import './gsy_card_item.dart';
+import './gsy_icon_text.dart';
+import './gsy_markdown_widget.dart';
+import './gsy_user_icon_widget.dart';
 
 /**
  * Issue相关item

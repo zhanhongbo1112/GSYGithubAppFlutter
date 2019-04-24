@@ -1,27 +1,25 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:gsy_github_app_flutter/common/dao/user_dao.dart';
-import 'package:gsy_github_app_flutter/common/model/Event.dart';
-import 'package:gsy_github_app_flutter/common/model/User.dart';
-import 'package:gsy_github_app_flutter/common/model/UserOrg.dart';
-import 'package:gsy_github_app_flutter/common/utils/event_utils.dart';
-import 'package:gsy_github_app_flutter/common/utils/navigator_utils.dart';
-import 'package:gsy_github_app_flutter/widget/event_item.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_list_state.dart';
-import 'package:gsy_github_app_flutter/widget/user_header.dart';
-import 'package:gsy_github_app_flutter/widget/user_item.dart';
+
+import '../common/common.dart';
+
+import './event_item.dart';
+import './gsy_list_state.dart';
+import './user_header.dart';
+import './user_item.dart';
 
 /**
  * Created by guoshuyu
  * Date: 2018-08-30
  */
-
-abstract class BasePersonState<T extends StatefulWidget> extends State<T> with AutomaticKeepAliveClientMixin<T>, GSYListState<T> {
+abstract class BasePersonState<T extends StatefulWidget> extends State<T>
+    with AutomaticKeepAliveClientMixin<T>, GSYListState<T> {
   final List<UserOrg> orgList = List();
 
   @protected
-  renderItem(index, User userInfo, String beStaredCount, Color notifyColor, VoidCallback refreshCallBack, List<UserOrg> orgList) {
+  renderItem(index, User userInfo, String beStaredCount, Color notifyColor, VoidCallback refreshCallBack,
+      List<UserOrg> orgList) {
     if (index == 0) {
       return UserHeaderItem(userInfo, beStaredCount, Theme.of(context).primaryColor,
           notifyColor: notifyColor, refreshCallBack: refreshCallBack, orgList: orgList);

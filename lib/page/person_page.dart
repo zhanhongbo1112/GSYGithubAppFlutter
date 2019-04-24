@@ -2,22 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:gsy_github_app_flutter/common/dao/event_dao.dart';
-import 'package:gsy_github_app_flutter/common/dao/repos_dao.dart';
-import 'package:gsy_github_app_flutter/common/dao/user_dao.dart';
-import 'package:gsy_github_app_flutter/common/model/User.dart';
-import 'package:gsy_github_app_flutter/common/model/UserOrg.dart';
-import 'package:gsy_github_app_flutter/common/utils/common_utils.dart';
-import 'package:gsy_github_app_flutter/widget/base_person_state.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_common_option_widget.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_pull_load_widget.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_title_bar.dart';
 
-/**
- * 个人详情
- * Created by guoshuyu
- * Date: 2018-07-18
- */
+import '../common/common.dart';
+import '../widget/widget.dart';
+
+/// 个人详情
 class PersonPage extends StatefulWidget {
   static final String sName = "person";
 
@@ -99,12 +88,13 @@ class _PersonState extends BasePersonState<PersonPage> {
     var focusRes = await UserDao.checkFollowDao(userName);
     if (isShow) {
       setState(() {
-        focus = (focusRes != null && focusRes.result) ? CommonUtils.getLocale(context).user_focus : CommonUtils.getLocale(context).user_un_focus;
+        focus = (focusRes != null && focusRes.result)
+            ? CommonUtils.getLocale(context).user_focus
+            : CommonUtils.getLocale(context).user_un_focus;
         focusStatus = (focusRes != null && focusRes.result);
       });
     }
   }
-
 
   _getUserName() {
     if (userInfo == null) {
@@ -112,7 +102,6 @@ class _PersonState extends BasePersonState<PersonPage> {
     }
     return userInfo.login;
   }
-
 
   _getDataLogic() async {
     if (userInfo.type == "Organization") {

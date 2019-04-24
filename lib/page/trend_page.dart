@@ -1,31 +1,20 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:gsy_github_app_flutter/bloc/base/base_bloc.dart';
-import 'package:gsy_github_app_flutter/bloc/trend_bloc.dart';
-import 'package:gsy_github_app_flutter/common/redux/gsy_state.dart';
-import 'package:gsy_github_app_flutter/common/style/gsy_style.dart';
-import 'package:gsy_github_app_flutter/common/utils/common_utils.dart';
-import 'package:gsy_github_app_flutter/common/utils/navigator_utils.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_card_item.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_bloc_list_state.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_pull_new_load_widget.dart';
-import 'package:gsy_github_app_flutter/widget/repos_item.dart';
 import 'package:redux/redux.dart';
 
-/**
- * 主页趋势tab页
- * Created by guoshuyu
- * Date: 2018-07-16
- */
+import '../common/common.dart';
+import '../widget/widget.dart';
+import '../bloc/bloc.dart';
+
+/// 主页趋势tab页
 class TrendPage extends StatefulWidget {
   @override
   _TrendPageState createState() => _TrendPageState();
 }
 
-class _TrendPageState extends State<TrendPage> with AutomaticKeepAliveClientMixin<TrendPage>, GSYBlocListState<TrendPage> {
+class _TrendPageState extends State<TrendPage>
+    with AutomaticKeepAliveClientMixin<TrendPage>, GSYBlocListState<TrendPage> {
   static TrendTypeModel selectTime = null;
 
   static TrendTypeModel selectType = null;

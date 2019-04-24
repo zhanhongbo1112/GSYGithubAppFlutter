@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:gsy_github_app_flutter/common/model/Repository.dart';
-import 'package:gsy_github_app_flutter/common/style/gsy_style.dart';
-import 'package:gsy_github_app_flutter/common/utils/navigator_utils.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_card_item.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_icon_text.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_user_icon_widget.dart';
 
-/**
- * 仓库Item
- * Created by guoshuyu
- * Date: 2018-07-16
- */
+import '../common/common.dart';
+
+import './gsy_card_item.dart';
+import './gsy_icon_text.dart';
+import './gsy_user_icon_widget.dart';
+
+/// 仓库Item
 class ReposItem extends StatelessWidget {
   final ReposViewModel reposViewModel;
 
@@ -137,7 +133,7 @@ class ReposViewModel {
 
   ReposViewModel.fromTrendMap(model) {
     ownerName = model.name;
-    if(model.contributors.length > 0) {
+    if (model.contributors.length > 0) {
       ownerPic = model.contributors[0];
     } else {
       ownerPic = "";

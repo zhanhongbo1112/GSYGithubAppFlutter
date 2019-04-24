@@ -7,12 +7,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import '../common/common.dart';
 import '../widget/widget.dart';
 
-/**
- * 文件代码详情
- * Created by guoshuyu
- * Date: 2018-07-24
- */
-
+/// 文件代码详情
 class CodeDetailPageWeb extends StatefulWidget {
   final String userName;
 
@@ -28,10 +23,24 @@ class CodeDetailPageWeb extends StatefulWidget {
 
   final String htmlUrl;
 
-  CodeDetailPageWeb({this.title, this.userName, this.reposName, this.path, this.data, this.branch, this.htmlUrl});
+  CodeDetailPageWeb(
+      {this.title,
+      this.userName,
+      this.reposName,
+      this.path,
+      this.data,
+      this.branch,
+      this.htmlUrl});
 
   @override
-  _CodeDetailPageState createState() => _CodeDetailPageState(this.title, this.userName, this.reposName, this.path, this.data, this.branch, this.htmlUrl);
+  _CodeDetailPageState createState() => _CodeDetailPageState(
+      this.title,
+      this.userName,
+      this.reposName,
+      this.path,
+      this.data,
+      this.branch,
+      this.htmlUrl);
 }
 
 class _CodeDetailPageState extends State<CodeDetailPageWeb> {
@@ -45,20 +54,25 @@ class _CodeDetailPageState extends State<CodeDetailPageWeb> {
 
   final String htmlUrl;
 
-  String data ;
+  String data;
 
   final String title;
 
-  _CodeDetailPageState(this.title, this.userName, this.reposName, this.path, this.data, this.branch, this.htmlUrl);
+  _CodeDetailPageState(this.title, this.userName, this.reposName, this.path,
+      this.data, this.branch, this.htmlUrl);
 
   @override
   void initState() {
     super.initState();
     if (data == null) {
-      ReposDao.getReposFileDirDao(userName, reposName, path: path, branch: branch, text: true, isHtml: true).then((res) {
+      ReposDao.getReposFileDirDao(userName, reposName,
+              path: path, branch: branch, text: true, isHtml: true)
+          .then((res) {
         if (res != null && res.result) {
           String data2 = HtmlUtils.resolveHtmlFile(res, "java");
-          String url = Uri.dataFromString(data2, mimeType: 'text/html', encoding: Encoding.getByName("utf-8")).toString();
+          String url = Uri.dataFromString(data2,
+                  mimeType: 'text/html', encoding: Encoding.getByName("utf-8"))
+              .toString();
           setState(() {
             this.data = url;
           });
@@ -72,9 +86,7 @@ class _CodeDetailPageState extends State<CodeDetailPageWeb> {
     if (data == null) {
       return Scaffold(
         appBar: AppBar(
-          title: GSYTitleBar(
-              title
-          ),
+          title: GSYTitleBar(title),
         ),
         body: Center(
           child: Container(
@@ -84,13 +96,11 @@ class _CodeDetailPageState extends State<CodeDetailPageWeb> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                SpinKitDoubleBounce(color: Theme
-                    .of(context)
-                    .primaryColor),
+                SpinKitDoubleBounce(color: Theme.of(context).primaryColor),
                 Container(width: 10.0),
-                Container(child: Text(CommonUtils
-                    .getLocale(context)
-                    .loading_text, style: GSYConstant.middleText)),
+                Container(
+                    child: Text(CommonUtils.getLocale(context).loading_text,
+                        style: GSYConstant.middleText)),
               ],
             ),
           ),
@@ -118,6 +128,5 @@ class _CodeDetailPageState extends State<CodeDetailPageWeb> {
         javaScriptMode: JavaScriptMode.unrestricted,
       ),
     );
-
   }
 }

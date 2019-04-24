@@ -2,24 +2,14 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:gsy_github_app_flutter/common/dao/repos_dao.dart';
-import 'package:gsy_github_app_flutter/common/model/PushCommit.dart';
-import 'package:gsy_github_app_flutter/common/style/gsy_style.dart';
-import 'package:gsy_github_app_flutter/common/utils/common_utils.dart';
-import 'package:gsy_github_app_flutter/common/utils/navigator_utils.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_common_option_widget.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_list_state.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_pull_load_widget.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_title_bar.dart';
-import 'package:gsy_github_app_flutter/widget/push_coed_item.dart';
-import 'package:gsy_github_app_flutter/widget/push_header.dart';
-import 'package:gsy_github_app_flutter/common/utils/html_utils.dart';
+
+import '../common/common.dart';
+import '../widget/widget.dart';
 
 /**
  * Created by guoshuyu
  * Date: 2018-07-27
  */
-
 class PushDetailPage extends StatefulWidget {
   final String userName;
 
@@ -35,7 +25,8 @@ class PushDetailPage extends StatefulWidget {
   _PushDetailPageState createState() => _PushDetailPageState(sha, userName, reposName, needHomeIcon);
 }
 
-class _PushDetailPageState extends State<PushDetailPage> with AutomaticKeepAliveClientMixin<PushDetailPage>, GSYListState<PushDetailPage> {
+class _PushDetailPageState extends State<PushDetailPage>
+    with AutomaticKeepAliveClientMixin<PushDetailPage>, GSYListState<PushDetailPage> {
   final String userName;
 
   final String reposName;

@@ -1,24 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:gsy_github_app_flutter/common/dao/repos_dao.dart';
-import 'package:gsy_github_app_flutter/common/style/gsy_style.dart';
-import 'package:gsy_github_app_flutter/common/utils/common_utils.dart';
-import 'package:gsy_github_app_flutter/common/utils/navigator_utils.dart';
-import 'package:gsy_github_app_flutter/page/repository_detail_issue_list_page.dart';
-import 'package:gsy_github_app_flutter/page/repository_detail_readme_page.dart';
-import 'package:gsy_github_app_flutter/page/repository_file_list_page.dart';
-import 'package:gsy_github_app_flutter/page/repostory_detail_info_page.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_common_option_widget.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_icon_text.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_tabbar_widget.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_title_bar.dart';
-import 'package:gsy_github_app_flutter/widget/repos_header_item.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-/**
- * 仓库详情
- * Created by guoshuyu
- * Date: 2018-07-18
- */
+import '../common/common.dart';
+import '../widget/widget.dart';
+import '../page/page.dart';
+
+/// 仓库详情
 class RepositoryDetailPage extends StatefulWidget {
   final String userName;
 
@@ -61,7 +48,8 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage> {
     String starText = result.data["star"] ? "UnStar" : "Star";
     IconData watchIcon = result.data["watch"] ? GSYICons.REPOS_ITEM_WATCHED : GSYICons.REPOS_ITEM_WATCH;
     IconData starIcon = result.data["star"] ? GSYICons.REPOS_ITEM_STARED : GSYICons.REPOS_ITEM_STAR;
-    BottomStatusModel model = BottomStatusModel(watchText, starText, watchIcon, starIcon, result.data["watch"], result.data["star"]);
+    BottomStatusModel model =
+        BottomStatusModel(watchText, starText, watchIcon, starIcon, result.data["watch"], result.data["star"]);
     setState(() {
       bottomStatusModel = model;
       tarBarControl.footerButton = _getBottomWidget();
@@ -153,22 +141,29 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage> {
   _getMoreOtherItem() {
     return [
       ///Release Page
-      GSYOptionModel(CommonUtils.getLocale(context).repos_option_release, CommonUtils.getLocale(context).repos_option_release, (model) {
+      GSYOptionModel(
+          CommonUtils.getLocale(context).repos_option_release, CommonUtils.getLocale(context).repos_option_release,
+          (model) {
         String releaseUrl = "";
         String tagUrl = "";
         if (infoListKey == null || infoListKey.currentState == null) {
           releaseUrl = GSYConstant.app_default_share_url;
           tagUrl = GSYConstant.app_default_share_url;
         } else {
-          releaseUrl =
-              infoListKey.currentState.repository == null ? GSYConstant.app_default_share_url : infoListKey.currentState.repository.htmlUrl + "/releases";
-          tagUrl = infoListKey.currentState.repository == null ? GSYConstant.app_default_share_url : infoListKey.currentState.repository.htmlUrl + "/tags";
+          releaseUrl = infoListKey.currentState.repository == null
+              ? GSYConstant.app_default_share_url
+              : infoListKey.currentState.repository.htmlUrl + "/releases";
+          tagUrl = infoListKey.currentState.repository == null
+              ? GSYConstant.app_default_share_url
+              : infoListKey.currentState.repository.htmlUrl + "/tags";
         }
         NavigatorUtils.goReleasePage(context, userName, reposName, releaseUrl, tagUrl);
       }),
 
       ///Branch Page
-      GSYOptionModel(CommonUtils.getLocale(context).repos_option_branch, CommonUtils.getLocale(context).repos_option_branch, (model) {
+      GSYOptionModel(
+          CommonUtils.getLocale(context).repos_option_branch, CommonUtils.getLocale(context).repos_option_branch,
+          (model) {
         if (branchList.length == 0) {
           return;
         }

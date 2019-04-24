@@ -2,23 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:gsy_github_app_flutter/common/dao/repos_dao.dart';
-import 'package:gsy_github_app_flutter/common/model/FileModel.dart';
-import 'package:gsy_github_app_flutter/common/style/gsy_style.dart';
-import 'package:gsy_github_app_flutter/common/utils/common_utils.dart';
-import 'package:gsy_github_app_flutter/common/utils/navigator_utils.dart';
-import 'package:gsy_github_app_flutter/page/repository_detail_page.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_card_item.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_list_state.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_pull_load_widget.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-/**
- * 仓库文件列表
- * Created by guoshuyu
- * on 2018/7/20.
- */
+import '../common/common.dart';
+import '../widget/widget.dart';
+import '../page/page.dart';
 
+/// 仓库文件列表
 class RepositoryDetailFileListPage extends StatefulWidget {
   final String userName;
 
@@ -143,7 +133,8 @@ class RepositoryDetailFileListPageState extends State<RepositoryDetailFileListPa
   }
 
   _getDataLogic(String searchString) async {
-    return await ReposDao.getReposFileDirDao(userName, reposName, path: path, branch: ReposDetailModel.of(context).currentBranch);
+    return await ReposDao.getReposFileDirDao(userName, reposName,
+        path: path, branch: ReposDetailModel.of(context).currentBranch);
   }
 
   /// 返回按键逻辑

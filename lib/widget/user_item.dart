@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:gsy_github_app_flutter/common/model/User.dart';
-import 'package:gsy_github_app_flutter/common/model/UserOrg.dart';
-import 'package:gsy_github_app_flutter/common/style/gsy_style.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_card_item.dart';
 
-/**
- * 用户item
- * Created by guoshuyu
- * Date: 2018-07-23
- */
+import '../common/common.dart';
+
+import './gsy_card_item.dart';
+
+/// 用户item
 class UserItem extends StatelessWidget {
   final UserItemViewModel userItemViewModel;
 

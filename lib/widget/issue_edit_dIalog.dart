@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:gsy_github_app_flutter/common/style/gsy_style.dart';
-import 'package:gsy_github_app_flutter/common/utils/common_utils.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_card_item.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_input_widget.dart';
 
-/**
- * issue 编辑输入框
- * Created by guoshuyu
- * on 2018/7/21.
- */
+import '../common/common.dart';
+
+import './gsy_card_item.dart';
+import './gsy_input_widget.dart';
+
+/// issue 编辑输入框
 class IssueEditDialog extends StatefulWidget {
   final String dialogTitle;
 
@@ -89,6 +86,7 @@ class _IssueEditDialogState extends State<IssueEditDialog> {
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
               color: Colors.black12,
+
               ///触摸收起键盘
               child: GestureDetector(
                 behavior: HitTestBehavior.translucent,
@@ -154,7 +152,8 @@ class _IssueEditDialogState extends State<IssueEditDialog> {
                                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                       padding: EdgeInsets.all(4.0),
                                       constraints: const BoxConstraints(minWidth: 0.0, minHeight: 0.0),
-                                      child: Text(CommonUtils.getLocale(context).app_cancel, style: GSYConstant.normalSubText),
+                                      child: Text(CommonUtils.getLocale(context).app_cancel,
+                                          style: GSYConstant.normalSubText),
                                       onPressed: () {
                                         Navigator.pop(context);
                                       })),
@@ -166,7 +165,8 @@ class _IssueEditDialogState extends State<IssueEditDialog> {
                                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                       padding: EdgeInsets.all(4.0),
                                       constraints: const BoxConstraints(minWidth: 0.0, minHeight: 0.0),
-                                      child: Text(CommonUtils.getLocale(context).app_ok, style: GSYConstant.normalTextBold),
+                                      child: Text(CommonUtils.getLocale(context).app_ok,
+                                          style: GSYConstant.normalTextBold),
                                       onPressed: widget.onPressed)),
                             ],
                           )

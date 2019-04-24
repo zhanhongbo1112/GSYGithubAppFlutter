@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:gsy_github_app_flutter/common/model/CommitFile.dart';
-import 'package:gsy_github_app_flutter/common/style/gsy_style.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_card_item.dart';
 
-/**
- * 推送修改代码Item
- * Created by guoshuyu
- * Date: 2018-07-27
- */
+import '../common/common.dart';
 
+import './gsy_card_item.dart';
+
+/// 推送修改代码Item
 class PushCodeItem extends StatelessWidget {
   final PushCodeItemViewModel pushCodeItemViewModel;
   final VoidCallback onPressed;

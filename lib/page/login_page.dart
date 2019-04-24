@@ -2,21 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:gsy_github_app_flutter/common/config/config.dart';
-import 'package:gsy_github_app_flutter/common/dao/user_dao.dart';
-import 'package:gsy_github_app_flutter/common/local/local_storage.dart';
-import 'package:gsy_github_app_flutter/common/redux/gsy_state.dart';
-import 'package:gsy_github_app_flutter/common/style/gsy_style.dart';
-import 'package:gsy_github_app_flutter/common/utils/common_utils.dart';
-import 'package:gsy_github_app_flutter/common/utils/navigator_utils.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_flex_button.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_input_widget.dart';
 
-/**
- * 登录页
- * Created by guoshuyu
- * Date: 2018-07-16
- */
+import '../common/common.dart';
+import '../widget/widget.dart';
+
+/// 登录页
 class LoginPage extends StatefulWidget {
   static final String sName = "login";
 
@@ -68,7 +58,7 @@ class _LoginPageState extends State<LoginPage> {
                     elevation: 5.0,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
                     color: Color(GSYColors.cardWhite),
-                    margin: const EdgeInsets.only(left:30.0, right: 30.0),
+                    margin: const EdgeInsets.only(left: 30.0, right: 30.0),
                     child: Padding(
                       padding: EdgeInsets.only(left: 30.0, top: 40.0, right: 30.0, bottom: 0.0),
                       child: Column(

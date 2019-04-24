@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:gsy_github_app_flutter/common/style/gsy_style.dart';
-import 'package:gsy_github_app_flutter/common/utils/common_utils.dart';
 
-/**
- * 搜索drawer
- * Created by guoshuyu
- * Date: 2018-07-18
- */
+import '../common/common.dart';
 
 typedef void SearchSelectItemChanged<String>(String value);
 
+/// 搜索drawer
 class GSYSearchDrawer extends StatefulWidget {
   final SearchSelectItemChanged<String> typeCallback;
   final SearchSelectItemChanged<String> sortCallback;

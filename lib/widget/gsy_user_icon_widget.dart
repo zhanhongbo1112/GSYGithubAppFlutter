@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:gsy_github_app_flutter/common/style/gsy_style.dart';
-import 'package:gsy_github_app_flutter/widget/network_cache_image.dart';
 
-/**
- * 头像Icon
- * Created by guoshuyu
- * Date: 2018-07-30
- */
+import '../common/common.dart';
 
+import './network_cache_image.dart';
+
+/// 头像Icon
 class GSYUserIconWidget extends StatelessWidget {
   final String image;
   final VoidCallback onPressed;

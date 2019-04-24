@@ -3,11 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:gsy_github_app_flutter/widget/gsy_common_option_widget.dart';
 
-/**
- * webview版本
- * Created by guoshuyu
- * on 2018/7/27.
- */
+/// webview版本
 class GSYWebView extends StatelessWidget {
   final String url;
   final String title;
@@ -31,7 +27,7 @@ class GSYWebView extends StatelessWidget {
     return WebviewScaffold(
       withJavascript: true,
       url: url,
-      scrollBar:true,
+      scrollBar: true,
       withLocalUrl: true,
       appBar: AppBar(
         title: _renderTitle(),

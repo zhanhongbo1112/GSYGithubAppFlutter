@@ -3,12 +3,7 @@ import 'package:flutter/material.dart';
 import '../common/common.dart';
 import '../widget/widget.dart';
 
-/**
- * 通用list
- * Created by guoshuyu
- * on 2018/7/22.
- */
-
+/// 通用list
 class CommonListPage extends StatefulWidget {
   final String userName;
 
@@ -20,13 +15,26 @@ class CommonListPage extends StatefulWidget {
 
   final String title;
 
-  CommonListPage(this.title, this.showType, this.dataType, {this.userName, this.reposName});
+  CommonListPage(
+    this.title,
+    this.showType,
+    this.dataType, {
+    this.userName,
+    this.reposName,
+  });
 
   @override
-  _CommonListPageState createState() => _CommonListPageState(this.title, this.showType, this.dataType, this.userName, this.reposName);
+  _CommonListPageState createState() => _CommonListPageState(
+        this.title,
+        this.showType,
+        this.dataType,
+        this.userName,
+        this.reposName,
+      );
 }
 
-class _CommonListPageState extends State<CommonListPage> with AutomaticKeepAliveClientMixin<CommonListPage>, GSYListState<CommonListPage> {
+class _CommonListPageState extends State<CommonListPage>
+    with AutomaticKeepAliveClientMixin<CommonListPage>, GSYListState<CommonListPage> {
   final String userName;
 
   final String reposName;
@@ -47,17 +55,30 @@ class _CommonListPageState extends State<CommonListPage> with AutomaticKeepAlive
     switch (showType) {
       case 'repository':
         ReposViewModel reposViewModel = ReposViewModel.fromMap(data);
-        return ReposItem(reposViewModel, onPressed: () {
-          NavigatorUtils.goReposDetail(context, reposViewModel.ownerName, reposViewModel.repositoryName);
-        });
+        return ReposItem(
+          reposViewModel,
+          onPressed: () {
+            NavigatorUtils.goReposDetail(
+              context,
+              reposViewModel.ownerName,
+              reposViewModel.repositoryName,
+            );
+          },
+        );
       case 'user':
-        return UserItem(UserItemViewModel.fromMap(data), onPressed: () {
-          NavigatorUtils.goPerson(context, data.login);
-        });
+        return UserItem(
+          UserItemViewModel.fromMap(data),
+          onPressed: () {
+            NavigatorUtils.goPerson(context, data.login);
+          },
+        );
       case 'org':
-        return UserItem(UserItemViewModel.fromOrgMap(data), onPressed: () {
-          NavigatorUtils.goPerson(context, data.login);
-        });
+        return UserItem(
+          UserItemViewModel.fromOrgMap(data),
+          onPressed: () {
+            NavigatorUtils.goPerson(context, data.login);
+          },
+        );
       case 'issue':
         return null;
       case 'release':

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:gsy_github_app_flutter/common/model/Release.dart';
-import 'package:gsy_github_app_flutter/common/style/gsy_style.dart';
-import 'package:gsy_github_app_flutter/common/utils/common_utils.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_card_item.dart';
+
+import '../common/common.dart';
+
+import './gsy_card_item.dart';
 
 /**
  * 版本TagItem

@@ -8,11 +8,7 @@ import '../common/common.dart';
 import '../widget/widget.dart';
 import '../page/page.dart';
 
-/**
- * 主页
- * Created by guoshuyu
- * Date: 2018-07-16
- */
+/// 主页
 class HomePage extends StatelessWidget {
   static final String sName = "home";
 

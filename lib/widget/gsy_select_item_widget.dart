@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:gsy_github_app_flutter/common/style/gsy_style.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_card_item.dart';
 
-/**
- * 详情issue列表头部，PreferredSizeWidget
- * Created by guoshuyu
- * Date: 2018-07-19
- */
+import '../common/common.dart';
+
+import './gsy_card_item.dart';
 
 typedef void SelectItemChanged<int>(int value);
 
+/// 详情issue列表头部，PreferredSizeWidget
 class GSYSelectItemWidget extends StatefulWidget implements PreferredSizeWidget {
   final List<String> itemNames;
 

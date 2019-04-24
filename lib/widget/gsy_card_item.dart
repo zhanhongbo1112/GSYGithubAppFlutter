@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:gsy_github_app_flutter/common/style/gsy_style.dart';
 
-/**
- * Card Widget
- * Created by guoshuyu
- * Date: 2018-07-16
- */
+import '../common/common.dart';
+
+/// Card Widget
 class GSYCardItem extends StatelessWidget {
   final Widget child;
   final EdgeInsets margin;
   final Color color;
   final RoundedRectangleBorder shape;
   final double elevation;
-
 
   GSYCardItem({@required this.child, this.margin, this.color, this.shape, this.elevation = 5.0});
 

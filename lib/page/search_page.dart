@@ -1,16 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gsy_github_app_flutter/common/config/config.dart';
-import 'package:gsy_github_app_flutter/common/dao/repos_dao.dart';
-import 'package:gsy_github_app_flutter/common/style/gsy_style.dart';
-import 'package:gsy_github_app_flutter/common/utils/common_utils.dart';
-import 'package:gsy_github_app_flutter/common/utils/navigator_utils.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_list_state.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_pull_load_widget.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_search_drawer.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_search_input_widget.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_select_item_widget.dart';
-import 'package:gsy_github_app_flutter/widget/repos_item.dart';
-import 'package:gsy_github_app_flutter/widget/user_item.dart';
+
+import '../common/common.dart';
+import '../widget/widget.dart';
 
 /**
  * Created by guoshuyu

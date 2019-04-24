@@ -1,22 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:gsy_github_app_flutter/common/dao/user_dao.dart';
-import 'package:gsy_github_app_flutter/common/style/gsy_style.dart';
-import 'package:gsy_github_app_flutter/common/utils/common_utils.dart';
-import 'package:gsy_github_app_flutter/common/utils/navigator_utils.dart';
-import 'package:gsy_github_app_flutter/widget/event_item.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_list_state.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_pull_load_widget.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_select_item_widget.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_title_bar.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+
 import 'package:gsy_github_app_flutter/common/model/Notification.dart' as Model;
 
-/**
- * 通知消息
- * Created by guoshuyu
- * Date: 2018-07-24
- */
+import '../common/common.dart';
+import '../widget/widget.dart';
 
+/// 通知消息
 class NotifyPage extends StatefulWidget {
   NotifyPage();
 
@@ -24,7 +14,8 @@ class NotifyPage extends StatefulWidget {
   _NotifyPageState createState() => _NotifyPageState();
 }
 
-class _NotifyPageState extends State<NotifyPage> with AutomaticKeepAliveClientMixin<NotifyPage>, GSYListState<NotifyPage> {
+class _NotifyPageState extends State<NotifyPage>
+    with AutomaticKeepAliveClientMixin<NotifyPage>, GSYListState<NotifyPage> {
   final SlidableController slidableController = SlidableController();
 
   int selectIndex = 0;

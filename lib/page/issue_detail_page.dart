@@ -2,24 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:gsy_github_app_flutter/common/dao/issue_dao.dart';
-import 'package:gsy_github_app_flutter/common/model/Issue.dart';
-import 'package:gsy_github_app_flutter/common/style/gsy_style.dart';
-import 'package:gsy_github_app_flutter/common/utils/common_utils.dart';
-import 'package:gsy_github_app_flutter/common/utils/navigator_utils.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_common_option_widget.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_flex_button.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_list_state.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_pull_load_widget.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_title_bar.dart';
-import 'package:gsy_github_app_flutter/widget/issue_header_item.dart';
-import 'package:gsy_github_app_flutter/widget/issue_item.dart';
 
-/**
- * Created by guoshuyu
- * on 2018/7/21.
- */
+import '../common/common.dart';
+import '../widget/widget.dart';
 
+/// issue detail
 class IssueDetailPage extends StatefulWidget {
   final String userName;
 
@@ -35,7 +22,8 @@ class IssueDetailPage extends StatefulWidget {
   _IssueDetailPageState createState() => _IssueDetailPageState(issueNum, userName, reposName, needHomeIcon);
 }
 
-class _IssueDetailPageState extends State<IssueDetailPage> with AutomaticKeepAliveClientMixin<IssueDetailPage>, GSYListState<IssueDetailPage> {
+class _IssueDetailPageState extends State<IssueDetailPage>
+    with AutomaticKeepAliveClientMixin<IssueDetailPage>, GSYListState<IssueDetailPage> {
   final String userName;
 
   final String reposName;
@@ -274,13 +262,16 @@ class _IssueDetailPageState extends State<IssueDetailPage> with AutomaticKeepAli
             FlatButton(
                 onPressed: () {
                   CommonUtils.showLoadingDialog(context);
-                  IssueDao.editIssueDao(userName, reposName, issueNum, {"state": (issueHeaderViewModel.state == "closed") ? 'open' : 'closed'}).then((result) {
+                  IssueDao.editIssueDao(userName, reposName, issueNum,
+                      {"state": (issueHeaderViewModel.state == "closed") ? 'open' : 'closed'}).then((result) {
                     _getHeaderInfo();
                     Navigator.pop(context);
                   });
                 },
                 child: Text(
-                    (issueHeaderViewModel.state == 'closed') ? CommonUtils.getLocale(context).issue_open : CommonUtils.getLocale(context).issue_close,
+                    (issueHeaderViewModel.state == 'closed')
+                        ? CommonUtils.getLocale(context).issue_open
+                        : CommonUtils.getLocale(context).issue_close,
                     style: GSYConstant.smallText)),
             Container(width: 0.3, height: 30.0, color: Color(GSYColors.subLightTextColor)),
             FlatButton(
@@ -291,7 +282,10 @@ class _IssueDetailPageState extends State<IssueDetailPage> with AutomaticKeepAli
                     Navigator.pop(context);
                   });
                 },
-                child: Text((issueHeaderViewModel.locked) ? CommonUtils.getLocale(context).issue_unlock : CommonUtils.getLocale(context).issue_lock,
+                child: Text(
+                    (issueHeaderViewModel.locked)
+                        ? CommonUtils.getLocale(context).issue_unlock
+                        : CommonUtils.getLocale(context).issue_lock,
                     style: GSYConstant.smallText)),
           ];
     return bottomWidget;

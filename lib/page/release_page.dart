@@ -23,7 +23,11 @@ class ReleasePage extends StatefulWidget {
 
   @override
   _ReleasePageState createState() => _ReleasePageState(
-      this.userName, this.reposName, this.releaseUrl, this.tagUrl);
+        this.userName,
+        this.reposName,
+        this.releaseUrl,
+        this.tagUrl,
+      );
 }
 
 class _ReleasePageState extends State<ReleasePage>
@@ -40,12 +44,10 @@ class _ReleasePageState extends State<ReleasePage>
 
   int selectIndex = 0;
 
-  _ReleasePageState(
-      this.userName, this.reposName, this.releaseUrl, this.tagUrl);
+  _ReleasePageState(this.userName, this.reposName, this.releaseUrl, this.tagUrl);
 
   _renderEventItem(index) {
-    ReleaseItemViewModel releaseItemViewModel =
-        ReleaseItemViewModel.fromMap(pullLoadWidgetControl.dataList[index]);
+    ReleaseItemViewModel releaseItemViewModel = ReleaseItemViewModel.fromMap(pullLoadWidgetControl.dataList[index]);
     return ReleaseItem(
       releaseItemViewModel,
       onPressed: () {
@@ -56,17 +58,13 @@ class _ReleasePageState extends State<ReleasePage>
               title: releaseItemViewModel.actionTitle,
               userName: userName,
               reposName: reposName,
-              data: HtmlUtils.generateHtml(
-                  releaseItemViewModel.actionTargetHtml,
+              data: HtmlUtils.generateHtml(releaseItemViewModel.actionTargetHtml,
                   backgroundColor: GSYColors.webDraculaBackgroundColorString),
             );
           } else {
-            String html = HtmlUtils.generateHtml(
-                releaseItemViewModel.actionTargetHtml,
-                backgroundColor: GSYColors.miWhiteString,
-                userBR: false);
-            CommonUtils.launchWebView(
-                context, releaseItemViewModel.actionTitle, html);
+            String html = HtmlUtils.generateHtml(releaseItemViewModel.actionTargetHtml,
+                backgroundColor: GSYColors.miWhiteString, userBR: false);
+            CommonUtils.launchWebView(context, releaseItemViewModel.actionTitle, html);
           }
         }
       },
@@ -81,10 +79,7 @@ class _ReleasePageState extends State<ReleasePage>
     if (await canLaunch(url)) {
       await launch(url);
     } else {
-      Fluttertoast.showToast(
-          msg: CommonUtils.getLocale(context).option_web_launcher_error +
-              ": " +
-              url);
+      Fluttertoast.showToast(msg: CommonUtils.getLocale(context).option_web_launcher_error + ": " + url);
     }
   }
 

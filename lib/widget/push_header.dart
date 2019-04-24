@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:gsy_github_app_flutter/common/model/PushCommit.dart';
-import 'package:gsy_github_app_flutter/common/style/gsy_style.dart';
-import 'package:gsy_github_app_flutter/common/utils/common_utils.dart';
-import 'package:gsy_github_app_flutter/common/utils/navigator_utils.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_card_item.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_icon_text.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_user_icon_widget.dart';
 
-/**
- * 提交详情的头
- * Created by guoshuyu
- * Date: 2018-07-27
- */
+import '../common/common.dart';
+
+import './gsy_card_item.dart';
+import './gsy_icon_text.dart';
+import './gsy_user_icon_widget.dart';
+
+/// 提交详情的头
 class PushHeader extends StatelessWidget {
   final PushHeaderViewModel pushHeaderViewModel;
 

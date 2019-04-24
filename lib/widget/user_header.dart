@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:gsy_github_app_flutter/common/localization/default_localizations.dart';
-import 'package:gsy_github_app_flutter/common/model/User.dart';
-import 'package:gsy_github_app_flutter/common/model/UserOrg.dart';
-import 'package:gsy_github_app_flutter/common/style/gsy_style.dart';
-import 'package:gsy_github_app_flutter/common/utils/common_utils.dart';
-import 'package:gsy_github_app_flutter/common/utils/navigator_utils.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_card_item.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_icon_text.dart';
-import 'package:gsy_github_app_flutter/widget/gsy_user_icon_widget.dart';
+
+import '../common/common.dart';
+
+import './gsy_card_item.dart';
+import './gsy_icon_text.dart';
+import './gsy_user_icon_widget.dart';
 
 /**
  * 用户详情头部
@@ -29,13 +26,16 @@ class UserHeaderItem extends StatelessWidget {
 
   final List<UserOrg> orgList;
 
-  UserHeaderItem(this.userInfo, this.beStaredCount, this.themeColor, {this.notifyColor, this.refreshCallBack, this.orgList});
+  UserHeaderItem(this.userInfo, this.beStaredCount, this.themeColor,
+      {this.notifyColor, this.refreshCallBack, this.orgList});
 
   ///底部状态栏
   _getBottomItem(String title, var value, onPressed) {
     String data = value == null ? "" : value.toString();
-    TextStyle valueStyle = (value != null && value.toString().length > 6) ? GSYConstant.minText : GSYConstant.smallSubLightText;
-    TextStyle titleStyle = (title != null && title.toString().length > 6) ? GSYConstant.minText : GSYConstant.smallSubLightText;
+    TextStyle valueStyle =
+        (value != null && value.toString().length > 6) ? GSYConstant.minText : GSYConstant.smallSubLightText;
+    TextStyle titleStyle =
+        (title != null && title.toString().length > 6) ? GSYConstant.minText : GSYConstant.smallSubLightText;
     return Expanded(
       child: Center(
           child: RawMaterialButton(
@@ -107,7 +107,8 @@ class UserHeaderItem extends StatelessWidget {
     if (orgList.length > 3) {
       list.add(RawMaterialButton(
           onPressed: () {
-            NavigatorUtils.gotoCommonList(context, userInfo.login + " " + CommonUtils.getLocale(context).user_orgs_title, "org", "user_orgs",
+            NavigatorUtils.gotoCommonList(
+                context, userInfo.login + " " + CommonUtils.getLocale(context).user_orgs_title, "org", "user_orgs",
                 userName: userInfo.login);
           },
           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -172,7 +173,8 @@ class UserHeaderItem extends StatelessWidget {
         GSYCardItem(
             color: themeColor,
             margin: EdgeInsets.all(0.0),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10.0), bottomRight: Radius.circular(10.0))),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10.0), bottomRight: Radius.circular(10.0))),
             child: Padding(
               padding: EdgeInsets.only(left: 10.0, top: 10.0, right: 10.0, bottom: 10.0),
               child: Column(
@@ -271,8 +273,12 @@ class UserHeaderItem extends StatelessWidget {
                   Container(
                       child: Text(
                         userInfo.bio == null
-                            ? CommonUtils.getLocale(context).user_create_at + CommonUtils.getDateStr(userInfo.created_at)
-                            : userInfo.bio + "\n" + CommonUtils.getLocale(context).user_create_at + CommonUtils.getDateStr(userInfo.created_at),
+                            ? CommonUtils.getLocale(context).user_create_at +
+                                CommonUtils.getDateStr(userInfo.created_at)
+                            : userInfo.bio +
+                                "\n" +
+                                CommonUtils.getLocale(context).user_create_at +
+                                CommonUtils.getDateStr(userInfo.created_at),
                         style: GSYConstant.smallSubLightText,
                       ),
                       margin: EdgeInsets.only(top: 6.0, bottom: 2.0),
@@ -290,7 +296,8 @@ class UserHeaderItem extends StatelessWidget {
                         GSYLocalizations.of(context).currentLocalized.user_tab_repos,
                         userInfo.public_repos,
                         () {
-                          NavigatorUtils.gotoCommonList(context, userInfo.login, "repository", "user_repos", userName: userInfo.login);
+                          NavigatorUtils.gotoCommonList(context, userInfo.login, "repository", "user_repos",
+                              userName: userInfo.login);
                         },
                       ),
                       Container(width: 0.3, height: 40.0, color: Color(GSYColors.subLightTextColor)),
@@ -298,7 +305,8 @@ class UserHeaderItem extends StatelessWidget {
                         CommonUtils.getLocale(context).user_tab_fans,
                         userInfo.followers,
                         () {
-                          NavigatorUtils.gotoCommonList(context, userInfo.login, "user", "follower", userName: userInfo.login);
+                          NavigatorUtils.gotoCommonList(context, userInfo.login, "user", "follower",
+                              userName: userInfo.login);
                         },
                       ),
                       Container(width: 0.3, height: 40.0, color: Color(GSYColors.subLightTextColor)),
@@ -306,7 +314,8 @@ class UserHeaderItem extends StatelessWidget {
                         CommonUtils.getLocale(context).user_tab_focus,
                         userInfo.following,
                         () {
-                          NavigatorUtils.gotoCommonList(context, userInfo.login, "user", "followed", userName: userInfo.login);
+                          NavigatorUtils.gotoCommonList(context, userInfo.login, "user", "followed",
+                              userName: userInfo.login);
                         },
                       ),
                       Container(width: 0.3, height: 40.0, color: Color(GSYColors.subLightTextColor)),
@@ -314,7 +323,8 @@ class UserHeaderItem extends StatelessWidget {
                         CommonUtils.getLocale(context).user_tab_star,
                         userInfo.starred,
                         () {
-                          NavigatorUtils.gotoCommonList(context, userInfo.login, "repository", "user_star", userName: userInfo.login);
+                          NavigatorUtils.gotoCommonList(context, userInfo.login, "repository", "user_star",
+                              userName: userInfo.login);
                         },
                       ),
                       Container(width: 0.3, height: 40.0, color: Color(GSYColors.subLightTextColor)),
