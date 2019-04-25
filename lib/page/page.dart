@@ -1,6 +1,6 @@
 library app_pages;
 
-export './home_page.dart';
+export 'package:gsy_github_app_flutter/src/apps/github-client/home.dart';
 export './login_page.dart';
 export './welcome_page.dart';
 export './dynamic_page.dart';
