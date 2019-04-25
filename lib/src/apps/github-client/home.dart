@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 
 import '../../../common/common.dart';
 import '../../../widget/widget.dart';
-import '../../../page/page.dart';
 
 import './modules/dynamic/index.dart';
 import './modules/trend/index.dart';
+import './modules/my/index.dart';
 
 /// 主页
 class GitHubClientHomePage extends StatelessWidget {

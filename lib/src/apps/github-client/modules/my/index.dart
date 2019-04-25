@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
-import '../common/common.dart';
-import '../widget/widget.dart';
+import '../../../../../common/common.dart';
+import '../../../../../widget/widget.dart';
 
 /// 主页我的tab页
 class MyPage extends StatefulWidget {
@@ -20,6 +20,7 @@ class _MyPageState extends BasePersonState<MyPage> {
     if (context == null) {
       return null;
     }
+
     return StoreProvider.of(context);
   }
 
@@ -27,6 +28,7 @@ class _MyPageState extends BasePersonState<MyPage> {
     if (_getStore()?.state?.userInfo == null) {
       return null;
     }
+
     return _getStore()?.state?.userInfo?.login;
   }
 
@@ -34,6 +36,7 @@ class _MyPageState extends BasePersonState<MyPage> {
     if (_getStore()?.state?.userInfo == null) {
       return null;
     }
+
     return _getStore()?.state?.userInfo?.type;
   }
 
@@ -41,14 +44,13 @@ class _MyPageState extends BasePersonState<MyPage> {
     UserDao.getNotifyDao(false, false, 0).then((res) {
       Color newColor;
       if (res != null && res.result && res.data.length > 0) {
-        newColor = Color(GSYColors.actionBlue);
+        newColor = const Color(GSYColors.actionBlue);
       } else {
-        newColor = Color(GSYColors.subLightTextColor);
+        newColor = const Color(GSYColors.subLightTextColor);
       }
+
       if (isShow) {
-        setState(() {
-          notifyColor = newColor;
-        });
+        setState(() => notifyColor = newColor);
       }
     });
   }
@@ -66,34 +68,28 @@ class _MyPageState extends BasePersonState<MyPage> {
     if (_getUserName() == null) {
       return [];
     }
+
     if (getUserType() == "Organization") {
       return await UserDao.getMemberDao(_getUserName(), page);
     }
+
     return await EventDao.getEventDao(_getUserName(), page: page, needDb: page <= 1);
   }
 
   @override
   requestRefresh() async {
     if (_getUserName() != null) {
-      /*UserDao.getUserInfo(null).then((res) {
-        if (res != null && res.result) {
-          _getStore()?.dispatch(UpdateUserAction(res.data));
-          //todo getUserOrg(_getUserName());
-        }
-      });*/
       _getStore().dispatch(FetchUserAction());
       getUserOrg(_getUserName());
       ReposDao.getUserRepository100StatusDao(_getUserName()).then((res) {
-        if (res != null && res.result) {
-          if (isShow) {
-            setState(() {
-              beStaredCount = res.data.toString();
-            });
-          }
+        if (res != null && res.result && isShow) {
+          setState(() => beStaredCount = res.data.toString());
         }
       });
+
       _refreshNotify();
     }
+
     return await _getDataLogic();
   }
 
@@ -113,19 +109,26 @@ class _MyPageState extends BasePersonState<MyPage> {
     if (pullLoadWidgetControl.dataList.length == 0) {
       showRefreshLoading();
     }
+
     super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
     super.build(context); // See AutomaticKeepAliveClientMixin.
+
     return StoreBuilder<GSYState>(
       builder: (context, store) {
         return GSYPullLoadWidget(
           pullLoadWidgetControl,
-          (BuildContext context, int index) => renderItem(index, store.state.userInfo, beStaredCount, notifyColor, () {
-                _refreshNotify();
-              }, orgList),
+          (context, index) => renderItem(
+                index,
+                store.state.userInfo,
+                beStaredCount,
+                notifyColor,
+                () => _refreshNotify(),
+                orgList,
+              ),
           handleRefresh,
           onLoadMore,
           refreshKey: refreshIndicatorKey,
