@@ -22,12 +22,12 @@ class _DynamicPageState extends State<DynamicPage>
 
   @override
   requestRefresh() async {
-    return await dynamicBloc.requestRefresh(StoreProvider.of(context).state.userInfo?.login);
+    return await dynamicBloc.requestRefresh(StoreProvider.of<GSYState>(context).state.userInfo?.login);
   }
 
   @override
   requestLoadMore() async {
-    return await dynamicBloc.requestLoadMore(StoreProvider.of(context).state.userInfo?.login);
+    return await dynamicBloc.requestLoadMore(StoreProvider.of<GSYState>(context).state.userInfo?.login);
   }
 
   @override
@@ -64,13 +64,14 @@ class _DynamicPageState extends State<DynamicPage>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
-      bloc.getDataLength() != 0 ?? showRefreshLoading();
+      if (bloc.getDataLength() != 0) {
+        showRefreshLoading();
+      }
     }
   }
 
   _renderEventItem(Event e) {
     EventViewModel eventViewModel = EventViewModel.fromEventMap(e);
-
     return EventItem(eventViewModel, onPressed: () => EventUtils.ActionUtils(context, e, ""));
   }
 

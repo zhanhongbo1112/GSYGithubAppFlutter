@@ -3,9 +3,13 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:redux/redux.dart';
 
-import '../common/common.dart';
-import '../widget/widget.dart';
-import '../bloc/bloc.dart';
+import '../../../../../common/common.dart';
+import '../../../../../widget/widget.dart';
+import '../../../../../bloc/bloc.dart';
+
+import '../../models/trend_type.dart';
+
+import './bloc/trend_bloc.dart';
 
 /// 主页趋势tab页
 class TrendPage extends StatefulWidget {
@@ -23,6 +27,7 @@ class _TrendPageState extends State<TrendPage>
 
   _renderItem(e) {
     ReposViewModel reposViewModel = ReposViewModel.fromTrendMap(e);
+
     return ReposItem(reposViewModel, onPressed: () {
       NavigatorUtils.goReposDetail(context, reposViewModel.ownerName, reposViewModel.repositoryName);
     });
@@ -32,6 +37,7 @@ class _TrendPageState extends State<TrendPage>
     if (selectType == null && selectType == null) {
       return Container();
     }
+
     return GSYCardItem(
       color: store.state.themeData.primaryColor,
       margin: EdgeInsets.all(10.0),
@@ -39,28 +45,24 @@ class _TrendPageState extends State<TrendPage>
         borderRadius: BorderRadius.all(Radius.circular(4.0)),
       ),
       child: Padding(
-        padding: EdgeInsets.only(left: 0.0, top: 5.0, right: 0.0, bottom: 5.0),
+        padding: const EdgeInsets.only(left: 0.0, top: 5.0, right: 0.0, bottom: 5.0),
         child: Row(
           children: <Widget>[
-            _renderHeaderPopItem(selectTime.name, trendTime(context), (TrendTypeModel result) {
+            _renderHeaderPopItem(selectTime.name, TrendTypeModel.trendTime(context), (TrendTypeModel result) {
               if (bloc.pullLoadWidgetControl.isLoading) {
                 Fluttertoast.showToast(msg: CommonUtils.getLocale(context).loading_text);
                 return;
               }
-              setState(() {
-                selectTime = result;
-              });
+              setState(() => selectTime = result);
               showRefreshLoading();
             }),
             Container(height: 10.0, width: 0.5, color: Color(GSYColors.white)),
-            _renderHeaderPopItem(selectType.name, trendType(context), (TrendTypeModel result) {
+            _renderHeaderPopItem(selectType.name, TrendTypeModel.trendType(context), (TrendTypeModel result) {
               if (bloc.pullLoadWidgetControl.isLoading) {
                 Fluttertoast.showToast(msg: CommonUtils.getLocale(context).loading_text);
                 return;
               }
-              setState(() {
-                selectType = result;
-              });
+              setState(() => selectType = result);
               showRefreshLoading();
             }),
           ],
@@ -74,22 +76,13 @@ class _TrendPageState extends State<TrendPage>
       child: PopupMenuButton<TrendTypeModel>(
         child: Center(child: Text(data, style: GSYConstant.middleTextWhite)),
         onSelected: onSelected,
-        itemBuilder: (BuildContext context) {
-          return _renderHeaderPopItemChild(list);
-        },
+        itemBuilder: (context) => _renderHeaderPopItemChild(list),
       ),
     );
   }
 
   _renderHeaderPopItemChild(List<TrendTypeModel> data) {
-    List<PopupMenuEntry<TrendTypeModel>> list = List();
-    for (TrendTypeModel item in data) {
-      list.add(PopupMenuItem<TrendTypeModel>(
-        value: item,
-        child: Text(item.name),
-      ));
-    }
-    return list;
+    return data.map((item) => PopupMenuItem<TrendTypeModel>(value: item, child: Text(item.name))).toList();
   }
 
   @override
@@ -112,17 +105,19 @@ class _TrendPageState extends State<TrendPage>
   void didChangeDependencies() {
     if (bloc.getDataLength() == 0) {
       setState(() {
-        selectTime = trendTime(context)[0];
-        selectType = trendType(context)[0];
+        selectTime = TrendTypeModel.trendTime(context)[0];
+        selectType = TrendTypeModel.trendType(context)[0];
       });
       showRefreshLoading();
     }
+
     super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
-    super.build(context); // See AutomaticKeepAliveClientMixin.
+    super.build(context); // See AutomaticKeepAliveClientMixin
+
     return StoreBuilder<GSYState>(
       builder: (context, store) {
         return Scaffold(
@@ -147,39 +142,4 @@ class _TrendPageState extends State<TrendPage>
       },
     );
   }
-}
-
-class TrendTypeModel {
-  final String name;
-  final String value;
-
-  TrendTypeModel(this.name, this.value);
-}
-
-trendTime(BuildContext context) {
-  return [
-    TrendTypeModel(CommonUtils.getLocale(context).trend_day, "daily"),
-    TrendTypeModel(CommonUtils.getLocale(context).trend_week, "weekly"),
-    TrendTypeModel(CommonUtils.getLocale(context).trend_month, "monthly"),
-  ];
-}
-
-trendType(BuildContext context) {
-  return [
-    TrendTypeModel(CommonUtils.getLocale(context).trend_all, null),
-    TrendTypeModel("Java", "Java"),
-    TrendTypeModel("Kotlin", "Kotlin"),
-    TrendTypeModel("Dart", "Dart"),
-    TrendTypeModel("Objective-C", "Objective-C"),
-    TrendTypeModel("Swift", "Swift"),
-    TrendTypeModel("JavaScript", "JavaScript"),
-    TrendTypeModel("PHP", "PHP"),
-    TrendTypeModel("Go", "Go"),
-    TrendTypeModel("C++", "C++"),
-    TrendTypeModel("C", "C"),
-    TrendTypeModel("HTML", "HTML"),
-    TrendTypeModel("CSS", "CSS"),
-    TrendTypeModel("Python", "Python"),
-    TrendTypeModel("C#", "c%23"),
-  ];
 }

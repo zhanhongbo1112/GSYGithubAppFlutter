@@ -9,6 +9,7 @@ import '../../../widget/widget.dart';
 import '../../../page/page.dart';
 
 import './modules/dynamic/index.dart';
+import './modules/trend/index.dart';
 
 /// 主页
 class GitHubClientHomePage extends StatelessWidget {
