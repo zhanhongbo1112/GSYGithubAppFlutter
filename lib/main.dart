@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/constants/routes.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/index.dart';
 import 'package:redux/redux.dart';
 
 import './common/common.dart';
@@ -44,7 +44,6 @@ class FlutterReduxApp extends StatelessWidget {
       store: store,
       child: StoreBuilder<GSYState>(builder: (context, store) {
         return MaterialApp(
-
             ///多语言实现代理
             localizationsDelegates: [
               GlobalMaterialLocalizations.delegate,
