@@ -1,10 +1,7 @@
 import 'package:gsy_github_app_flutter/bloc/base/base_bloc.dart';
 import 'package:gsy_github_app_flutter/common/dao/event_dao.dart';
 
-/**
- * Created by guoshuyu
- * on 2019/3/23.
- */
+/// 动态BLoC
 class DynamicBloc extends BlocListBase {
   requestRefresh(String userName) async {
     pageReset();
@@ -22,5 +19,4 @@ class DynamicBloc extends BlocListBase {
     loadMoreData(res);
     return res;
   }
-
 }

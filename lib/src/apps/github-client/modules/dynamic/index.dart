@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:redux/redux.dart';
 
-import '../common/common.dart';
-import '../widget/widget.dart';
-import '../bloc/bloc.dart';
+import '../../../../../common/common.dart';
+import '../../../../../widget/widget.dart';
+import '../../../../../bloc/bloc.dart';
+
+import './bloc/dynamic_bloc.dart';
 
 /// 主页动态tab页
 class DynamicPage extends StatefulWidget {
@@ -21,12 +22,12 @@ class _DynamicPageState extends State<DynamicPage>
 
   @override
   requestRefresh() async {
-    return await dynamicBloc.requestRefresh(_getStore().state.userInfo?.login);
+    return await dynamicBloc.requestRefresh(StoreProvider.of(context).state.userInfo?.login);
   }
 
   @override
   requestLoadMore() async {
-    return await dynamicBloc.requestLoadMore(_getStore().state.userInfo?.login);
+    return await dynamicBloc.requestLoadMore(StoreProvider.of(context).state.userInfo?.login);
   }
 
   @override
@@ -38,13 +39,16 @@ class _DynamicPageState extends State<DynamicPage>
   @override
   void initState() {
     super.initState();
+
     WidgetsBinding.instance.addObserver(this);
+
     ReposDao.getNewsVersion(context, false);
   }
 
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+
     super.dispose();
   }
 
@@ -53,35 +57,27 @@ class _DynamicPageState extends State<DynamicPage>
     if (bloc.getDataLength() == 0) {
       showRefreshLoading();
     }
+
     super.didChangeDependencies();
   }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
-      if (bloc.getDataLength() != 0) {
-        showRefreshLoading();
-      }
+      bloc.getDataLength() != 0 ?? showRefreshLoading();
     }
   }
 
   _renderEventItem(Event e) {
     EventViewModel eventViewModel = EventViewModel.fromEventMap(e);
-    return EventItem(
-      eventViewModel,
-      onPressed: () {
-        EventUtils.ActionUtils(context, e, "");
-      },
-    );
-  }
 
-  Store<GSYState> _getStore() {
-    return StoreProvider.of(context);
+    return EventItem(eventViewModel, onPressed: () => EventUtils.ActionUtils(context, e, ""));
   }
 
   @override
   Widget build(BuildContext context) {
     super.build(context); // See AutomaticKeepAliveClientMixin.
+
     return StoreBuilder<GSYState>(
       builder: (context, store) {
         return BlocProvider<DynamicBloc>(
