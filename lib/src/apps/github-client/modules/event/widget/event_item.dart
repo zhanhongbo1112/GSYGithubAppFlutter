@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gsy_github_app_flutter/common/common.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/index.dart';
 import 'package:gsy_github_app_flutter/widget/widget.dart';
 
 import '../util/event_utils.dart';
 
-import 'package:gsy_github_app_flutter/common/model/Notification.dart' as Model;
+import 'package:gsy_github_app_flutter/src/apps/github-client/models/Notification.dart' as Model;
 
 /// 事件Item
 class EventItem extends StatelessWidget {

@@ -6,7 +6,7 @@ import 'package:gsy_github_app_flutter/common/ab/provider/issue/issue_comment_db
 import 'package:gsy_github_app_flutter/common/ab/provider/issue/issue_detail_db_provider.dart';
 import 'package:gsy_github_app_flutter/common/ab/provider/repos/repository_issue_db_provider.dart';
 import 'package:gsy_github_app_flutter/common/dao/dao_result.dart';
-import 'package:gsy_github_app_flutter/common/model/Issue.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/models/Issue.dart';
 import 'package:gsy_github_app_flutter/common/net/address.dart';
 import 'package:gsy_github_app_flutter/common/net/api.dart';
 

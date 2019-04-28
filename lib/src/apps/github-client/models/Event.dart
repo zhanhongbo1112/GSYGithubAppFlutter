@@ -1,6 +1,6 @@
-import 'package:gsy_github_app_flutter/common/model/EventPayload.dart';
-import 'package:gsy_github_app_flutter/common/model/Repository.dart';
-import 'package:gsy_github_app_flutter/common/model/User.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/models/EventPayload.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/models/Repository.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/models/User.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 /**

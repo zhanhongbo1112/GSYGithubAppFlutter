@@ -1,8 +1,8 @@
-import 'package:gsy_github_app_flutter/common/model/CommitFile.dart';
-import 'package:gsy_github_app_flutter/common/model/CommitGitInfo.dart';
-import 'package:gsy_github_app_flutter/common/model/CommitStats.dart';
-import 'package:gsy_github_app_flutter/common/model/RepoCommit.dart';
-import 'package:gsy_github_app_flutter/common/model/User.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/models/CommitFile.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/models/CommitGitInfo.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/models/CommitStats.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/models/RepoCommit.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/models/User.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 /**

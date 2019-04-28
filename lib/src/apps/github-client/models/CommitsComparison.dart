@@ -1,5 +1,5 @@
-import 'package:gsy_github_app_flutter/common/model/CommitFile.dart';
-import 'package:gsy_github_app_flutter/common/model/RepoCommit.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/models/CommitFile.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/models/RepoCommit.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 /**
