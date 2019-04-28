@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/daos/event_dao.dart';
 
 import '../common/common.dart';
 import '../widget/widget.dart';

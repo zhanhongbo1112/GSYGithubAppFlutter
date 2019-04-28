@@ -5,6 +5,8 @@ import 'package:redux/redux.dart';
 import '../../../../../common/common.dart';
 import '../../../../../widget/widget.dart';
 
+import '../../daos/event_dao.dart';
+
 /// 主页我的tab页
 class MyPage extends StatefulWidget {
   @override

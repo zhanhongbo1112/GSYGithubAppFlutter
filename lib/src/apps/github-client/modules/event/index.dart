@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/modules/event/widget/event_item.dart';
 
 import '../../../../../common/common.dart';
 import '../../../../../widget/widget.dart';
 import '../../../../../bloc/bloc.dart';
 
 import './bloc/event_bloc.dart';
+import './util/event_utils.dart';
 
 /// 主页动态tab页
 class EventPage extends StatefulWidget {
@@ -15,26 +17,26 @@ class EventPage extends StatefulWidget {
 
 class _EventPageState extends State<EventPage>
     with AutomaticKeepAliveClientMixin<EventPage>, GSYBlocListState<EventPage>, WidgetsBindingObserver {
-  final EventBloc dynamicBloc = EventBloc();
+  final EventBloc eventBloc = EventBloc();
 
   @override
   bool get wantKeepAlive => true;
 
   @override
   requestRefresh() async {
-    return await dynamicBloc.requestRefresh(StoreProvider.of<GSYState>(context).state.userInfo?.login);
+    return await eventBloc.requestRefresh(StoreProvider.of<GSYState>(context).state.userInfo?.login);
   }
 
   @override
   requestLoadMore() async {
-    return await dynamicBloc.requestLoadMore(StoreProvider.of<GSYState>(context).state.userInfo?.login);
+    return await eventBloc.requestLoadMore(StoreProvider.of<GSYState>(context).state.userInfo?.login);
   }
 
   @override
   bool get isRefreshFirst => false;
 
   @override
-  BlocListBase get bloc => dynamicBloc;
+  BlocListBase get bloc => eventBloc;
 
   @override
   void initState() {
@@ -82,7 +84,7 @@ class _EventPageState extends State<EventPage>
     return StoreBuilder<GSYState>(
       builder: (context, store) {
         return BlocProvider<EventBloc>(
-          bloc: dynamicBloc,
+          bloc: eventBloc,
           child: GSYPullNewLoadWidget(
             bloc.pullLoadWidgetControl,
             (BuildContext context, int index) => _renderEventItem(bloc.dataList[index]),

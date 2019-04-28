@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:gsy_github_app_flutter/common/common.dart';
+import 'package:gsy_github_app_flutter/widget/widget.dart';
 
-import '../common/common.dart';
-
-import './gsy_card_item.dart';
-import './gsy_user_icon_widget.dart';
+import '../util/event_utils.dart';
 
 import 'package:gsy_github_app_flutter/common/model/Notification.dart' as Model;
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 import 'package:gsy_github_app_flutter/common/model/Notification.dart' as Model;
+import 'package:gsy_github_app_flutter/src/apps/github-client/modules/event/widget/event_item.dart';
 
 import '../common/common.dart';
 import '../widget/widget.dart';

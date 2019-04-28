@@ -1,5 +1,6 @@
 import 'package:gsy_github_app_flutter/bloc/base/base_bloc.dart';
-import 'package:gsy_github_app_flutter/common/dao/event_dao.dart';
+
+import '../../../daos/event_dao.dart';
 
 /// 动态BLoC
 class EventBloc extends BlocListBase {

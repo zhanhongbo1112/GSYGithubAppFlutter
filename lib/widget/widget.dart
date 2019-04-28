@@ -12,7 +12,7 @@ export './release_item.dart';
 export './webview/webview.dart';
 export './repos_item.dart';
 export './user_item.dart';
-export './event_item.dart';
+export './gsy_user_icon_widget.dart';
 export './gsy_bloc_list_state.dart';
 export './gsy_pull_new_load_widget.dart';
 export './gsy_flex_button.dart';
