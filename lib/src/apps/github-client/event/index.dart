@@ -74,9 +74,9 @@ class _EventPageState extends State<EventPage>
     }
   }
 
-  _renderEventItem(Event e) {
-    EventViewModel eventViewModel = EventViewModel.fromEventMap(e);
-    return EventItem(eventViewModel, onPressed: () => EventUtils.ActionUtils(context, e, ""));
+  _renderEventItem(Event event) {
+    EventViewModel eventViewModel = EventViewModel.fromEventMap(event);
+    return EventItem(eventViewModel, onPressed: () => EventUtils.ActionUtils(context, event, ""));
   }
 
   @override

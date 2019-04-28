@@ -5,9 +5,8 @@ import 'package:gsy_github_app_flutter/src/apps/github-client/index.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-import '../common/common.dart';
-import '../widget/widget.dart';
-import '../page/page.dart';
+import '../../../../../common/common.dart';
+import '../../../../../widget/widget.dart';
 
 /// 仓库文件列表
 class RepositoryDetailFileListPage extends StatefulWidget {

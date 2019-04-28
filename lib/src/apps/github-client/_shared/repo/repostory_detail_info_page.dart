@@ -4,9 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:gsy_github_app_flutter/src/apps/github-client/index.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-import '../common/common.dart';
-import '../widget/widget.dart';
-import '../page/page.dart';
+import '../../../../../common/common.dart';
+import '../../../../../widget/widget.dart';
 
 /// 仓库详情动态信息页面
 class ReposDetailInfoPage extends StatefulWidget {

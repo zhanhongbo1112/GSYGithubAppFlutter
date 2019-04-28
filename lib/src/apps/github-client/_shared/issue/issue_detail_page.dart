@@ -5,8 +5,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:gsy_github_app_flutter/src/apps/github-client/index.dart';
 
-import '../common/common.dart';
-import '../widget/widget.dart';
+import '../../../../../common/common.dart';
+import '../../../../../widget/widget.dart';
 
 /// issue detail
 class IssueDetailPage extends StatefulWidget {

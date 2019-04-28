@@ -3,8 +3,8 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:gsy_github_app_flutter/src/apps/github-client/index.dart';
 import 'package:redux/redux.dart';
 
-import '../common/common.dart';
-import '../widget/widget.dart';
+import '../../../../../common/common.dart';
+import '../../../../../widget/widget.dart';
 
 /// 用户信息中心
 class UserProfileInfo extends StatefulWidget {
@@ -98,14 +98,17 @@ class _UserProfileState extends State<UserProfileInfo> {
     return StoreBuilder<GSYState>(builder: (context, store) {
       return Scaffold(
         appBar: AppBar(
-            title: Hero(
-                tag: "home_user_info",
-                child: Material(
-                    color: Colors.transparent,
-                    child: Text(
-                      CommonUtils.getLocale(context).home_user_info,
-                      style: GSYConstant.normalTextWhite,
-                    )))),
+          title: Hero(
+            tag: "home_user_info",
+            child: Material(
+              color: Colors.transparent,
+              child: Text(
+                CommonUtils.getLocale(context).home_user_info,
+                style: GSYConstant.normalTextWhite,
+              ),
+            ),
+          ),
+        ),
         body: Container(
           color: Color(GSYColors.white),
           child: SingleChildScrollView(
