@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/index.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/_daos/index.dart';
 import 'package:redux/redux.dart';
 
-import '../common/common.dart';
+import '../../../../common/common.dart';
 
 /// 欢迎页
 class WelcomePage extends StatefulWidget {

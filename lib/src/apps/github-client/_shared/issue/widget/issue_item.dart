@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/index.dart';
 import 'package:gsy_github_app_flutter/src/apps/github-client/index.dart';
 import '../../../../../../common/common.dart';
 import '../../../../../../widget/widget.dart';

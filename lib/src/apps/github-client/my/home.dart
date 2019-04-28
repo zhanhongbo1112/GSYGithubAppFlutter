@@ -5,7 +5,8 @@ import 'package:redux/redux.dart';
 import '../../../../common/common.dart';
 import '../../../../widget/widget.dart';
 
-import '../index.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/_daos/index.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/index.dart';
 
 /// 主页我的tab页
 class MyPage extends StatefulWidget {

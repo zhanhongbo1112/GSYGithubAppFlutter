@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/_daos/index.dart';
 import 'package:gsy_github_app_flutter/src/apps/github-client/index.dart';
 
-import '../common/common.dart';
+import '../../../../common/common.dart';
 
 import 'package:gsy_github_app_flutter/widget/gsy_flex_button.dart';
 import 'package:package_info/package_info.dart';
@@ -105,20 +106,25 @@ class HomeDrawer extends StatelessWidget {
                             ),
                             onTap: () {
                               String content = "";
-                              CommonUtils.showEditDialog(context, CommonUtils.getLocale(context).home_reply, (title) {}, (res) {
+                              CommonUtils.showEditDialog(context, CommonUtils.getLocale(context).home_reply, (title) {},
+                                  (res) {
                                 content = res;
                               }, () {
                                 if (content == null || content.length == 0) {
                                   return;
                                 }
                                 CommonUtils.showLoadingDialog(context);
-                                IssueDao.createIssueDao(
-                                        "CarGuo", "GSYGithubAppFlutter", {"title": CommonUtils.getLocale(context).home_reply, "body": content})
-                                    .then((result) {
+                                IssueDao.createIssueDao("CarGuo", "GSYGithubAppFlutter", {
+                                  "title": CommonUtils.getLocale(context).home_reply,
+                                  "body": content
+                                }).then((result) {
                                   Navigator.pop(context);
                                   Navigator.pop(context);
                                 });
-                              }, titleController: TextEditingController(), valueController: TextEditingController(), needTitle: false);
+                              },
+                                  titleController: TextEditingController(),
+                                  valueController: TextEditingController(),
+                                  needTitle: false);
                             }),
                         ListTile(
                             title: Text(
@@ -126,7 +132,8 @@ class HomeDrawer extends StatelessWidget {
                               style: GSYConstant.normalText,
                             ),
                             onTap: () {
-                              NavigatorUtils.gotoCommonList(context, CommonUtils.getLocale(context).home_history, "repository", "history",
+                              NavigatorUtils.gotoCommonList(
+                                  context, CommonUtils.getLocale(context).home_history, "repository", "history",
                                   userName: "", reposName: "");
                             }),
                         ListTile(

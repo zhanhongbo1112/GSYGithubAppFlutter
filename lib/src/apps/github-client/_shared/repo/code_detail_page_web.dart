@@ -3,8 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-
-import 'package:gsy_github_app_flutter/src/apps/github-client/index.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/_daos/index.dart';
 
 import '../../../../../common/common.dart';
 import '../../../../../widget/widget.dart';

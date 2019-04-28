@@ -3,9 +3,11 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 
-import 'package:gsy_github_app_flutter/src/apps/github-client/index.dart';
 import 'package:gsy_github_app_flutter/common/dao/dao_result.dart';
 import 'package:gsy_github_app_flutter/common/net/api.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/_constants/index.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/_models/index.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/index.dart';
 
 /**
  * Issue相关

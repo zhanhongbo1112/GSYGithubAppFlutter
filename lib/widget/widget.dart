@@ -7,7 +7,7 @@ export './gsy_markdown_widget.dart';
 export './gsy_list_state.dart';
 export './gsy_pull_load_widget.dart';
 export './gsy_select_item_widget.dart';
-export './home_drawer.dart';
+export 'package:gsy_github_app_flutter/src/apps/github-client/_shared/home_drawer.dart';
 export './webview/webview.dart';
 export './gsy_bloc_list_state.dart';
 export './gsy_pull_new_load_widget.dart';
