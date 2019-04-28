@@ -4,17 +4,18 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:gsy_github_app_flutter/common/ab/provider/repos/read_history_db_provider.dart';
-import 'package:gsy_github_app_flutter/common/ab/provider/repos/repository_commits_db_provider.dart';
-import 'package:gsy_github_app_flutter/common/ab/provider/repos/repository_detail_db_provider.dart';
-import 'package:gsy_github_app_flutter/common/ab/provider/repos/repository_detail_readme_db_provider.dart';
-import 'package:gsy_github_app_flutter/common/ab/provider/repos/repository_event_db_provider.dart';
-import 'package:gsy_github_app_flutter/common/ab/provider/repos/repository_fork_db_provider.dart';
-import 'package:gsy_github_app_flutter/common/ab/provider/repos/repository_star_db_provider.dart';
-import 'package:gsy_github_app_flutter/common/ab/provider/repos/repository_watcher_db_provider.dart';
-import 'package:gsy_github_app_flutter/common/ab/provider/repos/trend_repository_db_provider.dart';
-import 'package:gsy_github_app_flutter/common/ab/provider/user/user_repos_db_provider.dart';
-import 'package:gsy_github_app_flutter/common/ab/provider/user/user_stared_db_provider.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/repo/provider/read_history_db_provider.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/repo/provider/repository_commits_db_provider.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/repo/provider/repository_detail_db_provider.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/repo/provider/repository_detail_readme_db_provider.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/repo/provider/repository_event_db_provider.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/repo/provider/repository_fork_db_provider.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/repo/provider/repository_star_db_provider.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/repo/provider/repository_watcher_db_provider.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/repo/provider/trend_repository_db_provider.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/trending/github_trending.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/user/provider/user_repos_db_provider.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/user/provider/user_stared_db_provider.dart';
 import 'package:gsy_github_app_flutter/common/config/config.dart';
 import 'package:gsy_github_app_flutter/common/dao/dao_result.dart';
 import 'package:gsy_github_app_flutter/src/apps/github-client/models/Event.dart';
@@ -25,9 +26,8 @@ import 'package:gsy_github_app_flutter/src/apps/github-client/models/RepoCommit.
 import 'package:gsy_github_app_flutter/src/apps/github-client/models/Repository.dart';
 import 'package:gsy_github_app_flutter/src/apps/github-client/models/TrendingRepoModel.dart';
 import 'package:gsy_github_app_flutter/src/apps/github-client/models/User.dart';
-import 'package:gsy_github_app_flutter/common/net/address.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/constants/apis.dart';
 import 'package:gsy_github_app_flutter/common/net/api.dart';
-import 'package:gsy_github_app_flutter/common/net/trending/github_trending.dart';
 import 'package:gsy_github_app_flutter/common/utils/common_utils.dart';
 import 'package:package_info/package_info.dart';
 import 'package:pub_semver/pub_semver.dart';
@@ -50,7 +50,7 @@ class ReposDao {
     String languageTypeDb = languageType ?? "*";
 
     next() async {
-      String url = Address.trending(since, languageType);
+      String url = GitHubClientApis.trending(since, languageType);
       var res = await GitHubTrending().fetchTrending(url);
       if (res != null && res.result && res.data.length > 0) {
         List<TrendingRepoModel> list = List();
@@ -89,7 +89,7 @@ class ReposDao {
     RepositoryDetailDbProvider provider = RepositoryDetailDbProvider();
 
     next() async {
-      String url = Address.getReposDetail(userName, reposName) + "?ref=" + branch;
+      String url = GitHubClientApis.getReposDetail(userName, reposName) + "?ref=" + branch;
       var res = await httpManager.netFetch(url, null, {"Accept": 'application/vnd.github.mercy-preview+json'}, null);
       if (res != null && res.result && res.data.length > 0) {
         var data = res.data;
@@ -130,7 +130,7 @@ class ReposDao {
     RepositoryEventDbProvider provider = RepositoryEventDbProvider();
 
     next() async {
-      String url = Address.getReposEvent(userName, reposName) + Address.getPageParams("?", page);
+      String url = GitHubClientApis.getReposEvent(userName, reposName) + GitHubClientApis.getPageParams("?", page);
       var res = await httpManager.netFetch(url, null, null, null);
       if (res != null && res.result) {
         List<Event> list = List();
@@ -165,8 +165,8 @@ class ReposDao {
    * 获取用户对当前仓库的star、watcher状态
    */
   static getRepositoryStatusDao(userName, reposName) async {
-    String urls = Address.resolveStarRepos(userName, reposName);
-    String urlw = Address.resolveWatcherRepos(userName, reposName);
+    String urls = GitHubClientApis.resolveStarRepos(userName, reposName);
+    String urlw = GitHubClientApis.resolveWatcherRepos(userName, reposName);
     var resS = await httpManager.netFetch(urls, null, null, Options(contentType: ContentType.text), noTip: true);
     var resW = await httpManager.netFetch(urlw, null, null, Options(contentType: ContentType.text), noTip: true);
     var data = {"star": resS.result, "watch": resW.result};
@@ -182,7 +182,7 @@ class ReposDao {
     RepositoryCommitsDbProvider provider = RepositoryCommitsDbProvider();
 
     next() async {
-      String url = Address.getReposCommits(userName, reposName) + Address.getPageParams("?", page) + "&sha=" + branch;
+      String url = GitHubClientApis.getReposCommits(userName, reposName) + GitHubClientApis.getPageParams("?", page) + "&sha=" + branch;
       var res = await httpManager.netFetch(url, null, null, null);
       if (res != null && res.result) {
         List<RepoCommit> list = List();
@@ -217,7 +217,7 @@ class ReposDao {
    * 获取仓库的文件列表
    */
   static getReposFileDirDao(userName, reposName, {path = '', branch, text = false, isHtml = false}) async {
-    String url = Address.reposDataDir(userName, reposName, path, branch);
+    String url = GitHubClientApis.reposDataDir(userName, reposName, path, branch);
     var res = await httpManager.netFetch(
       url,
       null,
@@ -256,8 +256,9 @@ class ReposDao {
    * star仓库
    */
   static Future<DataResult> doRepositoryStarDao(userName, reposName, star) async {
-    String url = Address.resolveStarRepos(userName, reposName);
-    var res = await httpManager.netFetch(url, null, null, Options(method: !star ? 'PUT' : 'DELETE', contentType: ContentType.text));
+    String url = GitHubClientApis.resolveStarRepos(userName, reposName);
+    var res = await httpManager.netFetch(
+        url, null, null, Options(method: !star ? 'PUT' : 'DELETE', contentType: ContentType.text));
     return Future<DataResult>(() {
       return DataResult(null, res.result);
     });
@@ -267,8 +268,9 @@ class ReposDao {
    * watcher仓库
    */
   static doRepositoryWatchDao(userName, reposName, watch) async {
-    String url = Address.resolveWatcherRepos(userName, reposName);
-    var res = await httpManager.netFetch(url, null, null, Options(method: !watch ? 'PUT' : 'DELETE', contentType: ContentType.text));
+    String url = GitHubClientApis.resolveWatcherRepos(userName, reposName);
+    var res = await httpManager.netFetch(
+        url, null, null, Options(method: !watch ? 'PUT' : 'DELETE', contentType: ContentType.text));
     return DataResult(null, res.result);
   }
 
@@ -280,7 +282,7 @@ class ReposDao {
     RepositoryWatcherDbProvider provider = RepositoryWatcherDbProvider();
 
     next() async {
-      String url = Address.getReposWatcher(userName, reposName) + Address.getPageParams("?", page);
+      String url = GitHubClientApis.getReposWatcher(userName, reposName) + GitHubClientApis.getPageParams("?", page);
       var res = await httpManager.netFetch(url, null, null, null);
       if (res != null && res.result) {
         List<User> list = List();
@@ -318,7 +320,7 @@ class ReposDao {
     String fullName = userName + "/" + reposName;
     RepositoryStarDbProvider provider = RepositoryStarDbProvider();
     next() async {
-      String url = Address.getReposStar(userName, reposName) + Address.getPageParams("?", page);
+      String url = GitHubClientApis.getReposStar(userName, reposName) + GitHubClientApis.getPageParams("?", page);
       var res = await httpManager.netFetch(url, null, null, null);
       if (res != null && res.result) {
         List<User> list = List();
@@ -356,7 +358,7 @@ class ReposDao {
     String fullName = userName + "/" + reposName;
     RepositoryForkDbProvider provider = RepositoryForkDbProvider();
     next() async {
-      String url = Address.getReposForks(userName, reposName) + Address.getPageParams("?", page);
+      String url = GitHubClientApis.getReposForks(userName, reposName) + GitHubClientApis.getPageParams("?", page);
       var res = await httpManager.netFetch(url, null, null, null);
       if (res != null && res.result && res.data.length > 0) {
         List<Repository> list = List();
@@ -394,7 +396,7 @@ class ReposDao {
   static getStarRepositoryDao(userName, page, sort, {needDb = false}) async {
     UserStaredDbProvider provider = UserStaredDbProvider();
     next() async {
-      String url = Address.userStar(userName, sort) + Address.getPageParams("&", page);
+      String url = GitHubClientApis.userStar(userName, sort) + GitHubClientApis.getPageParams("&", page);
       var res = await httpManager.netFetch(url, null, null, null);
       if (res != null && res.result && res.data.length > 0) {
         List<Repository> list = List();
@@ -432,7 +434,7 @@ class ReposDao {
   static getUserRepositoryDao(userName, page, sort, {needDb = false}) async {
     UserReposDbProvider provider = UserReposDbProvider();
     next() async {
-      String url = Address.userRepos(userName, sort) + Address.getPageParams("&", page);
+      String url = GitHubClientApis.userRepos(userName, sort) + GitHubClientApis.getPageParams("&", page);
       var res = await httpManager.netFetch(url, null, null, null);
       if (res != null && res.result && res.data.length > 0) {
         List<Repository> list = List();
@@ -468,7 +470,7 @@ class ReposDao {
    * 创建仓库的fork分支
    */
   static createForkDao(userName, reposName) async {
-    String url = Address.createFork(userName, reposName);
+    String url = GitHubClientApis.createFork(userName, reposName);
     var res = await httpManager.netFetch(url, null, null, Options(method: "POST", contentType: ContentType.text));
     return DataResult(null, res.result);
   }
@@ -477,7 +479,7 @@ class ReposDao {
    * 获取当前仓库所有分支
    */
   static getBranchesDao(userName, reposName) async {
-    String url = Address.getbranches(userName, reposName);
+    String url = GitHubClientApis.getbranches(userName, reposName);
     var res = await httpManager.netFetch(url, null, null, null);
     if (res != null && res.result && res.data.length > 0) {
       List<String> list = List();
@@ -499,7 +501,7 @@ class ReposDao {
    * 用户的前100仓库
    */
   static getUserRepository100StatusDao(userName) async {
-    String url = Address.userRepos(userName, 'pushed') + "&page=1&per_page=100";
+    String url = GitHubClientApis.userRepos(userName, 'pushed') + "&page=1&per_page=100";
     var res = await httpManager.netFetch(url, null, null, null);
     if (res != null && res.result && res.data.length > 0) {
       int stared = 0;
@@ -520,8 +522,9 @@ class ReposDao {
     RepositoryDetailReadmeDbProvider provider = RepositoryDetailReadmeDbProvider();
 
     next() async {
-      String url = Address.readmeFile(userName + '/' + reposName, branch);
-      var res = await httpManager.netFetch(url, null, {"Accept": 'application/vnd.github.VERSION.raw'}, Options(contentType: ContentType.text));
+      String url = GitHubClientApis.readmeFile(userName + '/' + reposName, branch);
+      var res = await httpManager.netFetch(
+          url, null, {"Accept": 'application/vnd.github.VERSION.raw'}, Options(contentType: ContentType.text));
       //var res = await httpManager.netFetch(url, null, {"Accept": 'application/vnd.github.html'}, Options(contentType: ContentType.text));
       if (res != null && res.result) {
         if (needDb) {
@@ -556,7 +559,7 @@ class ReposDao {
     if (language != null) {
       q = q + "%2Blanguage%3A$language";
     }
-    String url = Address.search(q, sort, order, type, page, pageSize);
+    String url = GitHubClientApis.search(q, sort, order, type, page, pageSize);
     var res = await httpManager.netFetch(url, null, null, null);
     if (type == null) {
       if (res != null && res.result && res.data["items"] != null) {
@@ -594,7 +597,7 @@ class ReposDao {
    * 获取仓库的单个提交详情
    */
   static getReposCommitsInfoDao(userName, reposName, sha) async {
-    String url = Address.getReposCommitsInfo(userName, reposName, sha);
+    String url = GitHubClientApis.getReposCommitsInfo(userName, reposName, sha);
     var res = await httpManager.netFetch(url, null, null, null);
     if (res != null && res.result) {
       PushCommit pushCommit = PushCommit.fromJson(res.data);
@@ -609,10 +612,11 @@ class ReposDao {
    */
   static getRepositoryReleaseDao(userName, reposName, page, {needHtml = true, release = true}) async {
     String url = release
-        ? Address.getReposRelease(userName, reposName) + Address.getPageParams("?", page)
-        : Address.getReposTag(userName, reposName) + Address.getPageParams("?", page);
+        ? GitHubClientApis.getReposRelease(userName, reposName) + GitHubClientApis.getPageParams("?", page)
+        : GitHubClientApis.getReposTag(userName, reposName) + GitHubClientApis.getPageParams("?", page);
 
-    var res = await httpManager.netFetch(url, null, {"Accept": (needHtml ? 'application/vnd.github.html,application/vnd.github.VERSION.raw' : "")}, null);
+    var res = await httpManager.netFetch(url, null,
+        {"Accept": (needHtml ? 'application/vnd.github.html,application/vnd.github.VERSION.raw' : "")}, null);
     if (res != null && res.result && res.data.length > 0) {
       List<Release> list = List();
       var dataList = res.data;
@@ -674,7 +678,7 @@ class ReposDao {
    * 获取issue总数
    */
   static getRepositoryIssueStatusDao(userName, repository) async {
-    String url = Address.getReposIssue(userName, repository, null, null, null) + "&per_page=1";
+    String url = GitHubClientApis.getReposIssue(userName, repository, null, null, null) + "&per_page=1";
     var res = await httpManager.netFetch(url, null, null, null);
     if (res != null && res.result && res.headers != null) {
       try {
@@ -698,7 +702,7 @@ class ReposDao {
    * 搜索话题
    */
   static searchTopicRepositoryDao(searchTopic, {page = 0}) async {
-    String url = Address.searchTopic(searchTopic) + Address.getPageParams("&", page);
+    String url = GitHubClientApis.searchTopic(searchTopic) + GitHubClientApis.getPageParams("&", page);
     var res = await httpManager.netFetch(url, null, null, null);
     var data = (res.data != null && res.data["items"] != null) ? res.data["items"] : res.data;
     if (res != null && res.result && data != null && data.length > 0) {

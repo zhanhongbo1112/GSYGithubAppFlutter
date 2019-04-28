@@ -2,10 +2,10 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:gsy_github_app_flutter/common/ab/provider/user/user_followed_db_provider.dart';
-import 'package:gsy_github_app_flutter/common/ab/provider/user/user_follower_db_provider.dart';
-import 'package:gsy_github_app_flutter/common/ab/provider/user/userinfo_db_provider.dart';
-import 'package:gsy_github_app_flutter/common/ab/provider/user/user_orgs_db_provider.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/user/provider/user_followed_db_provider.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/user/provider/user_follower_db_provider.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/user/provider/userinfo_db_provider.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/user/provider/user_orgs_db_provider.dart';
 import 'package:gsy_github_app_flutter/common/config/config.dart';
 import 'package:gsy_github_app_flutter/common/config/ignoreConfig.dart';
 import 'package:gsy_github_app_flutter/common/dao/dao_result.dart';
@@ -13,7 +13,7 @@ import 'package:gsy_github_app_flutter/common/local/local_storage.dart';
 import 'package:gsy_github_app_flutter/src/apps/github-client/models/Notification.dart';
 import 'package:gsy_github_app_flutter/src/apps/github-client/models/User.dart';
 import 'package:gsy_github_app_flutter/src/apps/github-client/models/UserOrg.dart';
-import 'package:gsy_github_app_flutter/common/net/address.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/constants/apis.dart';
 import 'package:gsy_github_app_flutter/common/net/api.dart';
 import 'package:gsy_github_app_flutter/common/redux/user_redux.dart';
 import 'package:gsy_github_app_flutter/common/utils/common_utils.dart';
@@ -38,7 +38,7 @@ class UserDao {
     };
     httpManager.clearAuthorization();
 
-    var res = await httpManager.netFetch(Address.getAuthorization(), json.encode(requestParams), null, Options(method: "post"));
+    var res = await httpManager.netFetch(GitHubClientApis.getAuthorization(), json.encode(requestParams), null, Options(method: "post"));
     var resultData = null;
     if (res != null && res.result) {
       await LocalStorage.save(Config.PW_KEY, password);
@@ -94,9 +94,9 @@ class UserDao {
     next() async {
       var res;
       if (userName == null) {
-        res = await httpManager.netFetch(Address.getMyUserInfo(), null, null, null);
+        res = await httpManager.netFetch(GitHubClientApis.getMyUserInfo(), null, null, null);
       } else {
-        res = await httpManager.netFetch(Address.getUserInfo(userName), null, null, null);
+        res = await httpManager.netFetch(GitHubClientApis.getUserInfo(userName), null, null, null);
       }
       if (res != null && res.result) {
         String starred = "---";
@@ -142,7 +142,7 @@ class UserDao {
    * 在header中提起stared count
    */
   static getUserStaredCountNet(userName) async {
-    String url = Address.userStar(userName, null) + "&per_page=1";
+    String url = GitHubClientApis.userStar(userName, null) + "&per_page=1";
     var res = await httpManager.netFetch(url, null, null, null);
     if (res != null && res.result && res.headers != null) {
       try {
@@ -169,7 +169,7 @@ class UserDao {
     UserFollowerDbProvider provider = UserFollowerDbProvider();
 
     next() async {
-      String url = Address.getUserFollower(userName) + Address.getPageParams("?", page);
+      String url = GitHubClientApis.getUserFollower(userName) + GitHubClientApis.getPageParams("?", page);
       var res = await httpManager.netFetch(url, null, null, null);
       if (res != null && res.result) {
         List<User> list = List();
@@ -206,7 +206,7 @@ class UserDao {
   static getFollowedListDao(userName, page, {needDb = false}) async {
     UserFollowedDbProvider provider = UserFollowedDbProvider();
     next() async {
-      String url = Address.getUserFollow(userName) + Address.getPageParams("?", page);
+      String url = GitHubClientApis.getUserFollow(userName) + GitHubClientApis.getPageParams("?", page);
       var res = await httpManager.netFetch(url, null, null, null);
       if (res != null && res.result) {
         List<User> list = List();
@@ -242,7 +242,7 @@ class UserDao {
    */
   static getNotifyDao(bool all, bool participating, page) async {
     String tag = (!all && !participating) ? '?' : "&";
-    String url = Address.getNotifation(all, participating) + Address.getPageParams(tag, page);
+    String url = GitHubClientApis.getNotifation(all, participating) + GitHubClientApis.getPageParams(tag, page);
     var res = await httpManager.netFetch(url, null, null, null);
     if (res != null && res.result) {
       List<Notification> list = List();
@@ -263,7 +263,7 @@ class UserDao {
    * 设置单个通知已读
    */
   static setNotificationAsReadDao(id) async {
-    String url = Address.setNotificationAsRead(id);
+    String url = GitHubClientApis.setNotificationAsRead(id);
     var res = await httpManager.netFetch(url, null, null, Options(method: "PATCH"), noTip: true);
     return res;
   }
@@ -272,7 +272,7 @@ class UserDao {
    * 设置所有通知已读
    */
   static setAllNotificationAsReadDao() async {
-    String url = Address.setAllNotificationAsRead();
+    String url = GitHubClientApis.setAllNotificationAsRead();
     var res = await httpManager.netFetch(url, null, null, Options(method: "PUT", contentType: ContentType.text));
     return DataResult(res.data, res.result);
   }
@@ -281,7 +281,7 @@ class UserDao {
    * 检查用户关注状态
    */
   static checkFollowDao(name) async {
-    String url = Address.doFollow(name);
+    String url = GitHubClientApis.doFollow(name);
     var res = await httpManager.netFetch(url, null, null, Options(contentType: ContentType.text), noTip: true);
     return DataResult(res.data, res.result);
   }
@@ -290,7 +290,7 @@ class UserDao {
    * 关注用户
    */
   static doFollowDao(name, bool followed) async {
-    String url = Address.doFollow(name);
+    String url = GitHubClientApis.doFollow(name);
     var res = await httpManager.netFetch(url, null, null, Options(method: !followed ? "PUT" : "DELETE"), noTip: true);
     return DataResult(res.data, res.result);
   }
@@ -299,7 +299,7 @@ class UserDao {
    * 组织成员
    */
   static getMemberDao(userName, page) async {
-    String url = Address.getMember(userName) + Address.getPageParams("?", page);
+    String url = GitHubClientApis.getMember(userName) + GitHubClientApis.getPageParams("?", page);
     var res = await httpManager.netFetch(url, null, null, null);
     if (res != null && res.result) {
       List<User> list = List();
@@ -320,7 +320,7 @@ class UserDao {
    * 更新用户信息
    */
   static updateUserDao(params, Store store) async {
-    String url = Address.getMyUserInfo();
+    String url = GitHubClientApis.getMyUserInfo();
     var res = await httpManager.netFetch(url, params, null, Options(method: "PATCH"));
     if (res != null && res.result) {
       var localResult = await getUserInfoLocal();
@@ -339,7 +339,7 @@ class UserDao {
   static getUserOrgsDao(userName, page, {needDb = false}) async {
     UserOrgsDbProvider provider = UserOrgsDbProvider();
     next() async {
-      String url = Address.getUserOrgs(userName) + Address.getPageParams("?", page);
+      String url = GitHubClientApis.getUserOrgs(userName) + GitHubClientApis.getPageParams("?", page);
       var res = await httpManager.netFetch(url, null, null, null);
       if (res != null && res.result) {
         List<UserOrg> list = List();

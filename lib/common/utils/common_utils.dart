@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gsy_github_app_flutter/common/localization/default_localizations.dart';
-import 'package:gsy_github_app_flutter/common/net/address.dart';
+import 'package:gsy_github_app_flutter/common/net/api.dart';
 import 'package:gsy_github_app_flutter/common/redux/gsy_state.dart';
 import 'package:gsy_github_app_flutter/common/redux/locale_redux.dart';
 import 'package:gsy_github_app_flutter/common/redux/theme_redux.dart';
@@ -55,7 +55,7 @@ class CommonUtils {
   }
 
   static String getUserChartAddress(String userName) {
-    return Address.graphicHost + GSYColors.primaryValueString.replaceAll("#", "") + "/" + userName;
+    return HttpManager.graphicHost + GSYColors.primaryValueString.replaceAll("#", "") + "/" + userName;
   }
 
   ///日期格式转换
@@ -86,7 +86,8 @@ class CommonUtils {
     }
     PermissionStatus permission = await PermissionHandler().checkPermissionStatus(PermissionGroup.storage);
     if (permission != PermissionStatus.granted) {
-      Map<PermissionGroup, PermissionStatus> permissions = await PermissionHandler().requestPermissions([PermissionGroup.storage]);
+      Map<PermissionGroup, PermissionStatus> permissions =
+          await PermissionHandler().requestPermissions([PermissionGroup.storage]);
       if (permissions[PermissionGroup.storage] != PermissionStatus.granted) {
         return null;
       }
@@ -139,7 +140,6 @@ class CommonUtils {
     themeData = getThemeData(colors[index]);
     store.dispatch(RefreshThemeDataAction(themeData));
   }
-
 
   static getThemeData(Color color) {
     return ThemeData(primarySwatch: color, platform: TargetPlatform.android);
@@ -231,8 +231,8 @@ class CommonUtils {
     if (url.startsWith("http")) {
       NavigatorUtils.goGSYWebView(context, url, title);
     } else {
-      NavigatorUtils.goGSYWebView(
-          context, Uri.dataFromString(url, mimeType: 'text/html', encoding: Encoding.getByName("utf-8")).toString(), title);
+      NavigatorUtils.goGSYWebView(context,
+          Uri.dataFromString(url, mimeType: 'text/html', encoding: Encoding.getByName("utf-8")).toString(), title);
     }
   }
 
@@ -267,7 +267,9 @@ class CommonUtils {
                       children: <Widget>[
                         Container(child: SpinKitCubeGrid(color: Color(GSYColors.white))),
                         Container(height: 10.0),
-                        Container(child: Text(CommonUtils.getLocale(context).loading_text, style: GSYConstant.normalTextWhite)),
+                        Container(
+                            child:
+                                Text(CommonUtils.getLocale(context).loading_text, style: GSYConstant.normalTextWhite)),
                       ],
                     ),
                   ),
@@ -362,7 +364,7 @@ class CommonUtils {
                   child: Text(CommonUtils.getLocale(context).app_cancel)),
               FlatButton(
                   onPressed: () {
-                    launch(Address.updateUrl);
+                    launch(HttpManager.updateUrl);
                     Navigator.pop(context);
                   },
                   child: Text(CommonUtils.getLocale(context).app_ok)),

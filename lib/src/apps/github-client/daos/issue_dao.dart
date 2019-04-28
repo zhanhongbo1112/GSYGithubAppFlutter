@@ -2,12 +2,12 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:gsy_github_app_flutter/common/ab/provider/issue/issue_comment_db_provider.dart';
-import 'package:gsy_github_app_flutter/common/ab/provider/issue/issue_detail_db_provider.dart';
-import 'package:gsy_github_app_flutter/common/ab/provider/repos/repository_issue_db_provider.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/issue/provider/issue_comment_db_provider.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/issue/provider/issue_detail_db_provider.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/repo/provider/repository_issue_db_provider.dart';
 import 'package:gsy_github_app_flutter/common/dao/dao_result.dart';
 import 'package:gsy_github_app_flutter/src/apps/github-client/models/Issue.dart';
-import 'package:gsy_github_app_flutter/common/net/address.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/constants/apis.dart';
 import 'package:gsy_github_app_flutter/common/net/api.dart';
 
 /**
@@ -32,7 +32,7 @@ class IssueDao {
     RepositoryIssueDbProvider provider = RepositoryIssueDbProvider();
 
     next() async {
-      String url = Address.getReposIssue(userName, repository, state, sort, direction) + Address.getPageParams("&", page);
+      String url = GitHubClientApis.getReposIssue(userName, repository, state, sort, direction) + GitHubClientApis.getPageParams("&", page);
       var res = await httpManager.netFetch(url, null, {"Accept": 'application/vnd.github.html,application/vnd.github.VERSION.raw'}, null);
       if (res != null && res.result) {
         List<Issue> list = List();
@@ -78,7 +78,7 @@ class IssueDao {
     } else {
       qu = q + "+repo%3A${name}%2F${reposName}+state%3A${state}";
     }
-    String url = Address.repositoryIssueSearch(qu) + Address.getPageParams("&", page);
+    String url = GitHubClientApis.repositoryIssueSearch(qu) + GitHubClientApis.getPageParams("&", page);
     var res = await httpManager.netFetch(url, null, null, null);
     if (res != null && res.result) {
       List<Issue> list = List();
@@ -104,7 +104,7 @@ class IssueDao {
     IssueDetailDbProvider provider = IssueDetailDbProvider();
 
     next() async {
-      String url = Address.getIssueInfo(userName, repository, number);
+      String url = GitHubClientApis.getIssueInfo(userName, repository, number);
       //{"Accept": 'application/vnd.github.html,application/vnd.github.VERSION.raw'}
       var res = await httpManager.netFetch(url, null, {"Accept": 'application/vnd.github.VERSION.raw'}, null);
       if (res != null && res.result) {
@@ -136,7 +136,7 @@ class IssueDao {
     IssueCommentDbProvider provider = IssueCommentDbProvider();
 
     next() async {
-      String url = Address.getIssueComment(userName, repository, number) + Address.getPageParams("?", page);
+      String url = GitHubClientApis.getIssueComment(userName, repository, number) + GitHubClientApis.getPageParams("?", page);
       //{"Accept": 'application/vnd.github.html,application/vnd.github.VERSION.raw'}
       var res = await httpManager.netFetch(url, null, {"Accept": 'application/vnd.github.VERSION.raw'}, null);
       if (res != null && res.result) {
@@ -172,7 +172,7 @@ class IssueDao {
    * 增加issue的回复
    */
   static addIssueCommentDao(userName, repository, number, comment) async {
-    String url = Address.addIssueComment(userName, repository, number);
+    String url = GitHubClientApis.addIssueComment(userName, repository, number);
     var res = await httpManager.netFetch(url, {"body": comment}, {"Accept": 'application/vnd.github.VERSION.full+json'}, Options(method: 'POST'));
     if (res != null && res.result) {
       return DataResult(res.data, true);
@@ -185,7 +185,7 @@ class IssueDao {
    * 编辑issue
    */
   static editIssueDao(userName, repository, number, issue) async {
-    String url = Address.editIssue(userName, repository, number);
+    String url = GitHubClientApis.editIssue(userName, repository, number);
     var res = await httpManager.netFetch(url, issue, {"Accept": 'application/vnd.github.VERSION.full+json'}, Options(method: 'PATCH'));
     if (res != null && res.result) {
       return DataResult(res.data, true);
@@ -198,7 +198,7 @@ class IssueDao {
    * 锁定issue
    */
   static lockIssueDao(userName, repository, number, locked) async {
-    String url = Address.lockIssue(userName, repository, number);
+    String url = GitHubClientApis.lockIssue(userName, repository, number);
     var res = await httpManager.netFetch(
         url, null, {"Accept": 'application/vnd.github.VERSION.full+json'}, Options(method: locked ? "DELETE" : 'PUT', contentType: ContentType.text),
         noTip: true);
@@ -213,7 +213,7 @@ class IssueDao {
    * 创建issue
    */
   static createIssueDao(userName, repository, issue) async {
-    String url = Address.createIssue(userName, repository);
+    String url = GitHubClientApis.createIssue(userName, repository);
     var res = await httpManager.netFetch(url, issue, {"Accept": 'application/vnd.github.VERSION.full+json'}, Options(method: 'POST'));
     if (res != null && res.result) {
       return DataResult(res.data, true);
@@ -226,7 +226,7 @@ class IssueDao {
    * 编辑issue回复
    */
   static editCommentDao(userName, repository, number, commentId, comment) async {
-    String url = Address.editComment(userName, repository, commentId);
+    String url = GitHubClientApis.editComment(userName, repository, commentId);
     var res = await httpManager.netFetch(url, comment, {"Accept": 'application/vnd.github.VERSION.full+json'}, Options(method: 'PATCH'));
     if (res != null && res.result) {
       return DataResult(res.data, true);
@@ -239,7 +239,7 @@ class IssueDao {
    * 删除issue回复
    */
   static deleteCommentDao(userName, repository, number, commentId) async {
-    String url = Address.editComment(userName, repository, commentId);
+    String url = GitHubClientApis.editComment(userName, repository, commentId);
     var res = await httpManager.netFetch(url, null, null, Options(method: 'DELETE'), noTip: true);
     if (res != null && res.result) {
       return DataResult(res.data, true);

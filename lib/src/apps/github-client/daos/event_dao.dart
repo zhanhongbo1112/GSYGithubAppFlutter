@@ -1,10 +1,10 @@
 import 'dart:convert';
 
-import 'package:gsy_github_app_flutter/common/ab/provider/event/received_event_db_provider.dart';
-import 'package:gsy_github_app_flutter/common/ab/provider/event/user_event_db_provider.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/modules/event/provider/received_event_db_provider.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/modules/event/provider/user_event_db_provider.dart';
 import 'package:gsy_github_app_flutter/common/dao/dao_result.dart';
 import 'package:gsy_github_app_flutter/src/apps/github-client/models/Event.dart';
-import 'package:gsy_github_app_flutter/common/net/address.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/constants/apis.dart';
 import 'package:gsy_github_app_flutter/common/net/api.dart';
 
 class EventDao {
@@ -15,7 +15,7 @@ class EventDao {
     ReceivedEventDbProvider provider = ReceivedEventDbProvider();
 
     next() async {
-      String url = Address.getEventReceived(userName) + Address.getPageParams("?", page);
+      String url = GitHubClientApis.getEventReceived(userName) + GitHubClientApis.getPageParams("?", page);
 
       var res = await httpManager.netFetch(url, null, null, null);
       if (res != null && res.result) {
@@ -53,7 +53,7 @@ class EventDao {
   static getEventDao(userName, {page = 0, bool needDb = false}) async {
     UserEventDbProvider provider = UserEventDbProvider();
     next() async {
-      String url = Address.getEvent(userName) + Address.getPageParams("?", page);
+      String url = GitHubClientApis.getEvent(userName) + GitHubClientApis.getPageParams("?", page);
       var res = await httpManager.netFetch(url, null, null, null);
       if (res != null && res.result) {
         List<Event> list = List();

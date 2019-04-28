@@ -13,6 +13,10 @@ import 'package:gsy_github_app_flutter/common/net/result_data.dart';
 
 ///http请求
 class HttpManager {
+  static const String downloadUrl = 'https://www.pgyer.com/GSYGithubApp';
+  static const String graphicHost = 'https://ghchart.rshah.org/';
+  static const String updateUrl = 'https://www.pgyer.com/vj2B';
+
   static const CONTENT_TYPE_JSON = "application/json";
   static const CONTENT_TYPE_FORM = "application/x-www-form-urlencoded";
 
