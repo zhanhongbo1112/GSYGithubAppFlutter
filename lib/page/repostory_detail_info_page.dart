@@ -2,8 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:gsy_github_app_flutter/src/apps/github-client/index.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/modules/event/util/event_utils.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/modules/event/widget/event_item.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../common/common.dart';

@@ -3,7 +3,7 @@ import 'package:gsy_github_app_flutter/common/utils/code_utils.dart';
 
 import 'package:flutter/foundation.dart';
 import 'package:gsy_github_app_flutter/common/ab/sql_provider.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/models/Issue.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/_models/Issue.dart';
 import 'package:sqflite/sqflite.dart';
 
 /**

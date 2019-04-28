@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 import '../../../common/common.dart';
 import '../../../widget/widget.dart';
 
-import './modules/event/index.dart';
-import './modules/trend/index.dart';
-import './modules/my/index.dart';
+import './event/index.dart';
+import './trend/index.dart';
+import './my/index.dart';
 
 /// 主页
 class GitHubClientHomePage extends StatelessWidget {

@@ -7,35 +7,35 @@ import 'package:gsy_github_app_flutter/src/apps/github-client/_models/Event.dart
 import 'package:sqflite/sqflite.dart';
 
 /**
- * 仓库活跃事件表
+ * 用户动态表
  * Created by guoshuyu
  * Date: 2018-08-07
  */
 
-class RepositoryEventDbProvider extends BaseDbProvider {
-  final String name = 'RepositoryEvent';
+class UserEventDbProvider extends BaseDbProvider {
+  final String name = 'UserEvent';
 
   final String columnId = "_id";
-  final String columnFullName = "fullName";
+  final String columnUserName = "userName";
   final String columnData = "data";
 
   int id;
-  String fullName;
+  String userName;
   String data;
 
-  RepositoryEventDbProvider();
+  UserEventDbProvider();
 
-  Map<String, dynamic> toMap(String fullName, String data) {
-    Map<String, dynamic> map = {columnFullName: fullName, columnData: data};
+  Map<String, dynamic> toMap(String userName, String eventMapString) {
+    Map<String, dynamic> map = {columnUserName: userName, columnData: eventMapString};
     if (id != null) {
       map[columnId] = id;
     }
     return map;
   }
 
-  RepositoryEventDbProvider.fromMap(Map map) {
+  UserEventDbProvider.fromMap(Map map) {
     id = map[columnId];
-    fullName = map[columnFullName];
+    userName = map[columnUserName];
     data = map[columnData];
   }
 
@@ -43,7 +43,7 @@ class RepositoryEventDbProvider extends BaseDbProvider {
   tableSqlString() {
     return tableBaseString(name, columnId) +
         '''
-        $columnFullName text not null,
+        $columnUserName text not null,
         $columnData text not null)
       ''';
   }
@@ -53,37 +53,34 @@ class RepositoryEventDbProvider extends BaseDbProvider {
     return name;
   }
 
-  Future _getProvider(Database db, String fullName) async {
-    List<Map<String, dynamic>> maps =
-        await db.query(name, columns: [columnId, columnFullName, columnData], where: "$columnFullName = ?", whereArgs: [fullName]);
+  Future _getProvider(Database db, String userName) async {
+    List<Map> maps = await db.query(name, columns: [columnId, columnData, columnUserName], where: "$columnUserName = ?", whereArgs: [userName]);
     if (maps.length > 0) {
-      RepositoryEventDbProvider provider = RepositoryEventDbProvider.fromMap(maps.first);
+      UserEventDbProvider provider = UserEventDbProvider.fromMap(maps.first);
       return provider;
     }
     return null;
   }
 
   ///插入到数据库
-  Future insert(String fullName, String dataMapString) async {
+  Future insert(String userName, String eventMapString) async {
     Database db = await getDataBase();
-    var provider = await _getProvider(db, fullName);
+    var provider = await _getProvider(db, userName);
     if (provider != null) {
-      await db.delete(name, where: "$columnFullName = ?", whereArgs: [fullName]);
+      await db.delete(name, where: "$columnUserName = ?", whereArgs: [userName]);
     }
-    return await db.insert(name, toMap(fullName, dataMapString));
+    return await db.insert(name, toMap(userName, eventMapString));
   }
 
   ///获取事件数据
-  Future<List<Event>> getEvents(String fullName) async {
+  Future<List<Event>> getEvents(userName) async {
     Database db = await getDataBase();
-
-    var provider = await _getProvider(db, fullName);
+    var provider = await _getProvider(db, userName);
     if (provider != null) {
       List<Event> list = List();
 
       ///使用 compute 的 Isolate 优化 json decode
       List<dynamic> eventMap = await compute(CodeUtils.decodeListResult, provider.data as String);
-
 
       if (eventMap.length > 0) {
         for (var item in eventMap) {

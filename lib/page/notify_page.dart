@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 import 'package:gsy_github_app_flutter/src/apps/github-client/index.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/models/Notification.dart' as Model;
-import 'package:gsy_github_app_flutter/src/apps/github-client/modules/event/widget/event_item.dart';
 
 import '../common/common.dart';
 import '../widget/widget.dart';
@@ -25,7 +23,7 @@ class _NotifyPageState extends State<NotifyPage>
   _NotifyPageState();
 
   _renderItem(index) {
-    Model.Notification notification = pullLoadWidgetControl.dataList[index];
+    GitHubNotification notification = pullLoadWidgetControl.dataList[index];
     if (selectIndex != 0) {
       return _renderEventItem(notification);
     }
@@ -49,7 +47,7 @@ class _NotifyPageState extends State<NotifyPage>
     );
   }
 
-  _renderEventItem(Model.Notification notification) {
+  _renderEventItem(GitHubNotification notification) {
     EventViewModel eventViewModel = EventViewModel.fromNotify(context, notification);
     return EventItem(eventViewModel, onPressed: () {
       if (notification.unread) {

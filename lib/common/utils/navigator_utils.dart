@@ -6,7 +6,6 @@ import 'package:gsy_github_app_flutter/page/code_detail_page.dart';
 import 'package:gsy_github_app_flutter/page/code_detail_page_web.dart';
 import 'package:gsy_github_app_flutter/page/common_list_page.dart';
 import 'package:gsy_github_app_flutter/page/gsy_webview.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/constants/routes.dart';
 import 'package:gsy_github_app_flutter/page/issue_detail_page.dart';
 import 'package:gsy_github_app_flutter/page/login_page.dart';
 import 'package:gsy_github_app_flutter/page/notify_page.dart';
@@ -17,6 +16,7 @@ import 'package:gsy_github_app_flutter/page/release_page.dart';
 import 'package:gsy_github_app_flutter/page/repository_detail_page.dart';
 import 'package:gsy_github_app_flutter/page/search_page.dart';
 import 'package:gsy_github_app_flutter/page/user_profile_page.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/_constants/routes.dart';
 
 /// 导航栏
 class NavigatorUtils {
