@@ -31,6 +31,7 @@ export './user/widget/gsy_user_icon_widget.dart';
 export './gsy_search_drawer.dart';
 export './repo/widget/repos_item.dart';
 export './repo/widget/push_header.dart';
+export './home_drawer.dart';
 export './repo/widget/push_code_item.dart';
 export './repo/widget/release_item.dart';
 export './issue/widget/issue_item.dart';

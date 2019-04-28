@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:android_intent/android_intent.dart';
 import 'package:flutter/material.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/index.dart';
 
 import '../../../common/common.dart';
 import '../../../widget/widget.dart';
