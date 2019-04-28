@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gsy_github_app_flutter/src/apps/github-client/index.dart';
-import '../common/common.dart';
-
-import './gsy_card_item.dart';
-import './gsy_icon_text.dart';
-import './gsy_select_item_widget.dart';
+import '../../../../../../common/common.dart';
+import '../../../../../../widget/widget.dart';
 
 /// 仓库详情信息头控件
 class ReposHeaderItem extends StatelessWidget {

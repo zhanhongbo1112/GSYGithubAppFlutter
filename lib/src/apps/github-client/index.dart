@@ -48,5 +48,6 @@ export './_shared/user/provider/user_orgs_db_provider.dart';
 export './_shared/trending/github_trending.dart';
 export './_shared/user/provider/user_repos_db_provider.dart';
 export './_shared/user/provider/user_stared_db_provider.dart';
+export './_shared/user/widget/base_person_state.dart';
 
 export './home.dart';

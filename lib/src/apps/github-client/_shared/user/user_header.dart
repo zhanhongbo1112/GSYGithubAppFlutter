@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gsy_github_app_flutter/src/apps/github-client/index.dart';
-import '../common/common.dart';
-
-import './gsy_card_item.dart';
-import './gsy_icon_text.dart';
-import './gsy_user_icon_widget.dart';
+import '../../../../../common/common.dart';
+import '../../../../../widget/widget.dart';
 
 /**
  * 用户详情头部

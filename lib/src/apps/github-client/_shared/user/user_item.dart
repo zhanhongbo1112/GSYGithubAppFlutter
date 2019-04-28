@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gsy_github_app_flutter/src/apps/github-client/index.dart';
-import '../common/common.dart';
 
-import './gsy_card_item.dart';
+import '../../../../../widget/widget.dart';
+import '../../../../../common/common.dart';
 
 /// 用户item
 class UserItem extends StatelessWidget {

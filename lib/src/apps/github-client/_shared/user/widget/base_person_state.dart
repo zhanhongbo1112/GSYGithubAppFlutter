@@ -5,11 +5,8 @@ import 'package:gsy_github_app_flutter/src/apps/github-client/event/util/event_u
 import 'package:gsy_github_app_flutter/src/apps/github-client/event/widget/event_item.dart';
 import 'package:gsy_github_app_flutter/src/apps/github-client/index.dart';
 
-import '../common/common.dart';
-
-import './gsy_list_state.dart';
-import './user_header.dart';
-import './user_item.dart';
+import '../../../../../../common/common.dart';
+import '../../../../../../widget/widget.dart';
 
 /**
  * Created by guoshuyu
