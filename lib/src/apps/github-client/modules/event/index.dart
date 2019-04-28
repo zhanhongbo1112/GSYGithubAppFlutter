@@ -5,17 +5,17 @@ import '../../../../../common/common.dart';
 import '../../../../../widget/widget.dart';
 import '../../../../../bloc/bloc.dart';
 
-import './bloc/dynamic_bloc.dart';
+import './bloc/event_bloc.dart';
 
 /// 主页动态tab页
-class DynamicPage extends StatefulWidget {
+class EventPage extends StatefulWidget {
   @override
-  _DynamicPageState createState() => _DynamicPageState();
+  _EventPageState createState() => _EventPageState();
 }
 
-class _DynamicPageState extends State<DynamicPage>
-    with AutomaticKeepAliveClientMixin<DynamicPage>, GSYBlocListState<DynamicPage>, WidgetsBindingObserver {
-  final DynamicBloc dynamicBloc = DynamicBloc();
+class _EventPageState extends State<EventPage>
+    with AutomaticKeepAliveClientMixin<EventPage>, GSYBlocListState<EventPage>, WidgetsBindingObserver {
+  final EventBloc dynamicBloc = EventBloc();
 
   @override
   bool get wantKeepAlive => true;
@@ -81,7 +81,7 @@ class _DynamicPageState extends State<DynamicPage>
 
     return StoreBuilder<GSYState>(
       builder: (context, store) {
-        return BlocProvider<DynamicBloc>(
+        return BlocProvider<EventBloc>(
           bloc: dynamicBloc,
           child: GSYPullNewLoadWidget(
             bloc.pullLoadWidgetControl,

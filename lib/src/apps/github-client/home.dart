@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import '../../../common/common.dart';
 import '../../../widget/widget.dart';
 
-import './modules/dynamic/index.dart';
+import './modules/event/index.dart';
 import './modules/trend/index.dart';
 import './modules/my/index.dart';
 
@@ -56,7 +56,7 @@ class GitHubClientHomePage extends StatelessWidget {
           _renderTab(GSYICons.MAIN_QS, CommonUtils.getLocale(context).home_trend),
           _renderTab(GSYICons.MAIN_MY, CommonUtils.getLocale(context).home_my),
         ],
-        tabViews: [DynamicPage(), TrendPage(), MyPage()],
+        tabViews: [EventPage(), TrendPage(), MyPage()],
       ),
     );
   }
