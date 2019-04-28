@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gsy_github_app_flutter/src/apps/github-client/index.dart';
-import '../common/common.dart';
-
-import './gsy_card_item.dart';
-import './gsy_icon_text.dart';
-import './gsy_markdown_widget.dart';
-import './gsy_user_icon_widget.dart';
+import '../../../../../../common/common.dart';
+import '../../../../../../widget/widget.dart';
 
 /**
  * Issue相关item
@@ -27,7 +23,8 @@ class IssueItem extends StatelessWidget {
   ///是否需要限制内容行数
   final bool limitComment;
 
-  IssueItem(this.issueItemViewModel, {this.onPressed, this.onLongPress, this.hideBottom = false, this.limitComment = true});
+  IssueItem(this.issueItemViewModel,
+      {this.onPressed, this.onLongPress, this.hideBottom = false, this.limitComment = true});
 
   ///issue 底部状态
   _renderBottomContainer() {

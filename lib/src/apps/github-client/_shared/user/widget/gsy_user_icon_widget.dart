@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../common/common.dart';
-
-import './network_cache_image.dart';
+import '../../../../../../common/common.dart';
+import '../../../../../../widget/widget.dart';
 
 /// 头像Icon
 class GSYUserIconWidget extends StatelessWidget {

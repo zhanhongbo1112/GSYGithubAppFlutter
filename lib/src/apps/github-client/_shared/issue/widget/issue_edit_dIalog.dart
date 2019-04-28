@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../common/common.dart';
-
-import './gsy_card_item.dart';
-import './gsy_input_widget.dart';
+import '../../../../../../common/common.dart';
+import '../../../../../../widget/widget.dart';
 
 /// issue 编辑输入框
 class IssueEditDialog extends StatefulWidget {

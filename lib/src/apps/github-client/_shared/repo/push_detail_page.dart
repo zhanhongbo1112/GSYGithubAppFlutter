@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-
 import 'package:gsy_github_app_flutter/src/apps/github-client/index.dart';
 
 import '../../../../../common/common.dart';

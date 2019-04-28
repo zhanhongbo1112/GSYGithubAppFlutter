@@ -49,5 +49,15 @@ export './_shared/trending/github_trending.dart';
 export './_shared/user/provider/user_repos_db_provider.dart';
 export './_shared/user/provider/user_stared_db_provider.dart';
 export './_shared/user/widget/base_person_state.dart';
-
+export './_shared/user/user_header.dart';
+export './_shared/user/user_item.dart';
+export './_shared/user/widget/gsy_user_icon_widget.dart';
+export './_shared/gsy_search_drawer.dart';
+export './_shared/repo/widget/repos_item.dart';
+export './_shared/repo/widget/push_header.dart';
+export './_shared/repo/widget/push_code_item.dart';
+export './_shared/repo/widget/release_item.dart';
+export './_shared/issue/widget/issue_item.dart';
+export './_shared/repo/widget/repos_header_item.dart';
+export './_shared/issue/widget/issue_header_item.dart';
 export './home.dart';

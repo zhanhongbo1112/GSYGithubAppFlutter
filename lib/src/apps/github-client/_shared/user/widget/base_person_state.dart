@@ -1,8 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/event/util/event_utils.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/event/widget/event_item.dart';
 import 'package:gsy_github_app_flutter/src/apps/github-client/index.dart';
 
 import '../../../../../../common/common.dart';

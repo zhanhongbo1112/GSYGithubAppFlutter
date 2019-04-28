@@ -79,14 +79,15 @@ class _GSYSelectItemWidgetState extends State<GSYSelectItemWidget> {
   @override
   Widget build(BuildContext context) {
     return GSYCardItem(
-        elevation: widget.elevation,
-        margin: widget.margin,
-        color: Theme.of(context).primaryColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(4.0)),
-        ),
-        child: Row(
-          children: _renderList(),
-        ));
+      elevation: widget.elevation,
+      margin: widget.margin,
+      color: Theme.of(context).primaryColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(4.0)),
+      ),
+      child: Row(
+        children: _renderList(),
+      ),
+    );
   }
 }
