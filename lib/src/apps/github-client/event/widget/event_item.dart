@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:gsy_github_app_flutter/common/common.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/index.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/index.dart';
-import 'package:gsy_github_app_flutter/widget/widget.dart';
+import 'package:yqboots/common/common.dart';
+import 'package:yqboots/src/apps/github-client/_shared/index.dart';
+import 'package:yqboots/src/apps/github-client/index.dart';
+import 'package:yqboots/widget/widget.dart';
 
 import '../util/event_utils.dart';
 
-import 'package:gsy_github_app_flutter/src/apps/github-client/_models/Notification.dart';
+import 'package:yqboots/src/apps/github-client/_models/Notification.dart';
 
 /// 事件Item
 class EventItem extends StatelessWidget {

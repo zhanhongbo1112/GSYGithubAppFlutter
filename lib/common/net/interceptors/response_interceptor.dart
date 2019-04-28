@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:gsy_github_app_flutter/common/net/code.dart';
-import 'package:gsy_github_app_flutter/common/net/result_data.dart';
+import 'package:yqboots/common/net/code.dart';
+import 'package:yqboots/common/net/result_data.dart';
 
 /**
  * Token拦截器

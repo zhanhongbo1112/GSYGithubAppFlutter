@@ -1,7 +1,7 @@
-import 'package:gsy_github_app_flutter/src/apps/github-client/_models/Issue.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/_models/IssueEvent.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/_models/PushEventCommit.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/_models/Release.dart';
+import 'package:yqboots/src/apps/github-client/_models/Issue.dart';
+import 'package:yqboots/src/apps/github-client/_models/IssueEvent.dart';
+import 'package:yqboots/src/apps/github-client/_models/PushEventCommit.dart';
+import 'package:yqboots/src/apps/github-client/_models/Release.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 /**

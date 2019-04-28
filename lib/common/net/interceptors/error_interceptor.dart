@@ -1,7 +1,7 @@
 import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
-import 'package:gsy_github_app_flutter/common/net/code.dart';
-import 'package:gsy_github_app_flutter/common/net/result_data.dart';
+import 'package:yqboots/common/net/code.dart';
+import 'package:yqboots/common/net/result_data.dart';
 
 ///是否需要弹提示
 const NOT_TIP_KEY = "noTip";

@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
-import 'package:gsy_github_app_flutter/common/ab/sql_provider.dart';
-import 'package:gsy_github_app_flutter/common/config/config.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/_models/Repository.dart';
+import 'package:yqboots/common/ab/sql_provider.dart';
+import 'package:yqboots/common/config/config.dart';
+import 'package:yqboots/src/apps/github-client/_models/Repository.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:gsy_github_app_flutter/common/utils/code_utils.dart';
+import 'package:yqboots/common/utils/code_utils.dart';
 
 /**
  * 本地已读历史表

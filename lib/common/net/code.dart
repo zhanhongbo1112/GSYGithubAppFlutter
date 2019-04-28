@@ -1,5 +1,5 @@
 import 'package:event_bus/event_bus.dart';
-import 'package:gsy_github_app_flutter/common/event/http_error_event.dart';
+import 'package:yqboots/common/event/http_error_event.dart';
 ///错误编码
 class Code {
   ///网络错误

@@ -1,4 +1,4 @@
-import 'package:gsy_github_app_flutter/common/style/gsy_style.dart';
+import 'package:yqboots/common/style/gsy_style.dart';
 
 /**
  * Created by guoshuyu

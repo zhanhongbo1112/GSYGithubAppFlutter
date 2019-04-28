@@ -1,15 +1,15 @@
 import 'package:dio/dio.dart';
-import 'package:gsy_github_app_flutter/common/net/code.dart';
+import 'package:yqboots/common/net/code.dart';
 
 import 'dart:collection';
 
-import 'package:gsy_github_app_flutter/common/net/interceptors/error_interceptor.dart';
-import 'package:gsy_github_app_flutter/common/net/interceptors/header_interceptor.dart';
-import 'package:gsy_github_app_flutter/common/net/interceptors/log_interceptor.dart';
+import 'package:yqboots/common/net/interceptors/error_interceptor.dart';
+import 'package:yqboots/common/net/interceptors/header_interceptor.dart';
+import 'package:yqboots/common/net/interceptors/log_interceptor.dart';
 
-import 'package:gsy_github_app_flutter/common/net/interceptors/response_interceptor.dart';
-import 'package:gsy_github_app_flutter/common/net/interceptors/token_interceptor.dart';
-import 'package:gsy_github_app_flutter/common/net/result_data.dart';
+import 'package:yqboots/common/net/interceptors/response_interceptor.dart';
+import 'package:yqboots/common/net/interceptors/token_interceptor.dart';
+import 'package:yqboots/common/net/result_data.dart';
 
 ///http请求
 class HttpManager {

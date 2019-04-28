@@ -2,21 +2,21 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/repo/code_detail_page.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/repo/code_detail_page_web.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/common_list_page.dart';
-import 'package:gsy_github_app_flutter/page/gsy_webview.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/issue/issue_detail_page.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/login_page.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/user/notify_page.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/user/person_page.dart';
-import 'package:gsy_github_app_flutter/page/photoview_page.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/repo/push_detail_page.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/repo/release_page.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/repo/repository_detail_page.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/search_page.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/user/user_profile_page.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/_constants/routes.dart';
+import 'package:yqboots/src/apps/github-client/_shared/repo/code_detail_page.dart';
+import 'package:yqboots/src/apps/github-client/_shared/repo/code_detail_page_web.dart';
+import 'package:yqboots/src/apps/github-client/_shared/common_list_page.dart';
+import 'package:yqboots/page/gsy_webview.dart';
+import 'package:yqboots/src/apps/github-client/_shared/issue/issue_detail_page.dart';
+import 'package:yqboots/src/apps/github-client/_shared/login_page.dart';
+import 'package:yqboots/src/apps/github-client/_shared/user/notify_page.dart';
+import 'package:yqboots/src/apps/github-client/_shared/user/person_page.dart';
+import 'package:yqboots/page/photoview_page.dart';
+import 'package:yqboots/src/apps/github-client/_shared/repo/push_detail_page.dart';
+import 'package:yqboots/src/apps/github-client/_shared/repo/release_page.dart';
+import 'package:yqboots/src/apps/github-client/_shared/repo/repository_detail_page.dart';
+import 'package:yqboots/src/apps/github-client/_shared/search_page.dart';
+import 'package:yqboots/src/apps/github-client/_shared/user/user_profile_page.dart';
+import 'package:yqboots/src/apps/github-client/_constants/routes.dart';
 
 /// 导航栏
 class NavigatorUtils {

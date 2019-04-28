@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:gsy_github_app_flutter/common/localization/default_localizations.dart';
+import 'package:yqboots/common/localization/default_localizations.dart';
 
 /**
  * 多语言代理

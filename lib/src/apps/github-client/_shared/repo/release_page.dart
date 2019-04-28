@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/_daos/index.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/index.dart';
+import 'package:yqboots/src/apps/github-client/_daos/index.dart';
+import 'package:yqboots/src/apps/github-client/_shared/index.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../common/common.dart';

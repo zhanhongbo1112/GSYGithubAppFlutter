@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/index.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/index.dart';
+import 'package:yqboots/src/apps/github-client/_shared/index.dart';
+import 'package:yqboots/src/apps/github-client/index.dart';
 import '../../../../../common/common.dart';
 import '../../../../../widget/widget.dart';
 

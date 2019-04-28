@@ -1,8 +1,8 @@
-import 'package:gsy_github_app_flutter/common/redux/gsy_state.dart';
-import 'package:gsy_github_app_flutter/common/redux/middleware/epic.dart';
-import 'package:gsy_github_app_flutter/common/redux/middleware/epic_store.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/_daos/user_dao.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/_models/User.dart';
+import 'package:yqboots/common/redux/gsy_state.dart';
+import 'package:yqboots/common/redux/middleware/epic.dart';
+import 'package:yqboots/common/redux/middleware/epic_store.dart';
+import 'package:yqboots/src/apps/github-client/_daos/user_dao.dart';
+import 'package:yqboots/src/apps/github-client/_models/User.dart';
 import 'package:redux/redux.dart';
 import 'package:rxdart/rxdart.dart';
 

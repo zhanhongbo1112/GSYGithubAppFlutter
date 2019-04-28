@@ -1,4 +1,4 @@
-import 'package:gsy_github_app_flutter/common/config/config.dart';
+import 'package:yqboots/common/config/config.dart';
 
 ///地址数据
 class GitHubClientApis {

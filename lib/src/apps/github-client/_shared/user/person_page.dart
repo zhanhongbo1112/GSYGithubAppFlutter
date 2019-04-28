@@ -2,13 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/_daos/index.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/index.dart';
+import 'package:yqboots/src/apps/github-client/_daos/index.dart';
+import 'package:yqboots/src/apps/github-client/_shared/index.dart';
 
 import '../../../../../common/common.dart';
 import '../../../../../widget/widget.dart';
 
-import 'package:gsy_github_app_flutter/src/apps/github-client/index.dart';
+import 'package:yqboots/src/apps/github-client/index.dart';
 
 /// 个人详情
 class PersonPage extends StatefulWidget {

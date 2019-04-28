@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:gsy_github_app_flutter/common/dao/dao_result.dart';
-import 'package:gsy_github_app_flutter/common/net/api.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/event/index.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/index.dart';
+import 'package:yqboots/common/dao/dao_result.dart';
+import 'package:yqboots/common/net/api.dart';
+import 'package:yqboots/src/apps/github-client/event/index.dart';
+import 'package:yqboots/src/apps/github-client/index.dart';
 
 class EventDao {
   static getEventReceived(String userName, {page = 1, bool needDb = false}) async {

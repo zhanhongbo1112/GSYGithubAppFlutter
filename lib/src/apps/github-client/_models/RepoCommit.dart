@@ -1,5 +1,5 @@
-import 'package:gsy_github_app_flutter/src/apps/github-client/_models/CommitGitInfo.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/_models/User.dart';
+import 'package:yqboots/src/apps/github-client/_models/CommitGitInfo.dart';
+import 'package:yqboots/src/apps/github-client/_models/User.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 /**

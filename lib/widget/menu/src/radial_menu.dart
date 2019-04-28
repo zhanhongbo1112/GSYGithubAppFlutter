@@ -3,10 +3,10 @@ import 'dart:math' as Math;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:gsy_github_app_flutter/widget/menu/src/arc_progress_indicator.dart';
-import 'package:gsy_github_app_flutter/widget/menu/src/radial_menu_button.dart';
-import 'package:gsy_github_app_flutter/widget/menu/src/radial_menu_center_button.dart';
-import 'package:gsy_github_app_flutter/widget/menu/src/radial_menu_item.dart';
+import 'package:yqboots/widget/menu/src/arc_progress_indicator.dart';
+import 'package:yqboots/widget/menu/src/radial_menu_button.dart';
+import 'package:yqboots/widget/menu/src/radial_menu_center_button.dart';
+import 'package:yqboots/widget/menu/src/radial_menu_item.dart';
 
 const double _radiansPerDegree = Math.pi / 180;
 final double _startAngle = -90.0 * _radiansPerDegree;

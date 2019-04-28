@@ -2,17 +2,17 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/index.dart';
+import 'package:yqboots/src/apps/github-client/_shared/index.dart';
 import 'package:redux/redux.dart';
 
-import 'package:gsy_github_app_flutter/common/config/config.dart';
-import 'package:gsy_github_app_flutter/common/config/ignoreConfig.dart';
-import 'package:gsy_github_app_flutter/common/dao/dao_result.dart';
-import 'package:gsy_github_app_flutter/common/local/local_storage.dart';
-import 'package:gsy_github_app_flutter/common/net/api.dart';
-import 'package:gsy_github_app_flutter/common/redux/user_redux.dart';
-import 'package:gsy_github_app_flutter/common/utils/common_utils.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/index.dart';
+import 'package:yqboots/common/config/config.dart';
+import 'package:yqboots/common/config/ignoreConfig.dart';
+import 'package:yqboots/common/dao/dao_result.dart';
+import 'package:yqboots/common/local/local_storage.dart';
+import 'package:yqboots/common/net/api.dart';
+import 'package:yqboots/common/redux/user_redux.dart';
+import 'package:yqboots/common/utils/common_utils.dart';
+import 'package:yqboots/src/apps/github-client/index.dart';
 
 class UserDao {
   static login(userName, password, store) async {

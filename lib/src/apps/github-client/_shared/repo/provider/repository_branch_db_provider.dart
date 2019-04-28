@@ -1,5 +1,5 @@
 
-import 'package:gsy_github_app_flutter/common/ab/sql_provider.dart';
+import 'package:yqboots/common/ab/sql_provider.dart';
 
 /**
  * 仓库分支表

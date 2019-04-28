@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/_models/Event.dart';
-import 'package:gsy_github_app_flutter/src/apps/github-client/_models/PushEventCommit.dart';
-import 'package:gsy_github_app_flutter/common/utils/common_utils.dart';
-import 'package:gsy_github_app_flutter/common/utils/navigator_utils.dart';
+import 'package:yqboots/src/apps/github-client/_models/Event.dart';
+import 'package:yqboots/src/apps/github-client/_models/PushEventCommit.dart';
+import 'package:yqboots/common/utils/common_utils.dart';
+import 'package:yqboots/common/utils/navigator_utils.dart';
 
 /**
  * 事件逻辑
