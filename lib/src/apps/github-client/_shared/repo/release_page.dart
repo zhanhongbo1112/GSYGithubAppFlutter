@@ -6,8 +6,8 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'package:gsy_github_app_flutter/src/apps/github-client/index.dart';
 
-import '../common/common.dart';
-import '../widget/widget.dart';
+import '../../../../../common/common.dart';
+import '../../../../../widget/widget.dart';
 
 /**
  * 版本页

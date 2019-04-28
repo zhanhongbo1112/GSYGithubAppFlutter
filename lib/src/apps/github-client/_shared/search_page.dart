@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gsy_github_app_flutter/src/apps/github-client/index.dart';
-import '../common/common.dart';
-import '../widget/widget.dart';
+
+import '../../../../common/common.dart';
+import '../../../../widget/widget.dart';
 
 /**
  * Created by guoshuyu
@@ -12,7 +13,8 @@ class SearchPage extends StatefulWidget {
   _SearchPageState createState() => _SearchPageState();
 }
 
-class _SearchPageState extends State<SearchPage> with AutomaticKeepAliveClientMixin<SearchPage>, GSYListState<SearchPage> {
+class _SearchPageState extends State<SearchPage>
+    with AutomaticKeepAliveClientMixin<SearchPage>, GSYListState<SearchPage> {
   int selectIndex = 0;
 
   String searchText;
@@ -40,7 +42,8 @@ class _SearchPageState extends State<SearchPage> with AutomaticKeepAliveClientMi
   }
 
   _getDataLogic() async {
-    return await ReposDao.searchRepositoryDao(searchText, language, type, sort, selectIndex == 0 ? null : 'user', page, Config.PAGE_SIZE);
+    return await ReposDao.searchRepositoryDao(
+        searchText, language, type, sort, selectIndex == 0 ? null : 'user', page, Config.PAGE_SIZE);
   }
 
   _clearSelect(List<FilterModel> list) {
@@ -111,7 +114,7 @@ class _SearchPageState extends State<SearchPage> with AutomaticKeepAliveClientMi
             if (searchText == null || searchText.trim().length == 0) {
               return;
             }
-            if(isLoading) {
+            if (isLoading) {
               return;
             }
             _resolveSelectIndex();
@@ -119,7 +122,7 @@ class _SearchPageState extends State<SearchPage> with AutomaticKeepAliveClientMi
             if (searchText == null || searchText.trim().length == 0) {
               return;
             }
-            if(isLoading) {
+            if (isLoading) {
               return;
             }
             _resolveSelectIndex();
@@ -127,7 +130,7 @@ class _SearchPageState extends State<SearchPage> with AutomaticKeepAliveClientMi
             if (searchText == null || searchText.trim().length == 0) {
               return;
             }
-            if(isLoading) {
+            if (isLoading) {
               return;
             }
             this.selectIndex = selectIndex;

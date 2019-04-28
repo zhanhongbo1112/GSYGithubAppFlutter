@@ -3,8 +3,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import 'package:gsy_github_app_flutter/src/apps/github-client/index.dart';
 
-import '../common/common.dart';
-import '../widget/widget.dart';
+import '../../../../../common/common.dart';
+import '../../../../../widget/widget.dart';
 
 /// 文件代码详情
 class CodeDetailPage extends StatefulWidget {

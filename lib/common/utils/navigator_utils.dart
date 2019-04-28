@@ -2,19 +2,19 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gsy_github_app_flutter/page/code_detail_page.dart';
-import 'package:gsy_github_app_flutter/page/code_detail_page_web.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/repo/code_detail_page.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/repo/code_detail_page_web.dart';
 import 'package:gsy_github_app_flutter/page/common_list_page.dart';
 import 'package:gsy_github_app_flutter/page/gsy_webview.dart';
 import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/issue/issue_detail_page.dart';
 import 'package:gsy_github_app_flutter/page/login_page.dart';
-import 'package:gsy_github_app_flutter/page/notify_page.dart';
-import 'package:gsy_github_app_flutter/page/person_page.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/user/notify_page.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/user/person_page.dart';
 import 'package:gsy_github_app_flutter/page/photoview_page.dart';
-import 'package:gsy_github_app_flutter/page/push_detail_page.dart';
-import 'package:gsy_github_app_flutter/page/release_page.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/repo/push_detail_page.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/repo/release_page.dart';
 import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/repo/repository_detail_page.dart';
-import 'package:gsy_github_app_flutter/page/search_page.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/search_page.dart';
 import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/user/user_profile_page.dart';
 import 'package:gsy_github_app_flutter/src/apps/github-client/_constants/routes.dart';
 
