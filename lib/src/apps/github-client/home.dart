@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 import '../../../common/common.dart';
 import '../../../widget/widget.dart';
 
-import './event/index.dart';
-import './trend/index.dart';
-import './my/index.dart';
+import './event/home.dart';
+import './trend/home.dart';
+import './my/home.dart';
 
 /// 主页
 class GitHubClientHomePage extends StatelessWidget {
@@ -56,7 +56,7 @@ class GitHubClientHomePage extends StatelessWidget {
           _renderTab(GSYICons.MAIN_QS, CommonUtils.getLocale(context).home_trend),
           _renderTab(GSYICons.MAIN_MY, CommonUtils.getLocale(context).home_my),
         ],
-        tabViews: [EventPage(), TrendPage(), MyPage()],
+        tabViews: [EventHomePage(), TrendPage(), MyPage()],
       ),
     );
   }

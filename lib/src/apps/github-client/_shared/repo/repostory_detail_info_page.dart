@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/event/index.dart';
 import 'package:gsy_github_app_flutter/src/apps/github-client/index.dart';
 import 'package:scoped_model/scoped_model.dart';
 

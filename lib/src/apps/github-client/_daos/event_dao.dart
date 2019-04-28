@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:gsy_github_app_flutter/common/dao/dao_result.dart';
 import 'package:gsy_github_app_flutter/common/net/api.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/event/index.dart';
 import 'package:gsy_github_app_flutter/src/apps/github-client/index.dart';
 
 class EventDao {
