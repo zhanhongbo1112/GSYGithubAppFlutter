@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
+import 'package:gsy_github_app_flutter/src/apps/github-client/index.dart';
+
 import '../common/common.dart';
 import '../widget/widget.dart';
 
@@ -20,24 +22,11 @@ class CodeDetailPage extends StatefulWidget {
 
   final String htmlUrl;
 
-  CodeDetailPage(
-      {this.title,
-      this.userName,
-      this.reposName,
-      this.path,
-      this.data,
-      this.branch,
-      this.htmlUrl});
+  CodeDetailPage({this.title, this.userName, this.reposName, this.path, this.data, this.branch, this.htmlUrl});
 
   @override
-  _CodeDetailPageState createState() => _CodeDetailPageState(
-      this.title,
-      this.userName,
-      this.reposName,
-      this.path,
-      this.data,
-      this.branch,
-      this.htmlUrl);
+  _CodeDetailPageState createState() =>
+      _CodeDetailPageState(this.title, this.userName, this.reposName, this.path, this.data, this.branch, this.htmlUrl);
 }
 
 class _CodeDetailPageState extends State<CodeDetailPage> {
@@ -57,16 +46,13 @@ class _CodeDetailPageState extends State<CodeDetailPage> {
 
   String data;
 
-  _CodeDetailPageState(this.title, this.userName, this.reposName, this.path,
-      this.data, this.branch, this.htmlUrl);
+  _CodeDetailPageState(this.title, this.userName, this.reposName, this.path, this.data, this.branch, this.htmlUrl);
 
   @override
   void initState() {
     super.initState();
     if (data == null) {
-      ReposDao.getReposFileDirDao(userName, reposName,
-              path: path, branch: branch, text: true)
-          .then((res) {
+      ReposDao.getReposFileDirDao(userName, reposName, path: path, branch: branch, text: true).then((res) {
         if (res != null && res.result) {
           setState(() {
             data = res.data;
@@ -90,9 +76,7 @@ class _CodeDetailPageState extends State<CodeDetailPage> {
                 children: <Widget>[
                   SpinKitDoubleBounce(color: Theme.of(context).primaryColor),
                   Container(width: 10.0),
-                  Container(
-                      child: Text(CommonUtils.getLocale(context).loading_text,
-                          style: GSYConstant.middleText)),
+                  Container(child: Text(CommonUtils.getLocale(context).loading_text, style: GSYConstant.middleText)),
                 ],
               ),
             ),

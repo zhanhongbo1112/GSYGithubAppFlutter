@@ -6,7 +6,6 @@ import 'package:gsy_github_app_flutter/common/dao/dao_result.dart';
 import 'package:gsy_github_app_flutter/common/model/Event.dart';
 import 'package:gsy_github_app_flutter/common/net/address.dart';
 import 'package:gsy_github_app_flutter/common/net/api.dart';
-import 'package:redux/redux.dart';
 
 class EventDao {
   static getEventReceived(String userName, {page = 1, bool needDb = false}) async {

@@ -1,5 +1,5 @@
 import 'package:gsy_github_app_flutter/bloc/base/base_bloc.dart';
-import 'package:gsy_github_app_flutter/common/dao/repos_dao.dart';
+import 'package:gsy_github_app_flutter/src/apps/github-client/daos/repos_dao.dart';
 
 /**
  * Created by guoshuyu

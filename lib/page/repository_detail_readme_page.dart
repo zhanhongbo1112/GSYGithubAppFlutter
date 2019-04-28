@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:scoped_model/scoped_model.dart';
 
+import 'package:gsy_github_app_flutter/src/apps/github-client/index.dart';
+
 import '../common/common.dart';
 import '../widget/widget.dart';
 import '../page/page.dart';
