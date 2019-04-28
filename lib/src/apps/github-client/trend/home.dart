@@ -12,13 +12,13 @@ import '../index.dart';
 import './bloc/trend_bloc.dart';
 
 /// 主页趋势tab页
-class TrendPage extends StatefulWidget {
+class TrendHomePage extends StatefulWidget {
   @override
-  _TrendPageState createState() => _TrendPageState();
+  _TrendHomePageState createState() => _TrendHomePageState();
 }
 
-class _TrendPageState extends State<TrendPage>
-    with AutomaticKeepAliveClientMixin<TrendPage>, GSYBlocListState<TrendPage> {
+class _TrendHomePageState extends State<TrendHomePage>
+    with AutomaticKeepAliveClientMixin<TrendHomePage>, GSYBlocListState<TrendHomePage> {
   static TrendTypeModel selectTime = null;
 
   static TrendTypeModel selectType = null;

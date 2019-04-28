@@ -56,7 +56,7 @@ class GitHubClientHomePage extends StatelessWidget {
           _renderTab(GSYICons.MAIN_QS, CommonUtils.getLocale(context).home_trend),
           _renderTab(GSYICons.MAIN_MY, CommonUtils.getLocale(context).home_my),
         ],
-        tabViews: [EventHomePage(), TrendPage(), MyPage()],
+        tabViews: [EventHomePage(), TrendHomePage(), MyHomePage()],
       ),
     );
   }

@@ -9,12 +9,12 @@ import 'package:gsy_github_app_flutter/src/apps/github-client/_daos/index.dart';
 import 'package:gsy_github_app_flutter/src/apps/github-client/_shared/index.dart';
 
 /// 主页我的tab页
-class MyPage extends StatefulWidget {
+class MyHomePage extends StatefulWidget {
   @override
-  _MyPageState createState() => _MyPageState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyPageState extends BasePersonState<MyPage> {
+class _MyHomePageState extends BasePersonState<MyHomePage> {
   String beStaredCount = '---';
 
   Color notifyColor = const Color(GSYColors.subTextColor);

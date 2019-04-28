@@ -9,7 +9,6 @@ import 'package:gsy_github_app_flutter/src/apps/github-client/index.dart';
 import 'package:redux/redux.dart';
 
 import './common/common.dart';
-import './page/page.dart';
 
 void main() {
   runZoned(() {
@@ -44,6 +43,7 @@ class FlutterReduxApp extends StatelessWidget {
       store: store,
       child: StoreBuilder<GSYState>(builder: (context, store) {
         return MaterialApp(
+
             ///多语言实现代理
             localizationsDelegates: [
               GlobalMaterialLocalizations.delegate,
@@ -121,31 +121,23 @@ class _GSYLocalizations extends State<GSYLocalizations> {
   errorHandleFunction(int code, message) {
     switch (code) {
       case Code.NETWORK_ERROR:
-        Fluttertoast.showToast(
-            msg: CommonUtils.getLocale(context).network_error);
+        Fluttertoast.showToast(msg: CommonUtils.getLocale(context).network_error);
         break;
       case 401:
-        Fluttertoast.showToast(
-            msg: CommonUtils.getLocale(context).network_error_401);
+        Fluttertoast.showToast(msg: CommonUtils.getLocale(context).network_error_401);
         break;
       case 403:
-        Fluttertoast.showToast(
-            msg: CommonUtils.getLocale(context).network_error_403);
+        Fluttertoast.showToast(msg: CommonUtils.getLocale(context).network_error_403);
         break;
       case 404:
-        Fluttertoast.showToast(
-            msg: CommonUtils.getLocale(context).network_error_404);
+        Fluttertoast.showToast(msg: CommonUtils.getLocale(context).network_error_404);
         break;
       case Code.NETWORK_TIMEOUT:
         //超时
-        Fluttertoast.showToast(
-            msg: CommonUtils.getLocale(context).network_error_timeout);
+        Fluttertoast.showToast(msg: CommonUtils.getLocale(context).network_error_timeout);
         break;
       default:
-        Fluttertoast.showToast(
-            msg: CommonUtils.getLocale(context).network_error_unknown +
-                " " +
-                message);
+        Fluttertoast.showToast(msg: CommonUtils.getLocale(context).network_error_unknown + " " + message);
         break;
     }
   }
