@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yqboots/src/core/config/config.dart';
 import 'package:yqboots/src/widgets/gsy_pull_new_load_widget.dart';
 
-/**
- * Created by guoshuyu
- * on 2019/3/23.
- */
+/// BLoC Provider
 class BlocProvider<T extends BlocBase> extends StatefulWidget {
   BlocProvider({
     Key key,

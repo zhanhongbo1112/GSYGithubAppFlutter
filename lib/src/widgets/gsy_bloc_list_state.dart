@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:yqboots/src/core/bloc/bloc.dart';
+import 'package:yqboots/src/core/core.dart';
 
 /// 上下拉刷新列表的通用State
 mixin GSYBlocListState<T extends StatefulWidget> on State<T>, AutomaticKeepAliveClientMixin<T> {

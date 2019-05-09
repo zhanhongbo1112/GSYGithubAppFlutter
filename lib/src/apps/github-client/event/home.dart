@@ -3,7 +3,6 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:yqboots/src/apps/github-client/_daos/index.dart';
 import 'package:yqboots/src/apps/github-client/event/bloc/event_bloc.dart';
 import 'package:yqboots/src/apps/github-client/event/index.dart';
-import 'package:yqboots/src/core/bloc/bloc.dart';
 import 'package:yqboots/src/core/core.dart';
 import 'package:yqboots/src/widgets/widgets.dart';
 
