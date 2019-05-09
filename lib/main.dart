@@ -3,12 +3,11 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:yqboots/src/apps/github-client/index.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:redux/redux.dart';
-
-import './common/common.dart';
+import 'package:yqboots/src/apps/github-client/index.dart';
+import 'package:yqboots/src/core/core.dart';
 
 void main() {
   runZoned(() {

@@ -3,8 +3,8 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 
-import 'package:yqboots/common/dao/dao_result.dart';
-import 'package:yqboots/common/net/api.dart';
+import 'package:yqboots/src/core/dao/dao_result.dart';
+import 'package:yqboots/src/core/net/api.dart';
 import 'package:yqboots/src/apps/github-client/_constants/index.dart';
 import 'package:yqboots/src/apps/github-client/_models/index.dart';
 import 'package:yqboots/src/apps/github-client/_shared/index.dart';

@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:yqboots/common/ab/sql_provider.dart';
+import 'package:yqboots/src/core/ab/sql_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 /**

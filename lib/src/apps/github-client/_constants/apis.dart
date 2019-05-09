@@ -1,4 +1,4 @@
-import 'package:yqboots/common/config/config.dart';
+import 'package:yqboots/src/core/config/config.dart';
 
 ///地址数据
 class GitHubClientApis {

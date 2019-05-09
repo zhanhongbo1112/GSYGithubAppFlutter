@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yqboots/src/apps/github-client/index.dart';
-import '../../../../../../common/common.dart';
-import '../../../../../../widget/widget.dart';
+import 'package:yqboots/src/core/core.dart';
+import 'package:yqboots/src/widgets/widgets.dart';
 
 /// 推送修改代码Item
 class PushCodeItem extends StatelessWidget {

@@ -7,8 +7,8 @@ import 'package:yqboots/src/apps/github-client/index.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-import '../../../../../common/common.dart';
-import '../../../../../widget/widget.dart';
+import 'package:yqboots/src/core/core.dart';
+import 'package:yqboots/src/widgets/widgets.dart';
 
 /// 仓库文件列表
 class RepositoryDetailFileListPage extends StatefulWidget {

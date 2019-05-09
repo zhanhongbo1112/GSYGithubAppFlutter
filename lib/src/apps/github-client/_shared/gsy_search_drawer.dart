@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../common/common.dart';
+import 'package:yqboots/src/core/core.dart';
 
 typedef void SearchSelectItemChanged<String>(String value);
 

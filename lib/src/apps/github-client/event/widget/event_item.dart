@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:yqboots/common/common.dart';
+import 'package:yqboots/src/core/core.dart';
 import 'package:yqboots/src/apps/github-client/_shared/index.dart';
 import 'package:yqboots/src/apps/github-client/index.dart';
-import 'package:yqboots/widget/widget.dart';
+import 'package:yqboots/src/widgets/widgets.dart';
 
 import '../util/event_utils.dart';
 

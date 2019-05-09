@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'package:yqboots/common/utils/code_utils.dart';
+import 'package:yqboots/src/core/utils/code_utils.dart';
 import 'package:flutter/foundation.dart';
-import 'package:yqboots/common/ab/sql_provider.dart';
+import 'package:yqboots/src/core/ab/sql_provider.dart';
 import 'package:yqboots/src/apps/github-client/_models/User.dart';
 import 'package:sqflite/sqflite.dart';
 

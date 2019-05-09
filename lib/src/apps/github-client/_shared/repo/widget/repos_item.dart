@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:yqboots/src/apps/github-client/_models/index.dart';
 import 'package:yqboots/src/apps/github-client/_shared/index.dart';
-import '../../../../../../common/common.dart';
-import '../../../../../../widget/widget.dart';
+import 'package:yqboots/src/core/core.dart';
+import 'package:yqboots/src/widgets/widgets.dart';
 
 /// 仓库Item
 class ReposItem extends StatelessWidget {

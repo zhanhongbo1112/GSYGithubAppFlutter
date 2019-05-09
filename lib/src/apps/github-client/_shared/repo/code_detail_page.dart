@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:yqboots/src/apps/github-client/_daos/index.dart';
 
-import '../../../../../common/common.dart';
-import '../../../../../widget/widget.dart';
+import 'package:yqboots/src/core/core.dart';
+import 'package:yqboots/src/widgets/widgets.dart';
 
 /// 文件代码详情
 class CodeDetailPage extends StatefulWidget {

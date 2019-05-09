@@ -3,8 +3,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yqboots/src/apps/github-client/_shared/index.dart';
 import 'package:yqboots/src/apps/github-client/index.dart';
-import '../../../../../common/common.dart';
-import '../../../../../widget/widget.dart';
+import 'package:yqboots/src/core/core.dart';
+import 'package:yqboots/src/widgets/widgets.dart';
 
 /**
  * 用户详情头部

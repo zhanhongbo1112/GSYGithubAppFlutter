@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:yqboots/src/apps/github-client/_models/TrendingRepoModel.dart';
-import 'package:yqboots/common/net/api.dart';
-import 'package:yqboots/common/net/code.dart';
-import 'package:yqboots/common/net/result_data.dart';
+import 'package:yqboots/src/core/net/api.dart';
+import 'package:yqboots/src/core/net/code.dart';
+import 'package:yqboots/src/core/net/result_data.dart';
 
 /**
  * 趋势数据解析

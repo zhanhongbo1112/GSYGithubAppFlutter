@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:yqboots/common/dao/dao_result.dart';
-import 'package:yqboots/common/net/api.dart';
+import 'package:yqboots/src/core/dao/dao_result.dart';
+import 'package:yqboots/src/core/net/api.dart';
 import 'package:yqboots/src/apps/github-client/event/index.dart';
 import 'package:yqboots/src/apps/github-client/index.dart';
 

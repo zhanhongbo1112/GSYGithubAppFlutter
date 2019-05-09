@@ -5,7 +5,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:yqboots/src/apps/github-client/_daos/index.dart';
 import 'package:redux/redux.dart';
 
-import '../../../../common/common.dart';
+import 'package:yqboots/src/core/core.dart';
 
 /// 欢迎页
 class WelcomePage extends StatefulWidget {

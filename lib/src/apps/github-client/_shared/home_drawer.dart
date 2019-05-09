@@ -3,9 +3,9 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:yqboots/src/apps/github-client/_daos/index.dart';
 import 'package:yqboots/src/apps/github-client/index.dart';
 
-import '../../../../common/common.dart';
+import 'package:yqboots/src/core/core.dart';
 
-import 'package:yqboots/widget/gsy_flex_button.dart';
+import 'package:yqboots/src/widgets/gsy_flex_button.dart';
 import 'package:package_info/package_info.dart';
 import 'package:redux/redux.dart';
 

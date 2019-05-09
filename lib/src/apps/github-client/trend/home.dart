@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:yqboots/src/apps/github-client/_shared/index.dart';
 import 'package:redux/redux.dart';
+import 'package:yqboots/src/apps/github-client/_shared/index.dart';
+import 'package:yqboots/src/core/core.dart';
+import 'package:yqboots/src/widgets/widgets.dart';
 
-import '../../../../common/common.dart';
-import '../../../../widget/widget.dart';
-import '../../../../bloc/bloc.dart';
-
-import '../index.dart';
 import './bloc/trend_bloc.dart';
+import '../index.dart';
 
 /// 主页趋势tab页
 class TrendHomePage extends StatefulWidget {

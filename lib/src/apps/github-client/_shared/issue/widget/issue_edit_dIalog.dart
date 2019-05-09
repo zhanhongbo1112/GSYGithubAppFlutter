@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../common/common.dart';
-import '../../../../../../widget/widget.dart';
+import 'package:yqboots/src/core/core.dart';
+import 'package:yqboots/src/widgets/widgets.dart';
 
 /// issue 编辑输入框
 class IssueEditDialog extends StatefulWidget {

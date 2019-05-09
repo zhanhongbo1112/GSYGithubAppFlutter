@@ -3,8 +3,8 @@ import 'package:yqboots/src/apps/github-client/_shared/index.dart';
 import 'package:yqboots/src/apps/github-client/_models/index.dart';
 import 'package:yqboots/src/apps/github-client/_daos/index.dart';
 
-import '../../../../common/common.dart';
-import '../../../../widget/widget.dart';
+import 'package:yqboots/src/core/core.dart';
+import 'package:yqboots/src/widgets/widgets.dart';
 
 /// 通用list
 class CommonListPage extends StatefulWidget {

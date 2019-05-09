@@ -4,8 +4,8 @@ import 'package:yqboots/src/apps/github-client/_daos/index.dart';
 import 'package:yqboots/src/apps/github-client/index.dart';
 import 'package:redux/redux.dart';
 
-import '../../../../../common/common.dart';
-import '../../../../../widget/widget.dart';
+import 'package:yqboots/src/core/core.dart';
+import 'package:yqboots/src/widgets/widgets.dart';
 
 /// 用户信息中心
 class UserProfileInfo extends StatefulWidget {

@@ -5,13 +5,13 @@ import 'package:dio/dio.dart';
 import 'package:yqboots/src/apps/github-client/_shared/index.dart';
 import 'package:redux/redux.dart';
 
-import 'package:yqboots/common/config/config.dart';
-import 'package:yqboots/common/config/ignoreConfig.dart';
-import 'package:yqboots/common/dao/dao_result.dart';
-import 'package:yqboots/common/local/local_storage.dart';
-import 'package:yqboots/common/net/api.dart';
-import 'package:yqboots/common/redux/user_redux.dart';
-import 'package:yqboots/common/utils/common_utils.dart';
+import 'package:yqboots/src/core/config/config.dart';
+import 'package:yqboots/src/core/config/ignoreConfig.dart';
+import 'package:yqboots/src/core/dao/dao_result.dart';
+import 'package:yqboots/src/core/local/local_storage.dart';
+import 'package:yqboots/src/core/net/api.dart';
+import 'package:yqboots/src/core/redux/user_redux.dart';
+import 'package:yqboots/src/core/utils/common_utils.dart';
 import 'package:yqboots/src/apps/github-client/index.dart';
 
 class UserDao {

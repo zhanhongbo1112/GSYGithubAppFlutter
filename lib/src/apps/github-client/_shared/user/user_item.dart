@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:yqboots/src/apps/github-client/index.dart';
 
-import '../../../../../widget/widget.dart';
-import '../../../../../common/common.dart';
+import 'package:yqboots/src/widgets/widgets.dart';
+import 'package:yqboots/src/core/core.dart';
 
 /// 用户item
 class UserItem extends StatelessWidget {

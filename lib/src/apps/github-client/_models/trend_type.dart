@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yqboots/common/common.dart';
+import 'package:yqboots/src/core/core.dart';
 
 /// 趋势类型
 class TrendTypeModel {
